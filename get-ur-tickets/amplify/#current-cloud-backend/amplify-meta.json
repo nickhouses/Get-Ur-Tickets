@@ -1,0 +1,58 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-geturtickets-dev-d95e2-authRole",
+      "UnauthRoleArn": "arn:aws:iam::741448957495:role/amplify-geturtickets-dev-d95e2-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::741448957495:role/amplify-geturtickets-dev-d95e2-authRole",
+      "Region": "us-west-1",
+      "DeploymentBucketName": "amplify-geturtickets-dev-d95e2-deployment",
+      "UnauthRoleName": "amplify-geturtickets-dev-d95e2-unauthRole",
+      "StackName": "amplify-geturtickets-dev-d95e2",
+      "StackId": "arn:aws:cloudformation:us-west-1:741448957495:stack/amplify-geturtickets-dev-d95e2/a4ec2b80-723c-11ef-969b-06e4267ab535",
+      "AmplifyAppId": "d2f1kp5pb690lv"
+    }
+  },
+  "auth": {
+    "geturtickets86d456d6": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-geturtickets-dev-d95e2-deployment/amplify-cfn-templates/auth/geturtickets86d456d6-cloudformation-template.json",
+        "logicalId": "authgeturtickets86d456d6"
+      },
+      "lastPushTimeStamp": "2024-09-14T02:10:08.071Z",
+      "output": {
+        "UserPoolId": "us-west-1_EkN7Cy9hW",
+        "AppClientIDWeb": "qh084bv9d86mma9nivj6t51fr",
+        "AppClientID": "3cjreke7bgko2lkcfjr20o93t5",
+        "IdentityPoolId": "us-west-1:3d9e7362-9011-43d8-8fce-cc24115ef3d9",
+        "UserPoolArn": "arn:aws:cognito-idp:us-west-1:741448957495:userpool/us-west-1_EkN7Cy9hW",
+        "IdentityPoolName": "geturtickets86d456d6_identitypool_86d456d6__dev",
+        "UserPoolName": "geturtickets86d456d6_userpool_86d456d6"
+      },
+      "lastPushDirHash": "zmgIv+ulqHBMaDJe0kwDFC8YUfY="
+    }
+  }
+}
