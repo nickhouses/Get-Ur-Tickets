@@ -1,0 +1,4 @@
+.DS_Store
+constants.env
+key.encrypted
+__pycache__
