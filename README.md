@@ -1,6 +1,6 @@
 - [Get-Ur-Tickets](#get-ur-tickets)
 - [Process to run it locally](#process-to-run-it-locally)
-  - [System Diagram](#system-diagram)
+- [System Diagram](#system-diagram)
 
 # Get-Ur-Tickets
 This is repository is for the CS 472 project.
@@ -10,7 +10,7 @@ This is repository is for the CS 472 project.
    
 2. `npm start`
 
-## System Diagram
+# System Diagram
 ![](img/System-Diagram.jpg)
 
 GetUrTickets is a RESTful application that works by making GET, POST, PUT, and DELETE requests. The application has a frontend user interface that the user will interact with, and a backend that handles all of the processing of the application.
