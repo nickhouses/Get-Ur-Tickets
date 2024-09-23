@@ -1,6 +1,9 @@
 .DS_Store
 constants.env
 key.encrypted
+*.iws
+workspace.xml
+tasks.xml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

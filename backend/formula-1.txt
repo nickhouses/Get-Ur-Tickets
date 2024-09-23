@@ -1,0 +1,7 @@
+Name,Date,Airport,Price
+United States Grand Prix,10-20-2024,AUS,268.78
+Mexican Grand Prix,10-27-2024,MEX,1343.88
+Brazil Grand Prix,11-03-2024,GRU,797.37
+Las Vegas Grand Prix,11-23-2024,LAS,940.72
+Qatar Grand Prix,12-01-2024,DOH,309.10
+Abu Dhabi Grand Prix,12-08-2024,AUH,2575.76
