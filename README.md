@@ -6,9 +6,18 @@
 This is repository is for the CS 472 project.
 
 # Process to run it locally
+## Frontend
 1. `npm install aws-amplify @aws-amplify/ui-react` - use this command to # get the dependancies to be able to start it.
    
 2. `npm start`
+
+## Backend
+The entry point of the backend is [flask_app.py](./backend/flask_app.py)
+
+1. Change directories to the backend directory: `cd backend`
+2. Run `python3 flask_app.py`
+3. Run this command: `curl -d '{"originAirportCode":"LAS"}' -X POST http://localhost:5000/test -H "Content-Type: application/json"`
+   - If need be, edit the parameters passed by modifying what is inside the curly braces
 
 # How the application works
 ![](img/System-Diagram.jpg)
