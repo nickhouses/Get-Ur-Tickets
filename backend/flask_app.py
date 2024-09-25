@@ -19,4 +19,5 @@ def get_query_from_react():
 
 
 if __name__ == '__main__':
+    print('Server is running on localhost:5000')
     serve(app, host='localhost', port=5000)
