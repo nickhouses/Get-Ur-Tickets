@@ -1,5 +1,7 @@
 - [Get-Ur-Tickets](#get-ur-tickets)
 - [Process to run it locally](#process-to-run-it-locally)
+  - [Frontend](#frontend)
+  - [Backend](#backend)
 - [How the application works](#how-the-application-works)
 
 # Get-Ur-Tickets
