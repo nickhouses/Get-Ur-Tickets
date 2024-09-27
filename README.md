@@ -2,6 +2,7 @@
 - [Process to run it locally](#process-to-run-it-locally)
   - [Frontend](#frontend)
   - [Backend](#backend)
+  - [Docker](#docker)
 - [How the application works](#how-the-application-works)
 
 # Get-Ur-Tickets
@@ -20,6 +21,27 @@ The entry point of the backend is [flask_app.py](./backend/flask_app.py)
 2. Run `python3 flask_app.py`
 3. Run this command: `curl -d '{"originAirportCode":"LAS"}' -X POST http://localhost:5000/test -H "Content-Type: application/json"`
    - If need be, edit the parameters passed by modifying what is inside the curly braces
+
+## Docker
+1. Commands to build and run 
+   - To build the container issue the command `docker build -t get-ur-tickets-app .`
+   - To run the container issue the command  `docker run -p 3000:3000 get-ur-tickets-app`
+2. Build Phase:
+   - When the Docker file is built it will do the following: 
+   - Download the node.js 16 image
+   - Create a working directory in the `/app` container
+   - Copy the package.json files
+   - Run `npm install` to install dependencies 
+3. Run Phase:
+   - When the Docker file is ran it will do the following:
+   - Expose port 3000 in the container to port 3000 on your local machine
+   - Start the Node.js application using npm start 
+   - The application will be accessible on your local machine at `http://localhost:3000`
+4. FAQ:
+   - Ensure Docker is installed on your computer.
+   - The initial build will take approximately 2 minutes.
+   - If the build fails and the error you encounter is 401 unauthorized, make sure you are logged into Docker on your terminal. 
+   - The command to log in is `docker login -u <username>`
 
 # How the application works
 ![](img/System-Diagram.jpg)
