@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
+import { signOut } from "aws-amplify/auth";
 
 const MyButton = ({ to }) =>{
 
@@ -10,7 +11,14 @@ const MyButton = ({ to }) =>{
     const navigate = useNavigate();
 
     return (
-      <button className="my-button" onClick={() => { navigate(`/${to}`); }}
+      <button className="my-button" onClick={() => { 
+        if(to == "signout"){
+          signOut()
+        }
+        else{
+          navigate(`/${to}`); 
+        }
+        }}
         style={{ 
           width: '75px',
           height: '50px',
@@ -19,7 +27,7 @@ const MyButton = ({ to }) =>{
           textAlign: 'center',
     }}
       >
-        Take me to {to === '' ? "home" : to}
+        {to === '' ? "home" : to}
       </button>
     )
 }

@@ -1,26 +1,27 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Link } from "react-router-dom";
 import { Home } from './pages/Home';
 import { Login } from './pages/Login';
-import MyButton from './Components/MyButton';
-import { useNavigate, BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import {  useAuthenticator } from '@aws-amplify/ui-react';
 
 
-
-function App() {
-
-
-  return (
-    <Router>
-    <div>
+export default function App() {
+  
+  const { user } = useAuthenticator();
+  <>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Login" element={<Login />} />
+        <Route exact path="/" element={<Login/>} />
+        <Route path="/Home" element={<Home/>} />
       </Routes>
-    </div>
-  </Router>
-  );
+  </>
+      if(user){
+        return <Home/>
+      }
+      else{
+       return <Login/>
+      }
 }
 
-export default App;
+
+//Put security checks in later
