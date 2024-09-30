@@ -4,44 +4,69 @@ import Fly_Now from "../Pictures/Fly_Now.png";
 
 
 class TicketComponent extends React.Component{
-  
-  
+
+
   render(){
       return (
-          <div className="Ticket-Box">
-            <div
-              style={{ 
-                position: 'flex',
-                textAlign: 'center',
-              }}
-            >
-              Location:
-            </div>
-            <div
-              style={{ 
-                position: 'flex',
-                textAlign: 'left',
-              }}
-            >
-              Event: Taylor Swift /hyperlink
-              <br></br>
-              <br></br>
-              Flight: Spirit Airlines /hyperlink
-              <br></br>
-              <br></br>
-              Hotel: Holiday Inn /hyperlink
-            </div>
-  
-            <div
-              style={{ 
-                position: 'relative',
-                textAlign: 'right',
-                paddingRight: '50px',
-              }}
-            >
-              Price: $1500
-            </div>
-          </div>
+      <div className="Ticket-Box" 
+        style=
+        {{        
+                  display: 'flex', 
+                  justifyContent: 'space-between', 
+                  padding: '20px', 
+                  border: '1px solid #ddd', 
+                  margin: '10px 0' 
+        }}>
+        <div style=
+        {{ 
+                  flex: 1, 
+                  textAlign: 'left', 
+                  paddingRight: '10px' 
+        }}>
+          <strong>Location:</strong>
+          <br/> New York
+        </div>
+
+        <div style=
+        {{ 
+          flex: 2, 
+          textAlign: 'left', 
+          paddingRight: '10px' 
+        }}>
+          <strong>Event:</strong> Taylor Swift
+          <br/>
+        </div>
+
+        <div style=
+        {{ 
+          flex: 2, 
+          textAlign: 'left', 
+          paddingRight: '10px' 
+        }}>
+          <strong>Flight:</strong> Spirit Airlines
+          {/* Placeholder for additional details or subpage */}
+          <br/><a href="#flight">Flight Details</a>
+        </div>
+
+        <div style=
+        {{  
+          flex: 2, 
+          textAlign: 'left', 
+          paddingRight: '10px' 
+        }}>
+          <strong>Hotel:</strong> Holiday Inn
+          {/* Placeholder for additional details or subpage */}
+          <br/><a href="#hotel">Hotel Details</a>
+        </div>
+        
+        <div style=
+        {{ 
+          flex: 1, 
+          textAlign: 'right' 
+        }}>
+          <strong>Price:</strong> $1500
+        </div>
+      </div>
       )
   }
   /*this will be used to create the display ticket with prices, location, link, etc... */
@@ -60,7 +85,7 @@ class Tickets extends TicketComponent {
 }
 
 export function Home(){
-  
+
 
 
     const [showButton, setShowButton] = useState(true);
