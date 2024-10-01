@@ -22,6 +22,12 @@ The entry point of the backend is [flask_app.py](./backend/flask_app.py)
 3. Run this command: `curl -d '{"originAirportCode":"LAS"}' -X POST http://localhost:5000/test -H "Content-Type: application/json"`
    - If need be, edit the parameters passed by modifying what is inside the curly braces
 
+You can expect the output to be in a JSON format like the following. 
+
+````
+{"result":[[429.78,"United States Grand Prix"],[940.72,"Las Vegas Grand Prix"],[1351.37,"Brazil Grand Prix"],[1629.88,"Mexican Grand Prix"],[1739.1,"Qatar Grand Prix"],[4285.76,"Abu Dhabi Grand Prix"]]}
+````
+
 ## Docker
 1. Commands to build and run 
    - To build the container issue the command `docker build -t get-ur-tickets-app .`
