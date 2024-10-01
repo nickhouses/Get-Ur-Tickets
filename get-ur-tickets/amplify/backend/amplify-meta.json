@@ -1,28 +1,26 @@
 {
   "providers": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-geturtickets-dev-d95e2-authRole",
-      "UnauthRoleArn": "arn:aws:iam::741448957495:role/amplify-geturtickets-dev-d95e2-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::741448957495:role/amplify-geturtickets-dev-d95e2-authRole",
-      "Region": "us-west-1",
-      "DeploymentBucketName": "amplify-geturtickets-dev-d95e2-deployment",
-      "UnauthRoleName": "amplify-geturtickets-dev-d95e2-unauthRole",
-      "StackName": "amplify-geturtickets-dev-d95e2",
-      "StackId": "arn:aws:cloudformation:us-west-1:741448957495:stack/amplify-geturtickets-dev-d95e2/a4ec2b80-723c-11ef-969b-06e4267ab535",
-      "AmplifyAppId": "d2f1kp5pb690lv"
+      "AuthRoleName": "amplify-geturtickets-devv-d8a54-authRole",
+      "UnauthRoleArn": "arn:aws:iam::741448957495:role/amplify-geturtickets-devv-d8a54-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::741448957495:role/amplify-geturtickets-devv-d8a54-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-geturtickets-devv-d8a54-deployment",
+      "UnauthRoleName": "amplify-geturtickets-devv-d8a54-unauthRole",
+      "StackName": "amplify-geturtickets-devv-d8a54",
+      "StackId": "arn:aws:cloudformation:us-east-1:741448957495:stack/amplify-geturtickets-devv-d8a54/36c44660-7e9e-11ef-8316-12ddeb1629cd",
+      "AmplifyAppId": "d356ozzs66r3xx"
     }
   },
   "auth": {
-    "geturtickets86d456d6": {
+    "geturtickets3cb31893": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
       "customAuth": false,
       "frontendAuthConfig": {
         "socialProviders": [],
-        "usernameAttributes": [
-          "EMAIL"
-        ],
+        "usernameAttributes": [],
         "signupAttributes": [
           "EMAIL"
         ],
@@ -39,20 +37,20 @@
         ]
       },
       "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-geturtickets-dev-d95e2-deployment/amplify-cfn-templates/auth/geturtickets86d456d6-cloudformation-template.json",
-        "logicalId": "authgeturtickets86d456d6"
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-geturtickets-devv-d8a54-deployment/amplify-cfn-templates/auth/geturtickets3cb31893-cloudformation-template.json",
+        "logicalId": "authgeturtickets3cb31893"
       },
-      "lastPushTimeStamp": "2024-09-14T02:10:08.071Z",
+      "lastPushTimeStamp": "2024-09-29T20:12:05.825Z",
       "output": {
-        "UserPoolId": "us-west-1_EkN7Cy9hW",
-        "AppClientIDWeb": "qh084bv9d86mma9nivj6t51fr",
-        "AppClientID": "3cjreke7bgko2lkcfjr20o93t5",
-        "IdentityPoolId": "us-west-1:3d9e7362-9011-43d8-8fce-cc24115ef3d9",
-        "UserPoolArn": "arn:aws:cognito-idp:us-west-1:741448957495:userpool/us-west-1_EkN7Cy9hW",
-        "IdentityPoolName": "geturtickets86d456d6_identitypool_86d456d6__dev",
-        "UserPoolName": "geturtickets86d456d6_userpool_86d456d6"
+        "UserPoolId": "us-east-1_Fr0DAPkVt",
+        "AppClientIDWeb": "77lln6hc07qdpfh9f199jl10i4",
+        "AppClientID": "2crr4pb8kc39rr37lpfe1gafn7",
+        "IdentityPoolId": "us-east-1:ef4b5308-cf96-492b-bccd-9a4582431707",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:741448957495:userpool/us-east-1_Fr0DAPkVt",
+        "IdentityPoolName": "geturtickets3cb31893_identitypool_3cb31893__devv",
+        "UserPoolName": "geturtickets3cb31893_userpool_3cb31893"
       },
-      "lastPushDirHash": "zmgIv+ulqHBMaDJe0kwDFC8YUfY="
+      "lastPushDirHash": "n9fE/5ky6MNjHTYiabfCRY8HNus="
     }
   }
 }

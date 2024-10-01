@@ -3,5 +3,10 @@
     "configLevel": "project",
     "useProfile": true,
     "profileName": "Ticket-Dev-Local"
+  },
+  "devv": {
+    "configLevel": "project",
+    "useProfile": false,
+    "awsConfigFilePath": "C:\\Users\\Victor\\.amplify\\awscloudformation\\cdFzkbZH9g"
   }
 }
