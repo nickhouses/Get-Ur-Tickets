@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {}
+  },
+  "devv": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-geturtickets-devv-d8a54-authRole",
+      "UnauthRoleArn": "arn:aws:iam::741448957495:role/amplify-geturtickets-devv-d8a54-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::741448957495:role/amplify-geturtickets-devv-d8a54-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-geturtickets-devv-d8a54-deployment",
+      "UnauthRoleName": "amplify-geturtickets-devv-d8a54-unauthRole",
+      "StackName": "amplify-geturtickets-devv-d8a54",
+      "StackId": "arn:aws:cloudformation:us-east-1:741448957495:stack/amplify-geturtickets-devv-d8a54/36c44660-7e9e-11ef-8316-12ddeb1629cd",
+      "AmplifyAppId": "d356ozzs66r3xx"
+    },
+    "categories": {
+      "auth": {
+        "geturtickets3cb31893": {}
+      }
+    }
+  }
+}
