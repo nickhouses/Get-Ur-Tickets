@@ -33,3 +33,7 @@ def decrypt_file(file_path, key):
     data = json.loads(decrypted_data)
 
     return data['ticket'], data['flight']
+
+
+if __name__ == "__main__":
+    encrypt_file('constants.env', get_key('key.encrypted'))
