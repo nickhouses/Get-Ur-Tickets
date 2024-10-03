@@ -2,7 +2,7 @@ from waitress import serve
 from flask_cors import CORS
 from flask import Flask, request
 from processing import get_total_price_from_api
-import time
+# import time
 
 app = Flask(__name__)
 CORS(app)
@@ -18,13 +18,13 @@ def get_query_from_react():
     keyword = json_request['keyword']
 
     # Timing start
-    #start_time = time.time()
+    # start_time = time.time()
 
     result = get_total_price_from_api(origin_airport_code, keyword)
 
     # Timing end and print
-    #end_time = time.time()
-    #print(f"Total request took {end_time - start_time:.2f} seconds")
+    # end_time = time.time()
+    # print(f"Total request took {end_time - start_time:.2f} seconds")
 
     return {'result': result}
 
