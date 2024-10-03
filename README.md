@@ -26,14 +26,152 @@ The entry point of the backend is [flask_app.py](./backend/flask_app.py)
 
 1. Change directories to the backend directory: `cd backend`
 2. Run `python3 flask_app.py`
-3. Run this command: `curl -d '{"originAirportCode":"LAS"}' -X POST http://localhost:5000/test -H "Content-Type: application/json"`
-   - If need be, edit the parameters passed by modifying what is inside the curly braces
+3. Run the following command.
+```shell 
+curl -d '{"originAirportCode":"LAS", "keyword":"formula-1"}' -X POST http://localhost:5000/test -H "Content-Type: application/json"
+```
 
-You can expect the output to be in a JSON format like the following. 
+- If need be, edit the parameters passed by modifying what is inside the curly braces
 
-````
-{"result":[[429.78,"United States Grand Prix"],[940.72,"Las Vegas Grand Prix"],[1351.37,"Brazil Grand Prix"],[1629.88,"Mexican Grand Prix"],[1739.1,"Qatar Grand Prix"],[4285.76,"Abu Dhabi Grand Prix"]]}
-````
+You can expect the output to be in a JSON format like the following.
+```json
+{
+    "result": [
+        [
+            287.0,
+            "2024 Formula 1 Pirelli United States Grand Prix - Friday",
+            [
+                "Austin",
+                "Texas"
+            ],
+            "https://www.ticketmaster.com/2024-formula-1-pirelli-united-states-austin-texas-10-18-2024/event/3A006091CC0450AD",
+            "2024-10-17",
+            "2024-10-19"
+        ],
+        [
+            346.0,
+            "2024 Formula 1 Pirelli United States Grand Prix - Saturday",
+            [
+                "Austin",
+                "Texas"
+            ],
+            "https://www.ticketmaster.com/2024-formula-1-pirelli-united-states-austin-texas-10-19-2024/event/3A006091CC9350FA",
+            "2024-10-18",
+            "2024-10-20"
+        ],
+        [
+            403.0,
+            "2024 Formula 1 Pirelli United States Grand Prix - Sunday",
+            [
+                "Austin",
+                "Texas"
+            ],
+            "https://www.ticketmaster.com/2024-formula-1-pirelli-united-states-austin-texas-10-20-2024/event/3A006091CD365146",
+            "2024-10-19",
+            "2024-10-21"
+        ],
+        [
+            1272.0,
+            "Souvenir Ticket - FORMULA 1 AUSTRALIAN GRAND PRIX 2025",
+            [
+                "Albert Park",
+                "Victoria"
+            ],
+            "https://www.ticketmaster.com.au/souvenir-ticket-formula-1-australian-grand-albert-park-16-03-2025/event/250061339E1A2126",
+            "2025-03-15",
+            "2025-03-17"
+        ],
+        [
+            1361.96,
+            "Sunday Joyflight - FORMULA 1 AUSTRALIAN GRAND PRIX 2025",
+            [
+                "Albert Park",
+                "Victoria"
+            ],
+            "https://www.ticketmaster.com.au/sunday-joyflight-formula-1-australian-grand-albert-park-16-03-2025/event/25006130BDE32A68",
+            "2025-03-15",
+            "2025-03-17"
+        ],
+        [
+            1379.96,
+            "Friday Joyflight - FORMULA 1 AUSTRALIAN GRAND PRIX 2025",
+            [
+                "Albert Park",
+                "Victoria"
+            ],
+            "https://www.ticketmaster.com.au/friday-joyflight-formula-1-australian-grand-albert-park-14-03-2025/event/25006130BDD82A62",
+            "2025-03-13",
+            "2025-03-15"
+        ],
+        [
+            1418.53,
+            "Thursday Joyflight - FORMULA 1 AUSTRALIAN GRAND PRIX 2025",
+            [
+                "Albert Park",
+                "Victoria"
+            ],
+            "https://www.ticketmaster.com.au/thursday-joyflight-formula-1-australian-grand-albert-park-13-03-2025/event/25006130BDC82A60",
+            "2025-03-12",
+            "2025-03-14"
+        ],
+        [
+            1510.96,
+            "Saturday Joyflight - FORMULA 1 AUSTRALIAN GRAND PRIX 2025",
+            [
+                "Albert Park",
+                "Victoria"
+            ],
+            "https://www.ticketmaster.com.au/saturday-joyflight-formula-1-australian-grand-albert-park-15-03-2025/event/25006130BDDF2A66",
+            "2025-03-14",
+            "2025-03-16"
+        ],
+        [
+            5034.0,
+            "Individual G04 Formula 1 2024",
+            [
+                "M\u00e9xico",
+                "Ciudad de M\u00e9xico"
+            ],
+            "https://www.ticketmaster.com.mx/individual-g04-formula-1-2024-mexico-26-10-2024/event/140060B893FA0DB7",
+            "2024-10-25",
+            "2024-10-27"
+        ],
+        [
+            5043.0,
+            "Individual G04 Formula 1 2024",
+            [
+                "M\u00e9xico",
+                "Ciudad de M\u00e9xico"
+            ],
+            "https://www.ticketmaster.com.mx/individual-g04-formula-1-2024-mexico-25-10-2024/event/140060B893DF0D99",
+            "2024-10-24",
+            "2024-10-26"
+        ],
+        [
+            5054.0,
+            "Individual G04 Formula 1 2024",
+            [
+                "M\u00e9xico",
+                "Ciudad de M\u00e9xico"
+            ],
+            "https://www.ticketmaster.com.mx/individual-g04-formula-1-2024-mexico-27-10-2024/event/140060B8940A0DC4",
+            "2024-10-26",
+            "2024-10-28"
+        ],
+        [
+            50577.0,
+            "Boxes Grada 11 + Speed Lounge Formula 1 2024",
+            [
+                "M\u00e9xico",
+                "Ciudad de M\u00e9xico"
+            ],
+            "https://www.ticketmaster.com.mx/boxes-grada-11-speed-lounge-formula-mexico-25-10-2024/event/140061329A51126E",
+            "2024-10-24",
+            "2024-10-26"
+        ]
+    ]
+}
+```
 
 ## Docker
 1. Commands to build and run 
