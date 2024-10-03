@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import MyButton from "../Components/MyButton";
 import Fly_Now from "../Pictures/Fly_Now.png";
+import DetailsPopover from "../Components/popOver.tsx";
 
 
 class TicketComponent extends React.Component{
@@ -8,20 +9,21 @@ class TicketComponent extends React.Component{
 
   render(){
       return (
+        
       <div className="Ticket-Box" 
         style=
         {{        
-                  display: 'flex', 
-                  justifyContent: 'space-between', 
-                  padding: '20px', 
-                  border: '1px solid #ddd', 
-                  margin: '10px 0' 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          padding: '20px', 
+          border: '1px solid #ddd', 
+          margin: '10px 0' 
         }}>
         <div style=
         {{ 
-                  flex: 1, 
-                  textAlign: 'left', 
-                  paddingRight: '10px' 
+          flex: 1, 
+          textAlign: 'left', 
+          paddingRight: '10px' 
         }}>
           <strong>Location:</strong>
           <br/> New York
@@ -43,9 +45,16 @@ class TicketComponent extends React.Component{
           textAlign: 'left', 
           paddingRight: '10px' 
         }}>
-          <strong>Flight:</strong> Spirit Airlines
-          {/* Placeholder for additional details or subpage */}
-          <br/><a href="#flight">Flight Details</a>
+          <strong>Flight:
+          </strong> Spirit Airlines
+          <br/>
+          {/* First implementation of details popover. Replace props as needed. (name, header, etc...) */}
+          <DetailsPopover
+            name = "Flight Details"
+            header = "DEP -> ARR"
+            line1 = "From: Departure City"
+            line2 = "To: Arrival City"
+          />
         </div>
 
         <div style=
@@ -56,7 +65,7 @@ class TicketComponent extends React.Component{
         }}>
           <strong>Hotel:</strong> Holiday Inn
           {/* Placeholder for additional details or subpage */}
-          <br/><a href="#hotel">Hotel Details</a>
+          <br/><DetailsPopover /> {/* */}
         </div>
         
         <div style=
