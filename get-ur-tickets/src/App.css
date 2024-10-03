@@ -117,3 +117,30 @@
 .Word-Color{
   color: white;
 }
+
+
+/* Details Popover Styling: */
+.details-popover {
+  background-color: #f8f9fa; 
+  border: 1px solid #686f75; 
+  border-radius: 0.25rem; 
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); 
+}
+
+.details-popover .popover-header {
+  background-color: #dfe4e9; 
+  border-bottom: 1px solid #686f75; 
+  border-top-left-radius: 0.25rem; 
+  border-top-right-radius: 0.25rem; 
+  text-align: center;
+  padding: 0.5rem; 
+  margin: 0;
+  font-weight: 400; 
+}
+
+.details-popover .popover-body {
+  color: #212529; 
+  padding-left: 0.5rem; 
+  padding-right: 0.5rem;
+  margin: 0;
+}
