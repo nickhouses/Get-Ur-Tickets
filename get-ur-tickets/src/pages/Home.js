@@ -2,7 +2,22 @@ import React, { useState } from 'react';
 import MyButton from "../Components/MyButton";
 import Fly_Now from "../Pictures/Fly_Now.png";
 import DetailsPopover from "../Components/popOver.tsx";
+import { Authenticator } from '@aws-amplify/ui-react';
 
+
+const UserBanner = () => {
+  return (
+      <Authenticator>
+          {({ user }) => (
+              <div className="Nav-Banner">
+                  <h1 className="Word-Color">Welcome, {user.username}!</h1>
+              </div>
+          )}
+      </Authenticator>
+  );
+};
+
+export default UserBanner;
 
 class TicketComponent extends React.Component{
 
@@ -103,22 +118,25 @@ export function Home(){
     };
     var obj = new Tickets();
     return(
-      <div>
-        <div>
+      <div className='banner-container'>
           <img alt="" className="Top-Banner" src={Fly_Now}/>
-        </div>
-        <div className="Second-Row">
-          <div className="LeftComponent">
-            {showButton && <button className="Settings-Button" onClick={toggleButton}>Settings</button>}
-            {!showButton && 
-            <div>      
+          
+        <div className='button-overlay'>
+          
+        {<button className="Top-Banner-2" onClick={toggleButton}>Settings</button>}
+            {!showButton &&  (
+            <div className='button-group'>      
               <MyButton to=""/>
               <MyButton to="signout" />
             </div>    
-            } 
-          </div>
+            )} 
+          <UserBanner/>
+          
+        </div>
+        <div className="Second-Row">
+         
           <div className='Second-Row-Ticket-Background'>
-            <h1>Hello  </h1>
+           
 
               {obj.getTickets()}
           </div>
