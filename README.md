@@ -10,9 +10,16 @@ This is repository is for the CS 472 project.
 
 # Process to run it locally
 ## Frontend
-1. `npm install aws-amplify @aws-amplify/ui-react` - use this command to # get the dependancies to be able to start it.
+1. `npm install bootstrap react-bootstrap aws-amplify @aws-amplify/ui-react` - use this command to # get the dependancies to be able to start it.
    
 2. `npm start`
+
+### Frontend Optional: 
+1. If using a Linux machine, or UNIX machines (needs testing), you may run `chmod +x build.sh` if you wish to use the build script instead. 
+
+2. After enabling the build script for execution, run `./build.sh` in the root directory of your repo git clone.
+
+3. This will run all necessary commands to build/aquire dependencies and prompt you to start the webserver locally if you wish.
 
 ## Backend
 The entry point of the backend is [flask_app.py](./backend/flask_app.py)
