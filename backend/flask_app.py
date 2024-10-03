@@ -1,7 +1,7 @@
 from waitress import serve
 from flask_cors import CORS
 from flask import Flask, request
-from processing import get_total_price
+from processing import get_total_price_from_api
 
 app = Flask(__name__)
 CORS(app)
@@ -14,8 +14,9 @@ def get_query_from_react():
     """
     json_request = request.get_json()
     origin_airport_code = json_request['originAirportCode']
+    keyword = json_request['keyword']
 
-    return {'result': get_total_price(origin_airport_code)}
+    return {'result': get_total_price_from_api(origin_airport_code, keyword)}
 
 
 if __name__ == '__main__':
