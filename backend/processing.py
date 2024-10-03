@@ -1,7 +1,5 @@
 import csv
-import json
 import datetime
-import urllib.request
 import requests
 from encryption_functions import get_key, decrypt_file
 
@@ -10,8 +8,9 @@ CONSTANTS_FILE = 'constants.env'
 TICKET_API_KEY, FLIGHT_API_KEY = decrypt_file(CONSTANTS_FILE,
                                               get_key(KEY_FILE))
 
-# create a session for keep alive 
+# create a session for keep alive
 session = requests.Session()
+
 
 def get_flight_info(origin: str, destination: str, start_date: str,
                     end_date: str):
@@ -24,11 +23,12 @@ def get_flight_info(origin: str, destination: str, start_date: str,
     """
     response = session.get(
         f'https://serpapi.com/search.json?engine=google_flights&output=json&'
-        f'departure_id={origin}&arrival_id={destination}&outbound_date={start_date}&'
-        f'return_date={end_date}&api_key={FLIGHT_API_KEY}')
-        
+        f'departure_id={origin}&arrival_id={destination}&outbound_date='
+        f'{start_date}&return_date={end_date}&api_key={FLIGHT_API_KEY}')
+
     response.raise_for_status()
     return response.json()
+
 
 def get_total_price_from_file(origin: str = 'LAS') -> list:
     """
@@ -79,7 +79,8 @@ def get_total_price_from_api(origin: str = 'LAS',
 
     result = []
 
-    response = session.get(f'https://app.ticketmaster.com/discovery/v2/events.json?apikey={TICKET_API_KEY}&keyword={keyword}')
+    response = session.get(f'https://app.ticketmaster.com/discovery/v2/events.'
+                           f'json?apikey={TICKET_API_KEY}&keyword={keyword}')
     response.raise_for_status()
     data = response.json()
 
