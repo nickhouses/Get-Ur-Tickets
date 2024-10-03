@@ -2,6 +2,7 @@ import csv
 import json
 import datetime
 import urllib.request
+import requests
 from encryption_functions import get_key, decrypt_file
 
 KEY_FILE = 'key.encrypted'
@@ -9,6 +10,8 @@ CONSTANTS_FILE = 'constants.env'
 TICKET_API_KEY, FLIGHT_API_KEY = decrypt_file(CONSTANTS_FILE,
                                               get_key(KEY_FILE))
 
+# create a session for keep alive 
+session = requests.Session()
 
 def get_flight_info(origin: str, destination: str, start_date: str,
                     end_date: str):
@@ -19,15 +22,13 @@ def get_flight_info(origin: str, destination: str, start_date: str,
     :param end_date: Date of inbound flight (%mm-%dd-%YYYY)
     :return: SerpAPI response in JSON format
     """
-    with urllib.request.urlopen(
-            'https://serpapi.com/search.json?engine=google_flights&output=' +
-            'json&departure_id=' + origin + '&arrival_id=' + destination +
-            '&outbound_date=' + start_date + '&return_date=' + end_date +
-            '&api_key=' + FLIGHT_API_KEY) as url:
-        flights = json.load(url)
-
-    return flights
-
+    response = session.get(
+        f'https://serpapi.com/search.json?engine=google_flights&output=json&'
+        f'departure_id={origin}&arrival_id={destination}&outbound_date={start_date}&'
+        f'return_date={end_date}&api_key={FLIGHT_API_KEY}')
+        
+    response.raise_for_status()
+    return response.json()
 
 def get_total_price_from_file(origin: str = 'LAS') -> list:
     """
@@ -78,10 +79,9 @@ def get_total_price_from_api(origin: str = 'LAS',
 
     result = []
 
-    with urllib.request.urlopen('https://app.ticketmaster.com/discovery/v2/' +
-                                'events.json?apikey=' + TICKET_API_KEY +
-                                '&keyword=' + keyword) as url:
-        data = json.load(url)
+    response = session.get(f'https://app.ticketmaster.com/discovery/v2/events.json?apikey={TICKET_API_KEY}&keyword={keyword}')
+    response.raise_for_status()
+    data = response.json()
 
     for event in data['_embedded']['events']:
         if 'url' in event and 'priceRanges' in event:
