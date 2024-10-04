@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MyButton from "../Components/MyButton";
 import Fly_Now from "../Pictures/Fly_Now.png";
 import DetailsPopover from "../Components/popOver.tsx";
+import { Tickets } from "../Components/TicketGenerator.js"
 import { Authenticator } from '@aws-amplify/ui-react';
-
 
 const UserBanner = () => {
   return (
@@ -19,102 +19,41 @@ const UserBanner = () => {
 
 export default UserBanner;
 
-class TicketComponent extends React.Component{
 
-
-  render(){
-      return (
-        
-      <div className="Ticket-Box" 
-        style=
-        {{        
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          padding: '20px', 
-          border: '1px solid #ddd', 
-          margin: '10px 0' 
-        }}>
-        <div style=
-        {{ 
-          flex: 1, 
-          textAlign: 'left', 
-          paddingRight: '10px' 
-        }}>
-          <strong>Location:</strong>
-          <br/> New York
-        </div>
-
-        <div style=
-        {{ 
-          flex: 2, 
-          textAlign: 'left', 
-          paddingRight: '10px' 
-        }}>
-          <strong>Event:</strong> Taylor Swift
-          <br/>
-        </div>
-
-        <div style=
-        {{ 
-          flex: 2, 
-          textAlign: 'left', 
-          paddingRight: '10px' 
-        }}>
-          <strong>Flight:
-          </strong> Spirit Airlines
-          <br/>
-          {/* First implementation of details popover. Replace props as needed. (name, header, etc...) */}
-          <DetailsPopover
-            name = "Flight Details"
-            header = "DEP -> ARR"
-            line1 = "From: Departure City"
-            line2 = "To: Arrival City"
-          />
-        </div>
-
-        <div style=
-        {{  
-          flex: 2, 
-          textAlign: 'left', 
-          paddingRight: '10px' 
-        }}>
-          <strong>Hotel:</strong> Holiday Inn
-          {/* Placeholder for additional details or subpage */}
-          <br/><DetailsPopover /> {/* */}
-        </div>
-        
-        <div style=
-        {{ 
-          flex: 1, 
-          textAlign: 'right' 
-        }}>
-          <strong>Price:</strong> $1500
-        </div>
-      </div>
-      )
-  }
-  /*this will be used to create the display ticket with prices, location, link, etc... */
-};
-
-class Tickets extends TicketComponent {
-  getTickets(){
-      let items = []
-        /*For loop to push Ticket display into array, testing with 5 for now. Here you will get the number of result and ticket information from get command */
-      for ( let ticketNumber = 0; ticketNumber < 5; ticketNumber++){
-          items.push(<TicketComponent/>)
-      }
-      return items;
-  }
-
-}
 
 export function Home(){
 
+  const [data, setData] = useState()
+  const [hold, setHold] = useState([])
+  useEffect(() => {
+    fetch('data/test2.json').then(
+        response => {
+          if(response.ok){
+            console.log(response)
+            return response.json()
+          }
+          else{
+            console.log("not ok")
+          }
+      }
+    ).then(
+        data => {
+          setData(data)
+          var temp = data.result
+          setHold(temp)
+          
+        },
+    )
+  }, []);
 
 
     const [showButton, setShowButton] = useState(true);
     const toggleButton = () => {
         setShowButton(!showButton);
+    };
+    const [MenuButton, setMenuButton] = useState(true);
+    const toggleMenu = () => {
+        setMenuButton(!MenuButton);
     };
     var obj = new Tickets();
     return(
@@ -126,7 +65,6 @@ export function Home(){
         {<button className="Top-Banner-2" onClick={toggleButton}>Settings</button>}
             {!showButton &&  (
             <div className='button-group'>      
-              <MyButton to=""/>
               <MyButton to="signout" />
             </div>    
             )} 
@@ -136,9 +74,15 @@ export function Home(){
         <div className="Second-Row">
          
           <div className='Second-Row-Ticket-Background'>
-           
+          {<button className="Search-Button" onClick={toggleMenu}>Menu</button>}
+            {!MenuButton &&  (
+            <div className='button-group'>      
+              <MyButton to="Restart Search" />
+            </div>    
+            )} 
+              {console.log(hold)}
+              {obj.getTickets(hold)}
 
-              {obj.getTickets()}
           </div>
         </div>
       </div>
