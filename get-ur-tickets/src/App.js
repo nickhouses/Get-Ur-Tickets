@@ -3,10 +3,10 @@ import './App.css';
 import { Home } from './pages/Home';
 import { Login } from './pages/Login';
 import { Routes, Route } from 'react-router-dom';
-import {  useAuthenticator } from '@aws-amplify/ui-react';
+import {  Authenticator, useAuthenticator } from '@aws-amplify/ui-react';
 
 
-export default function App() {
+const App = () => {
   
   const { user } = useAuthenticator();
   <>
@@ -24,4 +24,9 @@ export default function App() {
 }
 
 
-//Put security checks in later
+//Put security checks
+export default () => (
+  <Authenticator.Provider>
+    <App />
+  </Authenticator.Provider>
+);

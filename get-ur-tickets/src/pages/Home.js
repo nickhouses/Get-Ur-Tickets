@@ -3,6 +3,22 @@ import MyButton from "../Components/MyButton";
 import Fly_Now from "../Pictures/Fly_Now.png";
 import DetailsPopover from "../Components/popOver.tsx";
 import { Tickets } from "../Components/TicketGenerator.js"
+import { Authenticator } from '@aws-amplify/ui-react';
+
+const UserBanner = () => {
+  return (
+      <Authenticator>
+          {({ user }) => (
+              <div className="Nav-Banner">
+                  <h1 className="Word-Color">Welcome, {user.username}!</h1>
+              </div>
+          )}
+      </Authenticator>
+  );
+};
+
+export default UserBanner;
+
 
 
 export function Home(){
@@ -35,26 +51,38 @@ export function Home(){
     const toggleButton = () => {
         setShowButton(!showButton);
     };
+    const [MenuButton, setMenuButton] = useState(true);
+    const toggleMenu = () => {
+        setMenuButton(!MenuButton);
+    };
     var obj = new Tickets();
     return(
-      <div>
-        <div>
+      <div className='banner-container'>
           <img alt="" className="Top-Banner" src={Fly_Now}/>
-        </div>
-        <div className="Second-Row">
-          <div className="LeftComponent">
-            {showButton && <button className="Settings-Button" onClick={toggleButton}>Settings</button>}
-            {!showButton && 
-            <div>      
-              <MyButton to=""/>
+          
+        <div className='button-overlay'>
+          
+        {<button className="Top-Banner-2" onClick={toggleButton}>Settings</button>}
+            {!showButton &&  (
+            <div className='button-group'>      
               <MyButton to="signout" />
             </div>    
-            } 
-          </div>
+            )} 
+          <UserBanner/>
+          
+        </div>
+        <div className="Second-Row">
+         
           <div className='Second-Row-Ticket-Background'>
-            <h1>Hello  </h1>
+          {<button className="Search-Button" onClick={toggleMenu}>Menu</button>}
+            {!MenuButton &&  (
+            <div className='button-group'>      
+              <MyButton to="Restart Search" />
+            </div>    
+            )} 
               {console.log(hold)}
               {obj.getTickets(hold)}
+
           </div>
         </div>
       </div>
