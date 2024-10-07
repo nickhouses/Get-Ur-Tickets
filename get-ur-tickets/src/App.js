@@ -26,7 +26,7 @@ const App = () => {
   );
 };
 
-// Export with BrowserRouter wrapping the entire app (from outside)
+//Put security checks
 export default () => (
     <Authenticator.Provider>
       <App />
