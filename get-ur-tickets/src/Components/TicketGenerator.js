@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DetailsPopover from "../Components/popOver.tsx";
    
+    
 
     export class TicketComponent extends React.Component{
 
@@ -28,7 +29,8 @@ import DetailsPopover from "../Components/popOver.tsx";
             return (
             <div className="Ticket-Box" 
             style=
-            {{        
+            {{       
+                height: 'auto', 
                 display: 'flex', 
                 justifyContent: 'space-between', 
                 padding: '20px', 
@@ -51,7 +53,7 @@ import DetailsPopover from "../Components/popOver.tsx";
                 textAlign: 'left', 
                 paddingRight: '10px' 
             }}>
-                <strong>Event:</strong> {this.event} {console.log("tHERE " + this.Event)}
+                <strong>Event:</strong> {this.event}
                 <br/>
                 <a href={this.hyperlink}> event details</a>
                 <br/>
@@ -101,22 +103,30 @@ import DetailsPopover from "../Components/popOver.tsx";
 }
     
     export class Tickets extends TicketComponent {
-        getTickets(ticketNum){
-            let items = []
+        getTickets(ticketNum, tracking){
+            var ahh = [];
+            if(ticketNum.length === 0){
+                console.log(" returning home ")
+                return;
+            }
+            else if((ticketNum.length - tracking) >= 5){
+                var previous = tracking;
+                tracking += 5;
+                console.log(previous + " previous and tracking " + tracking)
+            }
+            else{
+                var previous = tracking;
+                tracking += ticketNum.length - tracking;
+                console.log(previous + " not greater than or equal to 5 " + tracking)
+            }
             /*For loop to push Ticket display into array, testing with 5 for now. Here you will get the number of result and ticket information from get command */
-            for ( let i = 0; i < ticketNum.length; i++){
-                this.setParams(ticketNum[i][1], "", "", ticketNum[i][0], ticketNum[i][2][0] + " " + ticketNum[i][2][1], ticketNum[i][3], ticketNum[i][4], ticketNum[i][5])
-                items.push(this.startRender())
-            }
-            return items;
-        }
 
-        /* Have to rerender here, and this is called in Home*/
-        render(ticketNum){
-            var items = this.getTickets(ticketNum)
-            for(let i = 0; i < items.length; i++){
-                return (items[i]);
+            for ( let i = 0; i < tracking; i++){
+                console.log("!!!!!!")
+                this.setParams(ticketNum[i][1], "", "", ticketNum[i][0], ticketNum[i][2][0] + " " + ticketNum[i][2][1], ticketNum[i][3], ticketNum[i][4], ticketNum[i][5])
+                ahh.push(this.startRender())
             }
+            console.log(previous + " RETURNING " + tracking + "  " + ahh.length)
+            return ahh;
         }
-    
     }

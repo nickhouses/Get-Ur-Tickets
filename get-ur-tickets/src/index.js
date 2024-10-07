@@ -13,13 +13,14 @@ Amplify.configure(awsExports);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+
   <React.StrictMode>
       <Authenticator.Provider>
         <BrowserRouter>
           <App />
         </BrowserRouter>
       </Authenticator.Provider>
-  </React.StrictMode>
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
