@@ -20,6 +20,8 @@ const App = () => {
       ) : (
         <Routes> {/* If user is not logged in, show login route */}
           <Route path="/" element={<Login />} />
+          <Route path="/Home" element={<Login />} />
+          <Route path="/Contact" element={<Login />} />
         </Routes>
       )}
     </>
