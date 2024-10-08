@@ -1,12 +1,45 @@
 - [Get-Ur-Tickets](#get-ur-tickets)
+- [Process to run application on AWS](#process-to-run-application-on-aws)
+  - [Access the AWS machine](#access-the-aws-machine)
+  - [Get the most up-to-date code](#get-the-most-up-to-date-code)
+  - [Serve the flask application](#serve-the-flask-application)
+    - [The application is now served here](#the-application-is-now-served-here)
 - [Process to run it locally](#process-to-run-it-locally)
   - [Frontend](#frontend)
+    - [Frontend Optional:](#frontend-optional)
   - [Backend](#backend)
   - [Docker](#docker)
 - [How the application works](#how-the-application-works)
 
 # Get-Ur-Tickets
 This is repository is for the CS 472 project.
+
+# Process to run application on AWS
+## Access the AWS machine
+- Update the permissions on the KeyPair file
+  - `chmod 400 MyKeyPair.pem`
+- ssh into AWS machine 
+  - `ssh -i MyKeyPair.pem ubuntu@ec2-54-152-125-46.compute-1.amazonaws.com`
+
+## Get the most up-to-date code
+- Clone the repository
+  - `git clone https://github.com/CS-472/Get-Ur-Tickets.git`
+- Pull the most up-to-date code from the repository
+   `git pull`
+
+## Serve the flask application
+- Check if there are any active screens
+  - `screen -ls`
+- Terminate any active screens
+  - `screen -X -S <session_id> quit`
+- Resume any active screens
+  - `screen -r`
+- Serve the flask application
+  - `waitress-serve --port=5000 --call flask_app:create_app`
+- Detach from the current screen
+  - Ctrl + A, then D
+
+### The application is now served [here](http://54.152.125.46:5000)
 
 # Process to run it locally
 ## Frontend
@@ -28,7 +61,7 @@ The entry point of the backend is [flask_app.py](./backend/flask_app.py)
 2. Run `python3 flask_app.py`
 3. Run the following command.
 ```shell 
-curl -d '{"originAirportCode":"LAS", "keyword":"formula-1"}' -X POST http://localhost:5000/test -H "Content-Type: application/json"
+curl -d '{"originAirportCode":"LAS", "keyword":"formula-1"}' -X POST http://54.152.125.46:5000/test -H "Content-Type: application/json"
 ```
 
 - If need be, edit the parameters passed by modifying what is inside the curly braces

@@ -17,3 +17,8 @@ jobs:
         uses: py-actions/flake8@v2
         with:
           args: --exclude=Assignment1/
+      - name: API Keys in Github Secrets
+        run: echo "API keys are set"
+        env:
+          FLIGHT_API_KEY: ${{ secrets.FLIGHT_API_KEY }}
+          TICKET_API_KEY: ${{ secrets.TICKETS_API_KEY }}
