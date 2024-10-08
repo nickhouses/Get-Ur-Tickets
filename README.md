@@ -30,6 +30,8 @@ This is repository is for the CS 472 project.
   - `screen -r`
 - Serve the flask application
   - `waitress-serve --port=5000 --call flask_app:create_app`
+- Detach from the current screen
+  - Ctrl + A, then D
 
 ### The application is now served [here](http://54.152.125.46:5000)
 
