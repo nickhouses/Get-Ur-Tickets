@@ -11,9 +11,9 @@ This is repository is for the CS 472 project.
 # Process to run application on AWS
 ## Access the AWS machine
 - Update the permissions on the KeyPair file
-  - `chmod 400 "MyKeyPair.pem"`
+  - `chmod 400 MyKeyPair.pem`
 - ssh into AWS machine 
-  - `ssh -i "MyKeyPair.pem" ubuntu@ec2-54-152-125-46.compute-1.amazonaws.com`
+  - `ssh -i MyKeyPair.pem ubuntu@ec2-54-152-125-46.compute-1.amazonaws.com`
 
 ## Get the most up-to-date code
 - Clone the repository
