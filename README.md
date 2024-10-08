@@ -53,7 +53,7 @@ The entry point of the backend is [flask_app.py](./backend/flask_app.py)
 2. Run `python3 flask_app.py`
 3. Run the following command.
 ```shell 
-curl -d '{"originAirportCode":"LAS", "keyword":"formula-1"}' -X POST http://localhost:5000/test -H "Content-Type: application/json"
+curl -d '{"originAirportCode":"LAS", "keyword":"formula-1"}' -X POST http://54.152.125.46:5000/test -H "Content-Type: application/json"
 ```
 
 - If need be, edit the parameters passed by modifying what is inside the curly braces
