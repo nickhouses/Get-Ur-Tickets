@@ -8,6 +8,31 @@
 # Get-Ur-Tickets
 This is repository is for the CS 472 project.
 
+# Process to run application on AWS
+## Access the AWS machine
+- Update the permissions on the KeyPair file
+  - `chmod 400 "MyKeyPair.pem"`
+- ssh into AWS machine 
+  - `ssh -i "MyKeyPair.pem" ubuntu@ec2-54-152-125-46.compute-1.amazonaws.com`
+
+## Get the most up-to-date code
+- Clone the repository
+  - `git clone https://github.com/CS-472/Get-Ur-Tickets.git`
+- Pull the most up-to-date code from the repository
+   `git pull`
+
+## Serve the flask application
+- Check if there are any active screens
+  - `screen -ls`
+- Terminate any active screens
+  - `screen -X -S <session_id> quit`
+- Resume any active screens
+  - `screen -r`
+- Serve the flask application
+  - `waitress-serve --port=5000 --call flask_app:create_app`
+
+### The application is now served [here](http://54.152.125.46:5000)
+
 # Process to run it locally
 ## Frontend
 1. `npm install bootstrap react-bootstrap aws-amplify @aws-amplify/ui-react` - use this command to # get the dependancies to be able to start it.

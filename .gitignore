@@ -4,6 +4,7 @@ key.encrypted
 *.iws
 workspace.xml
 tasks.xml
+*.pem
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
