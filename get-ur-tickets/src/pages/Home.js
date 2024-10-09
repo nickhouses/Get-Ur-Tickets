@@ -4,7 +4,7 @@ import Fly_Now from "../Pictures/Fly_Now.png";
 import DetailsPopover from "../Components/popOver.tsx";
 import { Tickets } from "../Components/TicketGenerator.js"
 import { Authenticator } from '@aws-amplify/ui-react';
-import { Contact } from './Contact';
+import { Contact } from './Contact Us.js';
 import { Link } from 'react-router-dom';
 
 const UserBanner = () => {
@@ -80,9 +80,7 @@ export function Home(){
             {!MenuButton &&  (
             <div className='button-group'>      
               <MyButton to="Restart Search" />
-              <Link to="/Contact">
-                <MyButton to="Contact Us" />
-              </Link>
+              <MyButton to="Contact Us" />
             </div>    
             )} 
               {console.log(hold)}
