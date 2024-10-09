@@ -39,7 +39,7 @@ This is repository is for the CS 472 project.
 - Detach from the current screen
   - Ctrl + A, then D
 
-### The application is now served [here](http://ec2-54-152-125-46.compute-1.amazonaws.com:5000/)
+### The application is now served [here](http://ec2-52-204-31-136.compute-1.amazonaws.com:5000/)
 
 # Process to run it locally
 ## Frontend
@@ -61,7 +61,7 @@ The entry point of the backend is [flask_app.py](./backend/flask_app.py)
 2. Run `python3 flask_app.py`
 3. Run the following command.
 ```shell 
-curl -d '{"originAirportCode":"LAS", "keyword":"formula-1"}' -X POST http://ec2-54-152-125-46.compute-1.amazonaws.com:5000/test -H "Content-Type: application/json"
+curl -d '{"originAirportCode":"LAS", "keyword":"formula-1"}' -X POST http://ec2-52-204-31-136.compute-1.amazonaws.com:5000test -H "Content-Type: application/json"
 ```
 
 - If need be, edit the parameters passed by modifying what is inside the curly braces
