@@ -10,7 +10,7 @@ def hello():
     return 'Hello World!'
 
 
-@app.route('/test', methods=['POST'])
+@app.route('/result', methods=['POST'])
 def get_best_prices():
     """
     :return: The JSON results for the front end to pick up
