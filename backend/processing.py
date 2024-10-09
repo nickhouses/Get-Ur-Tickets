@@ -91,7 +91,7 @@ def get_total_price_from_api(origin: str = 'LAS',
     for event in data['_embedded']['events']:
         if 'url' in event and 'priceRanges' in event:
             name = event['name']
-            url = event['url']
+            ticket_url = event['url']
             ticket_price = float(event['priceRanges'][0]['min'])
 
             location = event['_embedded']['venues'][0]
@@ -102,24 +102,37 @@ def get_total_price_from_api(origin: str = 'LAS',
             venue = (city, state)
 
             if airports[venue] == origin:
-                result.append((ticket_price, name, venue, url))
+                flight_price = 0
+                flight_url = flight_start_date = flight_end_date = ''
+
             else:
                 date = event['dates']['start']['localDate']
                 date = datetime.datetime.strptime(date, "%Y-%m-%d")
 
-                start_date = str(date +
-                                 datetime.timedelta(days=-1)).split(' ')[0]
-                end_date = str(date + datetime.timedelta(days=1)).split(' ')[0]
+                flight_start_date = str(date +
+                                        datetime.timedelta(days=-1)).split(
+                    ' ')[0]
+                flight_end_date = str(date +
+                                      datetime.timedelta(days=1)).split(' ')[0]
 
-                flights = get_flight_info(origin, airports[venue], start_date,
-                                          end_date)
+                flights = get_flight_info(origin, airports[venue],
+                                          flight_start_date, flight_end_date)
 
-                result.append((ticket_price +
-                               flights['price_insights']['lowest_price'], name,
-                               venue, url, start_date, end_date))
+                flight_price = flights['price_insights']['lowest_price']
+                flight_url = flights['search_metadata']['google_flights_url']
 
-    result.sort()
-    return result
+            result.append({'Total_Price': ticket_price + flight_price,
+                           'Name': name,
+                           'Venue': venue,
+                           'Ticket_Price': ticket_price,
+                           'Ticket_URL': ticket_url,
+                           'Flight_Price': flight_price,
+                           'Flight_URL': flight_url,
+                           'Flight_Start_Date': flight_start_date,
+                           'Flight_End Date': flight_end_date
+                           })
+
+    return sorted(result, key=lambda x: x['Total_Price'])
 
 
 if __name__ == "__main__":
