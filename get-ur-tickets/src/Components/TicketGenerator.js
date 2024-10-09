@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import DetailsPopover from "../Components/popOver.tsx";
-   
     
+    export var chkMore = false;
+    export var chkLess = false;
 
     export class TicketComponent extends React.Component{
 
@@ -102,22 +103,47 @@ import DetailsPopover from "../Components/popOver.tsx";
     };
 }
     
+
+
     export class Tickets extends TicketComponent {
-        getTickets(ticketNum, tracking){
+        getTickets(ticketNum, tracking, MoreOrLess){
             var ahh = [];
+            chkMore = false;
+            chkLess = false;
             if(ticketNum.length === 0){
                 console.log(" returning home ")
                 return;
             }
-            else if((ticketNum.length - tracking) >= 5){
-                var previous = tracking;
-                tracking += 5;
-                console.log(previous + " previous and tracking " + tracking)
+            else if(MoreOrLess === 1){
+                console.log(" TicketGenerator Tag - More " + tracking)
+                if((ticketNum.length - tracking) >= 5){
+                    console.log(" TicketGenerator Tag - More (>=)" + tracking)
+                    tracking += 5;
+                }
+                else if(ticketNum.length < tracking){
+                    tracking += ticketNum.length - tracking;
+                }
+            }
+            else if(MoreOrLess === 2){
+                console.log(" TicketGenerator Tag - Less " + tracking)
+                if((tracking - 5) < 5){
+                    console.log(" TicketGenerator Tag - Less (< 5) " + tracking)
+                    tracking = 5;
+                }
+                else if(ticketNum.length === tracking){
+                    console.log(" TicketGenerator Tag - Less (==) " + tracking)
+                    while(tracking % 5 !== 0){
+                        tracking--;
+                    }
+                }
+                else{
+                    console.log(" TicketGenerator Tag - Less (Else) " + tracking)
+                    tracking = tracking - 5;
+                }
             }
             else{
-                var previous = tracking;
-                tracking += ticketNum.length - tracking;
-                console.log(previous + " not greater than or equal to 5 " + tracking)
+                console.log("error in MoreOrLess " + MoreOrLess)
+                return;
             }
             /*For loop to push Ticket display into array, testing with 5 for now. Here you will get the number of result and ticket information from get command */
 
@@ -126,7 +152,12 @@ import DetailsPopover from "../Components/popOver.tsx";
                 this.setParams(ticketNum[i][1], "", "", ticketNum[i][0], ticketNum[i][2][0] + " " + ticketNum[i][2][1], ticketNum[i][3], ticketNum[i][4], ticketNum[i][5])
                 ahh.push(this.startRender())
             }
-            console.log(previous + " RETURNING " + tracking + "  " + ahh.length)
+            if(tracking !== ticketNum.length && tracking < ticketNum.length){
+                chkMore = true;
+            }
+            if(tracking > 5){
+                chkLess = true;
+            }
             return ahh;
         }
     }

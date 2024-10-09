@@ -2,7 +2,25 @@ import React, { useState, useEffect } from 'react';
 import MyButton from "../Components/MyButton";
 import Fly_Now from "../Pictures/Fly_Now.png";
 import DetailsPopover from "../Components/popOver.tsx";
-import { Tickets } from "../Components/TicketGenerator.js"
+import { Tickets, chkMore, chkLess } from "../Components/TicketGenerator.js"
+import { Authenticator } from '@aws-amplify/ui-react';
+import { Contact } from './Contact';
+import { Prev } from 'react-bootstrap/esm/PageItem';
+
+const UserBanner = () => {
+  return (
+      <Authenticator>
+          {({ user }) => (
+              <div className="Nav-Banner">
+                  <h1 className="Word-Color">Welcome, {user.username}!</h1>
+              </div>
+          )}
+      </Authenticator>
+  );
+};
+
+export default UserBanner;
+
 
 
 export function Home(){
@@ -15,6 +33,8 @@ export function Home(){
   const [item, setItem] = useState([])
   const [chkPageProg, setChkPageProg] = useState(false)
   const [chkPrevProg, setChkPrevProg] = useState(false)
+
+  const [MoreOrLess, setMoreOrLess] = useState(1)  //using 1 to show more and 2 to show less. anything else is an error
 
   useEffect(() => {
     fetch('data/test2.json').then(
@@ -42,63 +62,94 @@ export function Home(){
         setShowButton(!showButton);
     };
 
-    var testing = 0;
 
-    const a = (obj) => {
-      var needthis = (parseInt(tracking) + 5)
-      console.log(hold.length + " CHECK " + needthis)
-      if(needthis >= hold.length && tracking !== 0){
-        setChkPageProg(false)
-        testing = hold.length - tracking;
-        setTracking(testing);
-        console.log(hold.length + " in home " + tracking);
-      } 
-      else if((needthis < hold.length)){
-        setTracking(needthis);
-        setChkPageProg(true)
-        console.log(hold.length + " in THIRD " + tracking + " " + needthis);
+
+    const a = (obj, pageChangeChk) => {
+      var testing = 0;
+      console.log('inside a')
+      if(pageChangeChk === 1){
+        console.log('inside see more')
+        var needthis = (parseInt(tracking) + 5)
+        console.log(hold.length + " CHECK " + needthis )
+        if(needthis >= hold.length && tracking !== 0){
+          testing = hold.length - tracking;
+          setTracking(hold.length - tracking);
+          console.log(hold.length + " in home " + tracking);
+          setMoreOrLess(1);
+        } 
+        else if((needthis < hold.length)){
+          setTracking(a =>(a + 5));
+          console.log(hold.length + " in THIRD " + tracking + " " + needthis);
+          setMoreOrLess(1);
+        }
+        else if(parseInt(tracking) === hold.length && hold.length !== 0){
+          setTracking(tracking);
+          console.log(hold.length + " in home fourth " + tracking);
+          setMoreOrLess(1);
+        }
+        else{
+          console.log("end")
+          return
+        }
       }
-      else if(parseInt(tracking) === hold.length && hold.length !== 0){
-        setTracking(tracking);
-        console.log(hold.length + " in home THIRD " + tracking);
-        setChkPageProg(false)
+      else if(pageChangeChk === 2){
+        console.log('inside see less')
+        var needthis = (parseInt(tracking) - 5)
+        if(needthis > 5){
+          console.log("less than, tracking > 5")
+          setTracking(a => a - 5 );
+          setMoreOrLess(2);
+        } 
+        else if(needthis <= 5){
+          console.log("less than, tracking < 5 " + tracking)
+          let test = 5
+          setTracking(5);
+          setMoreOrLess(2);
+        }
+        else{
+          console.log("error")
+          return
+        }
       }
       else{
-        console.log("end")
-        return
+        console.log("no more pages or less pages true")
       }
+      return
     }
 
-{useEffect(() => {
-  console.log("no result ")
-}, [noResult])}
-
-  var tomany = []
-
+    const [MenuButton, setMenuButton] = useState(true);
+    const toggleMenu = () => {
+        setMenuButton(!MenuButton);
+    };
     return(
-      <div>
-        <div>
-          <img alt="" className="Top-Banner" src={Fly_Now}/>
-        </div>
-        <div className="Second-Row">
-          <div className="LeftComponent">
-            {showButton && <button className="Settings-Button" onClick={toggleButton}>Settings</button>}
-            {!showButton && 
-            <div>      
-              <MyButton to=""/>
+      <div className='banner-container'>
+        <img alt="" className="Top-Banner" src={Fly_Now}/>
+          
+        <div className='button-overlay'>
+          
+        {<button className="Top-Banner-2" onClick={toggleButton}>Settings</button>}
+            {!showButton &&  (
+            <div className='button-group'>      
               <MyButton to="signout" />
             </div>    
-            } 
-          </div>
+            )} 
+          <UserBanner/>
+          
+        </div>
+        <div className="Second-Row">
+        {<button className="Search-Button" onClick={toggleMenu}>Menu</button>}
+            {!MenuButton &&  (
+            <div className='button-group'>      
+              <MyButton to="Restart Search" />
+              <MyButton to="Contact" />
+            </div>    
+            )} 
           <div className='Second-Row-Ticket-Background'>
-            <h1>Hello  </h1>
             {console.log("..... ")}
-            {/*{(parseInt(tracking) < hold.length) && (parseInt(tracking) !== hold.length) ? chkPageProg && <a href='#' style={{position: 'fixed', bottom: 0, flexDirection: 'column'}} onClick={() => {a(obj); setnoResult(true); }}>show more</a>: () => {console.log('nothing')}} {/* CREATES SHOW MORE BUTTON, NEED TO ADD CHKPROGPAGE AND ADD ANOTHER OPTION IN a(obj)*/}
-            {/*{parseInt(tracking) > 5 ? <a href='#' style={{position: 'fixed', bottom: 0, flexDirection: 'column', left: '185px'}} onClick={() => {a(obj); setnoResult(true); console.log('SHOW LESS')}}>show less</a>: () => {console.log('nothing')}}  CREATES SHOW LESS BUTTON, NEED TO ADD CHKPREVPAGE AND ADD ANOTHER OPTION IN a(obj)*/}
-            <a href='#' style={{position: 'fixed', bottom: 0, flexDirection: 'column'}} onClick={() => {a(obj); setnoResult(true); }}>show more</a>
-            {item !== undefined ? obj.getTickets(hold,parseInt(tracking), item): () => {console.log('nothing')}}
-            {noResult ? () => {setChkPageProg(true); setnoResult(false); setTracking(parseInt(tracking) + 5); }: () => {console.log('nothing')}} {/**/}
-            {console.log("?????????????")}
+            {item !== undefined ? obj.getTickets(hold,tracking, MoreOrLess) : () => {console.log('nothing')}}
+            {item !== undefined && chkMore === true ? <a href='#' style={{flexDirection: 'column', marginRight: '10px'}} onClick={() => { a(obj, 1);}}>show more</a> : () => {console.log('nothing')}}
+            {item !== undefined && chkLess === true ? <a href='#' style={{flexDirection: 'column'}} onClick={() => {a(obj, 2);}}>show less</a> : () => {console.log('nothing')}}
+            {console.log (chkMore + "    tesssssssssssssssssssssssst    " + chkLess)}
           </div>
         </div>
       </div>
