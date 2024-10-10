@@ -6,24 +6,28 @@ import DetailsPopover from "../Components/popOver.tsx";
 
     export class TicketComponent extends React.Component{
 
-        location = "N/A"
-        event = "N/A"
-        flight = "N/A"
+        eventlocation = "N/A"
+        eventname = "N/A"
+        flighturl = "N/A"
         hotel = "N/A"
-        price = "N/A"
-        hyperlink = "N/A"
-        from = "N/A"
+        total = "N/A"
+        eventhyperlink = "N/A"
+        eventprice = "N/A"
+        flightstart = "N/A"
+        flightend = "N/A"
         to = "N/A"
     
-        setParams(event, hotel, flight, price, location, hyperlink, from, to){
-            this.location = location
-            this.event = event
-            this.flight = flight
+        setParams(eventname, eventhyperlink,eventlocation, eventprice, flighturl, flightstart, flightend, flightprice, hotel, total){
+            this.eventlocation = eventlocation
+            this.eventname = eventname
+            this.flighturl = flighturl
             this.hotel = hotel
-            this.price = price
-            this.hyperlink = hyperlink
-            this.from = from
-            this.to = to
+            this.total = total
+            this.eventhyperlink = eventhyperlink
+            this.eventprice = eventprice
+            this.flightstart = flightstart
+            this.flightend = flightend
+            this.flightprice = flightprice
         }
     
     startRender(){
@@ -45,7 +49,7 @@ import DetailsPopover from "../Components/popOver.tsx";
                 paddingRight: '10px' 
             }}>
                 <strong>Location:</strong>
-                <br/> {this.location}     
+                <br/> {this.eventlocation}     
             </div>
     
             <div style=
@@ -54,11 +58,12 @@ import DetailsPopover from "../Components/popOver.tsx";
                 textAlign: 'left', 
                 paddingRight: '10px' 
             }}>
-                <strong>Event:</strong> {this.event}
+                <strong>Event Price:</strong> {'$' + this.eventprice}
                 <br/>
-                <a href={this.hyperlink}> event details</a>
+                {this.eventname}
                 <br/>
-                Dates: {this.from + " - " + this.to}  
+                <a href={this.eventhyperlink}> event details</a>
+                <br/>
             </div>
     
             <div style=
@@ -67,8 +72,8 @@ import DetailsPopover from "../Components/popOver.tsx";
                 textAlign: 'left', 
                 paddingRight: '10px' 
             }}>
-                <strong>Flight:
-                </strong> {this.flight}
+                <strong>Flight Price:
+                </strong> {'$' + this.flightprice}
                 <br/>
                 {/* First implementation of details popover. Replace props as needed. (name, header, etc...) */}
                 <DetailsPopover
@@ -77,6 +82,10 @@ import DetailsPopover from "../Components/popOver.tsx";
                 line1 = "From: Departure City"
                 line2 = "To: Arrival City"
                 />
+                <br/>
+                <a href={this.flighturl}> flight purchase link</a>
+                <br/>
+                Dates: {this.flightstart + " - " + this.flightend}  
             </div>
     
             <div style=
@@ -93,9 +102,10 @@ import DetailsPopover from "../Components/popOver.tsx";
             <div style=
             {{ 
                 flex: 1, 
-                textAlign: 'right' 
+                textAlign: 'right', 
+                whiteSpace: 'nowrap',
             }}>
-                <strong>Price:</strong> {"$ " + this.price}
+                <strong>Estimated Total Price:</strong> {"$" + this.total}
             </div>
             </div>
             )
@@ -114,42 +124,13 @@ import DetailsPopover from "../Components/popOver.tsx";
                 console.log(" returning home ")
                 return;
             }
-            else if(MoreOrLess === 1){
-                console.log(" TicketGenerator Tag - More " + tracking)
-                if((ticketNum.length - tracking) >= 5){
-                    console.log(" TicketGenerator Tag - More (>=)" + tracking)
-                    tracking += 5;
-                }
-                else if(ticketNum.length < tracking){
-                    tracking += ticketNum.length - tracking;
-                }
-            }
-            else if(MoreOrLess === 2){
-                console.log(" TicketGenerator Tag - Less " + tracking)
-                if((tracking - 5) < 5){
-                    console.log(" TicketGenerator Tag - Less (< 5) " + tracking)
-                    tracking = 5;
-                }
-                else if(ticketNum.length === tracking){
-                    console.log(" TicketGenerator Tag - Less (==) " + tracking)
-                    while(tracking % 5 !== 0){
-                        tracking--;
-                    }
-                }
-                else{
-                    console.log(" TicketGenerator Tag - Less (Else) " + tracking)
-                    tracking = tracking - 5;
-                }
-            }
-            else{
-                console.log("error in MoreOrLess " + MoreOrLess)
-                return;
-            }
             /*For loop to push Ticket display into array, testing with 5 for now. Here you will get the number of result and ticket information from get command */
 
             for ( let i = 0; i < tracking; i++){
                 console.log("!!!!!!")
-                this.setParams(ticketNum[i][1], "", "", ticketNum[i][0], ticketNum[i][2][0] + " " + ticketNum[i][2][1], ticketNum[i][3], ticketNum[i][4], ticketNum[i][5])
+                this.setParams(ticketNum[i]["Name"], ticketNum[i]["Ticket_URL"], ticketNum[i]["Venue"][0] + " " + ticketNum[i]["Venue"][1], ticketNum[i]["Ticket_Price"], ticketNum[i]["Flight_URL"], ticketNum[i]["Flight_Start_Date"], 
+                ticketNum[i]["Flight_End Date"], ticketNum[i]["Flight_Price"], "", ticketNum[i]["Total_Price"] )
+                //event name, event hyperlink, event location, event price, flight url, flight start, flight end, flight price, hotel, total
                 ahh.push(this.startRender())
             }
             if(tracking !== ticketNum.length && tracking < ticketNum.length){
@@ -158,6 +139,7 @@ import DetailsPopover from "../Components/popOver.tsx";
             if(tracking > 5){
                 chkLess = true;
             }
+            //both chkMore and chkLess can be true at the same time. Globals used for see more and see less hyperlinks
             return ahh;
         }
     }

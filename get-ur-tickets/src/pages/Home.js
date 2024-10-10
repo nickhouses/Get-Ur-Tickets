@@ -4,8 +4,9 @@ import Fly_Now from "../Pictures/Fly_Now.png";
 import DetailsPopover from "../Components/popOver.tsx";
 import { Tickets, chkMore, chkLess } from "../Components/TicketGenerator.js"
 import { Authenticator } from '@aws-amplify/ui-react';
-import { Contact } from './Contact';
 import { Prev } from 'react-bootstrap/esm/PageItem';
+import { Contact } from './Contact Us.js';
+import ProfilePic from '../Pictures/BlankProfile.png'
 
 const UserBanner = () => {
   return (
@@ -37,7 +38,7 @@ export function Home(){
   const [MoreOrLess, setMoreOrLess] = useState(1)  //using 1 to show more and 2 to show less. anything else is an error
 
   useEffect(() => {
-    fetch('data/test2.json').then(
+    fetch('data/test3.json').then(
         response => {
           if(response.ok){
             console.log(response);
@@ -50,7 +51,7 @@ export function Home(){
     ).then(
         data => {
           setData(data);
-          var temp = data.result;
+          var temp = data;
           setHold(temp);
         },
     )
@@ -63,22 +64,21 @@ export function Home(){
     };
 
 
-
+    //function a is used when someone presses see more or see less hyperlink. Calculates what the tracking variable needs to be to be passed into getTickets function
     const a = (obj, pageChangeChk) => {
-      var testing = 0;
       console.log('inside a')
       if(pageChangeChk === 1){
         console.log('inside see more')
-        var needthis = (parseInt(tracking) + 5)
+        var needthis = (parseInt(tracking) + 5);
         console.log(hold.length + " CHECK " + needthis )
         if(needthis >= hold.length && tracking !== 0){
-          testing = hold.length - tracking;
-          setTracking(hold.length - tracking);
+          needthis -= needthis - hold.length;
+          setTracking(needthis);
           console.log(hold.length + " in home " + tracking);
           setMoreOrLess(1);
         } 
         else if((needthis < hold.length)){
-          setTracking(a =>(a + 5));
+          setTracking(needthis);
           console.log(hold.length + " in THIRD " + tracking + " " + needthis);
           setMoreOrLess(1);
         }
@@ -88,14 +88,21 @@ export function Home(){
           setMoreOrLess(1);
         }
         else{
-          console.log("end")
+          console.log("error")
           return
         }
       }
       else if(pageChangeChk === 2){
         console.log('inside see less')
         var needthis = (parseInt(tracking) - 5)
-        if(needthis > 5){
+        if(tracking === hold.length){
+          let loop = tracking;
+          while(!(loop % 5 === 0)){
+            loop--;
+          }
+          setTracking(loop);
+        }
+        else if(needthis > 5){
           console.log("less than, tracking > 5")
           setTracking(a => a - 5 );
           setMoreOrLess(2);
@@ -112,7 +119,7 @@ export function Home(){
         }
       }
       else{
-        console.log("no more pages or less pages true")
+        console.log("ERROR: no more pages or less pages true")
       }
       return
     }
@@ -126,26 +133,19 @@ export function Home(){
         <img alt="" className="Top-Banner" src={Fly_Now}/>
           
         <div className='button-overlay'>
-          
-        {<button className="Top-Banner-2" onClick={toggleButton}>Settings</button>}
+        {<button className="Top-Banner-2" onClick={toggleButton}/>}
             {!showButton &&  (
-            <div className='button-group'>      
+            <div className='button-group'>    
+              <MyButton to="Contact Us" />  
               <MyButton to="signout" />
             </div>    
             )} 
-          <UserBanner/>
-          
+          <UserBanner/>    
         </div>
         <div className="Second-Row">
-        {<button className="Search-Button" onClick={toggleMenu}>Menu</button>}
-            {!MenuButton &&  (
-            <div className='button-group'>      
-              <MyButton to="Restart Search" />
-              <MyButton to="Contact" />
-            </div>    
-            )} 
           <div className='Second-Row-Ticket-Background'>
             {console.log("..... ")}
+            {item !== undefined && tracking === 0 ? setTracking(5) : () => {console.log('nothing')}} {/*need to add check if hold.length > 5 and set tracking to that. I guess show more or show less wont appear either way but should be consistant*/}
             {item !== undefined ? obj.getTickets(hold,tracking, MoreOrLess) : () => {console.log('nothing')}}
             {item !== undefined && chkMore === true ? <a href='#' style={{flexDirection: 'column', marginRight: '10px'}} onClick={() => { a(obj, 1);}}>show more</a> : () => {console.log('nothing')}}
             {item !== undefined && chkLess === true ? <a href='#' style={{flexDirection: 'column'}} onClick={() => {a(obj, 2);}}>show less</a> : () => {console.log('nothing')}}
