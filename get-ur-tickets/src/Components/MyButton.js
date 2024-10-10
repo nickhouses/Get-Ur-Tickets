@@ -16,6 +16,7 @@ const MyButton = ({ to }) =>{
           signOut()
         }
         else{
+          console.log("inside my button")
           navigate(`/${to}`); 
         }
         }}
