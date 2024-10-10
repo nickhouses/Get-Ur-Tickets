@@ -39,7 +39,7 @@ This is repository is for the CS 472 project.
 - Detach from the current screen
   - Ctrl + A, then D
 
-### The application is now served [here](http://54.152.125.46:5000)
+### The application is now served [here](http://ec2-52-204-31-136.compute-1.amazonaws.com:5000/)
 
 # Process to run it locally
 ## Frontend
@@ -61,149 +61,183 @@ The entry point of the backend is [flask_app.py](./backend/flask_app.py)
 2. Run `python3 flask_app.py`
 3. Run the following command.
 ```shell 
-curl -d '{"originAirportCode":"LAS", "keyword":"formula-1"}' -X POST http://54.152.125.46:5000/test -H "Content-Type: application/json"
+curl -d '{"originAirportCode":"LAS", "keyword":"formula-1"}' -X POST http://ec2-52-204-31-136.compute-1.amazonaws.com:5000/result -H "Content-Type: application/json"
 ```
 
 - If need be, edit the parameters passed by modifying what is inside the curly braces
 
 You can expect the output to be in a JSON format like the following.
 ```json
-{
-    "result": [
-        [
-            287.0,
-            "2024 Formula 1 Pirelli United States Grand Prix - Friday",
-            [
-                "Austin",
-                "Texas"
-            ],
-            "https://www.ticketmaster.com/2024-formula-1-pirelli-united-states-austin-texas-10-18-2024/event/3A006091CC0450AD",
-            "2024-10-17",
-            "2024-10-19"
-        ],
-        [
-            346.0,
-            "2024 Formula 1 Pirelli United States Grand Prix - Saturday",
-            [
-                "Austin",
-                "Texas"
-            ],
-            "https://www.ticketmaster.com/2024-formula-1-pirelli-united-states-austin-texas-10-19-2024/event/3A006091CC9350FA",
-            "2024-10-18",
-            "2024-10-20"
-        ],
-        [
-            403.0,
-            "2024 Formula 1 Pirelli United States Grand Prix - Sunday",
-            [
-                "Austin",
-                "Texas"
-            ],
-            "https://www.ticketmaster.com/2024-formula-1-pirelli-united-states-austin-texas-10-20-2024/event/3A006091CD365146",
-            "2024-10-19",
-            "2024-10-21"
-        ],
-        [
-            1272.0,
-            "Souvenir Ticket - FORMULA 1 AUSTRALIAN GRAND PRIX 2025",
-            [
-                "Albert Park",
-                "Victoria"
-            ],
-            "https://www.ticketmaster.com.au/souvenir-ticket-formula-1-australian-grand-albert-park-16-03-2025/event/250061339E1A2126",
-            "2025-03-15",
-            "2025-03-17"
-        ],
-        [
-            1361.96,
-            "Sunday Joyflight - FORMULA 1 AUSTRALIAN GRAND PRIX 2025",
-            [
-                "Albert Park",
-                "Victoria"
-            ],
-            "https://www.ticketmaster.com.au/sunday-joyflight-formula-1-australian-grand-albert-park-16-03-2025/event/25006130BDE32A68",
-            "2025-03-15",
-            "2025-03-17"
-        ],
-        [
-            1379.96,
-            "Friday Joyflight - FORMULA 1 AUSTRALIAN GRAND PRIX 2025",
-            [
-                "Albert Park",
-                "Victoria"
-            ],
-            "https://www.ticketmaster.com.au/friday-joyflight-formula-1-australian-grand-albert-park-14-03-2025/event/25006130BDD82A62",
-            "2025-03-13",
-            "2025-03-15"
-        ],
-        [
-            1418.53,
-            "Thursday Joyflight - FORMULA 1 AUSTRALIAN GRAND PRIX 2025",
-            [
-                "Albert Park",
-                "Victoria"
-            ],
-            "https://www.ticketmaster.com.au/thursday-joyflight-formula-1-australian-grand-albert-park-13-03-2025/event/25006130BDC82A60",
-            "2025-03-12",
-            "2025-03-14"
-        ],
-        [
-            1510.96,
-            "Saturday Joyflight - FORMULA 1 AUSTRALIAN GRAND PRIX 2025",
-            [
-                "Albert Park",
-                "Victoria"
-            ],
-            "https://www.ticketmaster.com.au/saturday-joyflight-formula-1-australian-grand-albert-park-15-03-2025/event/25006130BDDF2A66",
-            "2025-03-14",
-            "2025-03-16"
-        ],
-        [
-            5034.0,
-            "Individual G04 Formula 1 2024",
-            [
-                "M\u00e9xico",
-                "Ciudad de M\u00e9xico"
-            ],
-            "https://www.ticketmaster.com.mx/individual-g04-formula-1-2024-mexico-26-10-2024/event/140060B893FA0DB7",
-            "2024-10-25",
-            "2024-10-27"
-        ],
-        [
-            5043.0,
-            "Individual G04 Formula 1 2024",
-            [
-                "M\u00e9xico",
-                "Ciudad de M\u00e9xico"
-            ],
-            "https://www.ticketmaster.com.mx/individual-g04-formula-1-2024-mexico-25-10-2024/event/140060B893DF0D99",
-            "2024-10-24",
-            "2024-10-26"
-        ],
-        [
-            5054.0,
-            "Individual G04 Formula 1 2024",
-            [
-                "M\u00e9xico",
-                "Ciudad de M\u00e9xico"
-            ],
-            "https://www.ticketmaster.com.mx/individual-g04-formula-1-2024-mexico-27-10-2024/event/140060B8940A0DC4",
-            "2024-10-26",
-            "2024-10-28"
-        ],
-        [
-            50577.0,
-            "Boxes Grada 11 + Speed Lounge Formula 1 2024",
-            [
-                "M\u00e9xico",
-                "Ciudad de M\u00e9xico"
-            ],
-            "https://www.ticketmaster.com.mx/boxes-grada-11-speed-lounge-formula-mexico-25-10-2024/event/140061329A51126E",
-            "2024-10-24",
-            "2024-10-26"
+[
+    {
+        "Flight_End Date": "2024-10-19",
+        "Flight_Price": 245,
+        "Flight_Start_Date": "2024-10-17",
+        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTE3agcIARIDTEFTcgcIARIDQVVTGh4SCjIwMjQtMTAtMTlqBwgBEgNBVVNyBwgBEgNMQVNCAQFIAXABmAEB",
+        "Name": "2024 Formula 1 Pirelli United States Grand Prix - Friday",
+        "Ticket_Price": 89.0,
+        "Ticket_URL": "https://www.ticketmaster.com/2024-formula-1-pirelli-united-states-austin-texas-10-18-2024/event/3A006091CC0450AD",
+        "Total_Price": 334.0,
+        "Venue": [
+            "Austin",
+            "Texas"
         ]
-    ]
-}
+    },
+    {
+        "Flight_End Date": "2024-10-20",
+        "Flight_Price": 220,
+        "Flight_Start_Date": "2024-10-18",
+        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTE4agcIARIDTEFTcgcIARIDQVVTGh4SCjIwMjQtMTAtMjBqBwgBEgNBVVNyBwgBEgNMQVNCAQFIAXABmAEB",
+        "Name": "2024 Formula 1 Pirelli United States Grand Prix - Saturday",
+        "Ticket_Price": 179.0,
+        "Ticket_URL": "https://www.ticketmaster.com/2024-formula-1-pirelli-united-states-austin-texas-10-19-2024/event/3A006091CC9350FA",
+        "Total_Price": 399.0,
+        "Venue": [
+            "Austin",
+            "Texas"
+        ]
+    },
+    {
+        "Flight_End Date": "2024-10-21",
+        "Flight_Price": 269,
+        "Flight_Start_Date": "2024-10-19",
+        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTE5agcIARIDTEFTcgcIARIDQVVTGh4SCjIwMjQtMTAtMjFqBwgBEgNBVVNyBwgBEgNMQVNCAQFIAXABmAEB",
+        "Name": "2024 Formula 1 Pirelli United States Grand Prix - Sunday",
+        "Ticket_Price": 249.0,
+        "Ticket_URL": "https://www.ticketmaster.com/2024-formula-1-pirelli-united-states-austin-texas-10-20-2024/event/3A006091CD365146",
+        "Total_Price": 518.0,
+        "Venue": [
+            "Austin",
+            "Texas"
+        ]
+    },
+    {
+        "Flight_End Date": "2025-03-17",
+        "Flight_Price": 1234,
+        "Flight_Start_Date": "2025-03-15",
+        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI1LTAzLTE1agcIARIDTEFTcgcIARIDTUVMGh4SCjIwMjUtMDMtMTdqBwgBEgNNRUxyBwgBEgNMQVNCAQFIAXABmAEB",
+        "Name": "Souvenir Ticket - FORMULA 1 AUSTRALIAN GRAND PRIX 2025",
+        "Ticket_Price": 25.0,
+        "Ticket_URL": "https://www.ticketmaster.com.au/souvenir-ticket-formula-1-australian-grand-albert-park-16-03-2025/event/250061339E1A2126",
+        "Total_Price": 1259.0,
+        "Venue": [
+            "Albert Park",
+            "Victoria"
+        ]
+    },
+    {
+        "Flight_End Date": "2025-03-17",
+        "Flight_Price": 1234,
+        "Flight_Start_Date": "2025-03-15",
+        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI1LTAzLTE1agcIARIDTEFTcgcIARIDTUVMGh4SCjIwMjUtMDMtMTdqBwgBEgNNRUxyBwgBEgNMQVNCAQFIAXABmAEB",
+        "Name": "Sunday Joyflight - FORMULA 1 AUSTRALIAN GRAND PRIX 2025",
+        "Ticket_Price": 114.96,
+        "Ticket_URL": "https://www.ticketmaster.com.au/sunday-joyflight-formula-1-australian-grand-albert-park-16-03-2025/event/25006130BDE32A68",
+        "Total_Price": 1348.96,
+        "Venue": [
+            "Albert Park",
+            "Victoria"
+        ]
+    },
+    {
+        "Flight_End Date": "2025-03-15",
+        "Flight_Price": 1269,
+        "Flight_Start_Date": "2025-03-13",
+        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI1LTAzLTEzagcIARIDTEFTcgcIARIDTUVMGh4SCjIwMjUtMDMtMTVqBwgBEgNNRUxyBwgBEgNMQVNCAQFIAXABmAEB",
+        "Name": "Friday Joyflight - FORMULA 1 AUSTRALIAN GRAND PRIX 2025",
+        "Ticket_Price": 114.96,
+        "Ticket_URL": "https://www.ticketmaster.com.au/friday-joyflight-formula-1-australian-grand-albert-park-14-03-2025/event/25006130BDD82A62",
+        "Total_Price": 1383.96,
+        "Venue": [
+            "Albert Park",
+            "Victoria"
+        ]
+    },
+    {
+        "Flight_End Date": "2025-03-14",
+        "Flight_Price": 1318,
+        "Flight_Start_Date": "2025-03-12",
+        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI1LTAzLTEyagcIARIDTEFTcgcIARIDTUVMGh4SCjIwMjUtMDMtMTRqBwgBEgNNRUxyBwgBEgNMQVNCAQFIAXABmAEB",
+        "Name": "Thursday Joyflight - FORMULA 1 AUSTRALIAN GRAND PRIX 2025",
+        "Ticket_Price": 85.53,
+        "Ticket_URL": "https://www.ticketmaster.com.au/thursday-joyflight-formula-1-australian-grand-albert-park-13-03-2025/event/25006130BDC82A60",
+        "Total_Price": 1403.53,
+        "Venue": [
+            "Albert Park",
+            "Victoria"
+        ]
+    },
+    {
+        "Flight_End Date": "2025-03-16",
+        "Flight_Price": 1318,
+        "Flight_Start_Date": "2025-03-14",
+        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI1LTAzLTE0agcIARIDTEFTcgcIARIDTUVMGh4SCjIwMjUtMDMtMTZqBwgBEgNNRUxyBwgBEgNMQVNCAQFIAXABmAEB",
+        "Name": "Saturday Joyflight - FORMULA 1 AUSTRALIAN GRAND PRIX 2025",
+        "Ticket_Price": 114.96,
+        "Ticket_URL": "https://www.ticketmaster.com.au/saturday-joyflight-formula-1-australian-grand-albert-park-15-03-2025/event/25006130BDDF2A66",
+        "Total_Price": 1432.96,
+        "Venue": [
+            "Albert Park",
+            "Victoria"
+        ]
+    },
+    {
+        "Flight_End Date": "2024-10-28",
+        "Flight_Price": 300,
+        "Flight_Start_Date": "2024-10-26",
+        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTI2agcIARIDTEFTcgcIARIDTUVYGh4SCjIwMjQtMTAtMjhqBwgBEgNNRVhyBwgBEgNMQVNCAQFIAXABmAEB",
+        "Name": "Individual G04 Formula 1 2024",
+        "Ticket_Price": 4767.0,
+        "Ticket_URL": "https://www.ticketmaster.com.mx/individual-g04-formula-1-2024-mexico-27-10-2024/event/140060B8940A0DC4",
+        "Total_Price": 5067.0,
+        "Venue": [
+            "M\u00e9xico",
+            "Ciudad de M\u00e9xico"
+        ]
+    },
+    {
+        "Flight_End Date": "2024-10-26",
+        "Flight_Price": 310,
+        "Flight_Start_Date": "2024-10-24",
+        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTI0agcIARIDTEFTcgcIARIDTUVYGh4SCjIwMjQtMTAtMjZqBwgBEgNNRVhyBwgBEgNMQVNCAQFIAXABmAEB",
+        "Name": "Individual G04 Formula 1 2024",
+        "Ticket_Price": 4766.0,
+        "Ticket_URL": "https://www.ticketmaster.com.mx/individual-g04-formula-1-2024-mexico-25-10-2024/event/140060B893DF0D99",
+        "Total_Price": 5076.0,
+        "Venue": [
+            "M\u00e9xico",
+            "Ciudad de M\u00e9xico"
+        ]
+    },
+    {
+        "Flight_End Date": "2024-10-27",
+        "Flight_Price": 331,
+        "Flight_Start_Date": "2024-10-25",
+        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTI1agcIARIDTEFTcgcIARIDTUVYGh4SCjIwMjQtMTAtMjdqBwgBEgNNRVhyBwgBEgNMQVNCAQFIAXABmAEB",
+        "Name": "Individual G04 Formula 1 2024",
+        "Ticket_Price": 4767.0,
+        "Ticket_URL": "https://www.ticketmaster.com.mx/individual-g04-formula-1-2024-mexico-26-10-2024/event/140060B893FA0DB7",
+        "Total_Price": 5098.0,
+        "Venue": [
+            "M\u00e9xico",
+            "Ciudad de M\u00e9xico"
+        ]
+    },
+    {
+        "Flight_End Date": "2024-10-26",
+        "Flight_Price": 310,
+        "Flight_Start_Date": "2024-10-24",
+        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTI0agcIARIDTEFTcgcIARIDTUVYGh4SCjIwMjQtMTAtMjZqBwgBEgNNRVhyBwgBEgNMQVNCAQFIAXABmAEB",
+        "Name": "Boxes Grada 11 + Speed Lounge Formula 1 2024",
+        "Ticket_Price": 50300.0,
+        "Ticket_URL": "https://www.ticketmaster.com.mx/boxes-grada-11-speed-lounge-formula-mexico-25-10-2024/event/140061329A51126E",
+        "Total_Price": 50610.0,
+        "Venue": [
+            "M\u00e9xico",
+            "Ciudad de M\u00e9xico"
+        ]
+    }
+]
 ```
 
 ## Docker

@@ -5,12 +5,12 @@ from processing import get_total_price_from_api
 app = Flask(__name__)
 
 
-@app.route("/", methods=['GET'])
+@app.route('/', methods=['GET'])
 def hello():
-    return "Hello World!"
+    return 'Hello World!'
 
 
-@app.route('/test', methods=['POST'])
+@app.route('/result', methods=['POST'])
 def get_best_prices():
     """
     :return: The JSON results for the front end to pick up
@@ -28,7 +28,7 @@ def get_best_prices():
     # end_time = time.time()
     # print(f"Total request took {end_time - start_time:.2f} seconds")
 
-    return {'result': result}
+    return result
 
 
 def create_app():
