@@ -19,7 +19,7 @@ This is repository is for the CS 472 project.
 - Update the permissions on the KeyPair file
   - `chmod 400 MyKeyPair.pem`
 - ssh into AWS machine 
-  - `ssh -i MyKeyPair.pem ubuntu@ec2-54-152-125-46.compute-1.amazonaws.com`
+  - `ssh -i MyKeyPair.pem ubuntu@ec2-52-204-31-136.compute-1.amazonaws.com`
 
 ## Get the most up-to-date code
 - Clone the repository
@@ -35,7 +35,7 @@ This is repository is for the CS 472 project.
 - Resume any active screens
   - `screen -r`
 - Serve the flask application
-  - `waitress-serve --port=80 --call flask_app:create_app`
+  - `sudo waitress-serve --port=80 --call flask_app:create_app`
 - Detach from the current screen
   - Ctrl + A, then D
 
