@@ -19,7 +19,7 @@ This is repository is for the CS 472 project.
 - Update the permissions on the KeyPair file
   - `chmod 400 MyKeyPair.pem`
 - ssh into AWS machine 
-  - `ssh -i MyKeyPair.pem ubuntu@ec2-54-152-125-46.compute-1.amazonaws.com`
+  - `ssh -i MyKeyPair.pem ubuntu@ec2-52-204-31-136.compute-1.amazonaws.com`
 
 ## Get the most up-to-date code
 - Clone the repository
@@ -35,11 +35,11 @@ This is repository is for the CS 472 project.
 - Resume any active screens
   - `screen -r`
 - Serve the flask application
-  - `waitress-serve --port=5000 --call flask_app:create_app`
+  - `sudo waitress-serve --port=80 --call flask_app:create_app`
 - Detach from the current screen
   - Ctrl + A, then D
 
-### The application is now served [here](http://ec2-52-204-31-136.compute-1.amazonaws.com:5000/)
+### The application is now served [here](http://ec2-52-204-31-136.compute-1.amazonaws.com/)
 
 # Process to run it locally
 ## Frontend
@@ -58,10 +58,10 @@ This is repository is for the CS 472 project.
 The entry point of the backend is [flask_app.py](./backend/flask_app.py)
 
 1. Change directories to the backend directory: `cd backend`
-2. Run `python3 flask_app.py`
+2. Run `waitress-serve --port=80 --call flask_app:create_app`
 3. Run the following command.
 ```shell 
-curl -d '{"originAirportCode":"LAS", "keyword":"formula-1"}' -X POST http://ec2-52-204-31-136.compute-1.amazonaws.com:5000/result -H "Content-Type: application/json"
+curl -d '{"originAirportCode":"LAS", "keyword":"formula-1"}' -X POST http://ec2-52-204-31-136.compute-1.amazonaws.com/result -H "Content-Type: application/json"
 ```
 
 - If need be, edit the parameters passed by modifying what is inside the curly braces
