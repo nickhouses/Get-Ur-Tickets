@@ -11,7 +11,7 @@ TICKET_API_KEY, SERP_API_KEY = decrypt_file(CONSTANTS_FILE,
                                             get_key(KEY_FILE))
 
 # TICKET_API_KEY = os.getenv('TICKET_API_KEY')
-# FLIGHT_API_KEY = os.getenv('FLIGHT_API_KEY')
+# SERP_API_KEY = os.getenv('SERP_API_KEY')
 
 # create a session for keep alive
 session = requests.Session()
@@ -36,8 +36,8 @@ def get_flight_info(origin: str, destination: str, start_date: str,
 
     best_flight = flights['best_flights'][0]['flights'][0]
 
-    return {'Flight_Price': flights['price_insights']['lowest_price'],
-            'Flight_URL': flights['search_metadata']['google_flights_url'],
+    return {'Price': flights['price_insights']['lowest_price'],
+            'URL': flights['search_metadata']['google_flights_url'],
             'Airline': best_flight['airline'],
             'Logo': best_flight['airline_logo'],
             'Travel_Class': best_flight['travel_class']}
@@ -61,15 +61,12 @@ def get_hotel_info(venue: str, start_date: str, end_date: str) -> dict:
     best_hotel = hotels['properties'][0]
 
     if 'rate_per_night' not in best_hotel:
-        return {'Hotel_Price': 0, 'Hotel_Logo': '', 'Hotel_Name': '',
-                'Hotel_Class': ''}
+        return {'Price': 0, 'URL': '', 'Name': '', 'Hotel_Class': ''}
 
-    logo = best_hotel['logo'] if 'logo' in best_hotel else ''
-
-    return {'Hotel_Price': 2 * best_hotel['rate_per_night']
+    return {'Price': 2 * best_hotel['rate_per_night']
             ['extracted_before_taxes_fees'],
-            'Hotel_Logo': logo,
-            'Hotel_Name': best_hotel['name'],
+            'URL': hotels['search_metadata']['google_hotels_url'],
+            'Name': best_hotel['name'],
             'Hotel_Class': best_hotel['hotel_class']}
 
 
@@ -140,14 +137,13 @@ def get_total_price_from_api(origin: str = 'LAS',
             venue = city + '+' + state
 
             if airports[venue] == origin:
-                flight = {'Flight_Price': 0,
-                          'Flight_URL': '',
+                flight = {'Price': 0,
+                          'URL': '',
                           'Airline': '',
                           'Logo': '',
                           'Travel_Class': ''}
-                hotel = {'Hotel_Price': 0,
-                         'Hotel_Logo': '',
-                         'Hotel_Name': '',
+                hotel = {'Price': 0,
+                         'Name': '',
                          'Hotel_Class': ''}
 
             else:
@@ -166,7 +162,7 @@ def get_total_price_from_api(origin: str = 'LAS',
                                        flight_end_date)
 
             result.append({'Total_Price': ticket_price +
-                           flight['Flight_Price'] + hotel['Hotel_Price'],
+                           flight['Price'] + hotel['Price'],
                            'Name': name,
                            'Venue': venue,
                            'Ticket_Price': ticket_price,
