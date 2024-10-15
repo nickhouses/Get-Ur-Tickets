@@ -3,13 +3,14 @@ import MyButton from "../Components/MyButton";
 import Fly_Now from "../Pictures/Fly_Now.png";
 import DetailsPopover from "../Components/popOver.tsx";
 import { Tickets, chkMore, chkLess } from "../Components/TicketGenerator.js"
-import { Authenticator } from '@aws-amplify/ui-react';
+import { Authenticator, Flex } from '@aws-amplify/ui-react';
 import { Prev } from 'react-bootstrap/esm/PageItem';
 import { Contact } from './Contact Us.js';
 import ProfilePic from '../Pictures/BlankProfile.png'
 
 
 import SearchBar from '../Components/SearchBar.js';
+import { Button } from 'bootstrap';
 
 const UserBanner = () => {
   return (
@@ -46,7 +47,6 @@ export function Home(){
   const [item, setItem] = useState([])
   const [chkPageProg, setChkPageProg] = useState(false)
   const [chkPrevProg, setChkPrevProg] = useState(false)
-
   const [MoreOrLess, setMoreOrLess] = useState(1)  //using 1 to show more and 2 to show less. anything else is an error
 
   useEffect(() => {
@@ -157,9 +157,8 @@ export function Home(){
       
           <div className='Second-Row-Ticket-Background'>
           
-             {/* Integrating the SearchBar component */}
+            {/* Integrating the SearchBar component */}
             <SearchBar onSearch={handleSearchResults} />
-
             {/* Display search results */}
             <ul>
               {searchResults.map((result, index) => (

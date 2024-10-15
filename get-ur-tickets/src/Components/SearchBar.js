@@ -105,7 +105,6 @@ const SearchBar = ({ onSearchResults }) => {
       <div className='search-button'>    
             search
             </div>    
-        
       </Button>
       {errorMessage && (
         <div className='error-message'>{errorMessage}</div> // display Error Message

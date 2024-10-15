@@ -21,8 +21,8 @@ const MyButton = ({ to }) =>{
         }
         }}
         style={{ 
-          width: '75px',
-          height: '50px',
+          width: '90px',
+          height: '75px',
           borderradius: '8px',
           flexdirection: 'row',
           textAlign: 'center',
