@@ -8,6 +8,9 @@ import { Prev } from 'react-bootstrap/esm/PageItem';
 import { Contact } from './Contact Us.js';
 import ProfilePic from '../Pictures/BlankProfile.png'
 
+
+import SearchBar from '../Components/SearchBar.js';
+
 const UserBanner = () => {
   return (
       <Authenticator>
@@ -25,6 +28,15 @@ export default UserBanner;
 
 
 export function Home(){
+
+  /* Search Bar Start */
+  const [searchResults, setSearchResults] = useState([]);
+
+  const handleSearchResults = (results) => {
+    setSearchResults(results); // Update the search results state with API response
+  };
+    
+  /* Search Bar End */
 
   const [data, setData] = useState()
   const [tracking, setTracking] = useState(0)
@@ -142,8 +154,19 @@ export function Home(){
             )} 
           <UserBanner/>    
         </div>
-        <div className="Second-Row">
+      
           <div className='Second-Row-Ticket-Background'>
+          
+             {/* Integrating the SearchBar component */}
+            <SearchBar onSearch={handleSearchResults} />
+
+            {/* Display search results */}
+            <ul>
+              {searchResults.map((result, index) => (
+                <li key={index}>{result.name}</li> 
+              ))}
+            </ul>
+            
             {console.log("..... ")}
             {item !== undefined && tracking === 0 ? setTracking(5) : () => {console.log('nothing')}} {/*need to add check if hold.length > 5 and set tracking to that. I guess show more or show less wont appear either way but should be consistant*/}
             {item !== undefined ? obj.getTickets(hold,tracking, MoreOrLess) : () => {console.log('nothing')}}
@@ -151,7 +174,7 @@ export function Home(){
             {item !== undefined && chkLess === true ? <a href='#' style={{flexDirection: 'column'}} onClick={() => {a(obj, 2);}}>show less</a> : () => {console.log('nothing')}}
             {console.log (chkMore + "    tesssssssssssssssssssssssst    " + chkLess)}
           </div>
-        </div>
+        
       </div>
     )
 
