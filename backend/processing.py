@@ -11,7 +11,7 @@ TICKET_API_KEY, SERP_API_KEY = decrypt_file(CONSTANTS_FILE,
                                             get_key(KEY_FILE))
 
 # TICKET_API_KEY = os.getenv('TICKET_API_KEY')
-# FLIGHT_API_KEY = os.getenv('FLIGHT_API_KEY')
+# SERP_API_KEY = os.getenv('SERP_API_KEY')
 
 # create a session for keep alive
 session = requests.Session()
