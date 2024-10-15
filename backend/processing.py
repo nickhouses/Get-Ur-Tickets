@@ -122,7 +122,6 @@ def get_total_price_from_api(origin: str = 'LAS',
                            f'json?apikey={TICKET_API_KEY}&keyword={keyword}')
     response.raise_for_status()
     data = response.json()
-    count = 0
 
     for event in data['_embedded']['events']:
         if 'url' in event and 'priceRanges' in event:
@@ -171,9 +170,6 @@ def get_total_price_from_api(origin: str = 'LAS',
                            'Flight': flight,
                            'Hotel': hotel,
                            })
-            count += 1
-            if count == 4:
-                break
 
     return json.dumps(sorted(result, key=lambda x: x['Total_Price']))
 
