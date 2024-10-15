@@ -43,7 +43,7 @@ This is repository is for the CS 472 project.
 
 # Process to run it locally
 ## Frontend
-1. `npm install bootstrap react-bootstrap aws-amplify @aws-amplify/ui-react` - use this command to # get the dependancies to be able to start it.
+1. `npm install bootstrap react-bootstrap @mui/icon-material @mui/material @emotion/react @emotion/styled axios aws-amplify @aws-amplify/ui-react` - use this command to # get the dependancies to be able to start it.
    
 2. `npm start`
 
