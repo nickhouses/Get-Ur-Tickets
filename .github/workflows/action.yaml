@@ -1,11 +1,11 @@
-name: flake8 Lint
+name: Continuous-Integration
 
 on: [push, pull_request]
 
 jobs:
   flake8-lint:
     runs-on: ubuntu-latest
-    name: Lint
+    name: Python-CI
     steps:
       - name: Check out source repository
         uses: actions/checkout@v3
@@ -19,6 +19,21 @@ jobs:
           args: --exclude=Assignment1/
       - name: API Keys in Github Secrets
         run: echo "API keys are set"
-        env:
-          FLIGHT_API_KEY: ${{ secrets.FLIGHT_API_KEY }}
-          TICKET_API_KEY: ${{ secrets.TICKETS_API_KEY }}
+
+  react-ci:
+    runs-on: ubuntu-latest
+    name: React-CI
+    steps:
+      - name: Check out source repository
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+      - name: Install dependencies
+        run: npm install
+        working-directory: get-ur-tickets/
+      - name: ESLint
+        run: npm run lint
+        working-directory: get-ur-tickets/
+      - name: Build the project
+        run: npm run build
+        working-directory: get-ur-tickets/
