@@ -5,9 +5,10 @@ import { LocationContext } from '../index';           // Import context
 import '../AirportSearchBar.css';
 
 const AirportSearchBar = ({ onSelect }) => {
-  const { location, setLocation } = useContext(LocationContext);
+  const {location, setLocation } = useContext(LocationContext);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredAirports, setFilteredAirports] = useState([]);
+  
 
   const airports = airportData; // Imported JSON data
 

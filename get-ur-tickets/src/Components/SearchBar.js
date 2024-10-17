@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types'; // Import PropTypes
-import { TextField, Input, Button, IconButton, InputAdornment } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+import { TextField, Button, IconButton, InputAdornment } from '@mui/material';
 import axios from 'axios';
+import AirportSearchBar from './AirportSearchBar';
 
 const SearchBar = ({ onSearchResults }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -92,11 +92,11 @@ const SearchBar = ({ onSearchResults }) => {
         onChange={handleInputChange}
         onKeyUpCapture={handleKeyPress}
         placeholder="Search..."
-        InputProps={{
+        Input={{
           endAdornment: searchTerm && (
             <InputAdornment position="end">
               <IconButton onClick={handleClearSearch}>
-                <CloseIcon />
+              {/*reimplement close button*/}
               </IconButton>
             </InputAdornment>
           ),
@@ -115,7 +115,7 @@ const SearchBar = ({ onSearchResults }) => {
 };
 
 SearchBar.prototypes = {
-  SearchResults: PropTypes.func.isRequired,
+  onSearchResults: PropTypes.func.isRequired,
 };
 
 export default SearchBar;
