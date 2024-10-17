@@ -7,6 +7,7 @@ import { Authenticator } from "@aws-amplify/ui-react";
 import { BrowserRouter } from 'react-router-dom';
 import { Amplify } from 'aws-amplify';
 import awsExports from './aws-exports';
+import PropTypes from 'prop-types'; // Import PropTypes
 
 Amplify.configure(awsExports);
 
@@ -20,6 +21,10 @@ export const LocationProvider = ({ children }) => {
       {children}
     </LocationContext.Provider>
   );
+};
+
+LocationProvider.propTypes = {
+  children: PropTypes.func.isRequired, // onSelect is required and should be a function
 };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import MyButton from "../Components/MyButton";
 import Fly_Now from "../Pictures/Fly_Now.png";
-import DetailsPopover from "../Components/popOver.tsx";
 import { Tickets, chkMore, chkLess } from "../Components/TicketGenerator.js";
 import { Authenticator } from '@aws-amplify/ui-react';
-import { Prev } from 'react-bootstrap/esm/PageItem';
 import AirportSearchBar from '../Components/AirportSearchBar'; // From File 1
 import SearchBar from '../Components/SearchBar.js'; // From File 2
-import { Contact } from './Contact Us.js';
-import ProfilePic from '../Pictures/BlankProfile.png';
 
 const UserBanner = () => {
   return (
@@ -29,22 +25,19 @@ export function Home() {
   const [data, setData] = useState();
   const [tracking, setTracking] = useState(0);
   const [hold, setHold] = useState([]);
-  const [noResult, setnoResult] = useState(false);
-  const [obj, setObj] = useState(new Tickets);
-  const [item, setItem] = useState([]);
-  const [chkPageProg, setChkPageProg] = useState(false);
-  const [chkPrevProg, setChkPrevProg] = useState(false);
-  const [MoreOrLess, setMoreOrLess] = useState(1); //using 1 to show more and 2 to show less. anything else is an error
+  const [obj, setObj] = useState(new Tickets());
+  const [checking, setChecking] = useState(false); //using 1 to show more and 2 to show less. anything else is an error
 
   const [showButton, setShowButton] = useState(true);
   const toggleButton = () => {
     setShowButton(!showButton);
   };
 
+  /*
   const [MenuButton, setMenuButton] = useState(true);
   const toggleMenu = () => {
     setMenuButton(!MenuButton);
-  };
+  };*/
 
   /* Search Bar Start */
   const [searchResults, setSearchResults] = useState([]);
@@ -56,8 +49,8 @@ export function Home() {
   // State to store the user's selected home airport location
   const [homeLocation, setHomeLocation] = useState('');
 
-  useEffect(() => {
-    fetch('data/test3.json').then(
+  useEffect(() => { //Comment this section out when applying real searches. This will only give test data
+    fetch('data/test4.json').then(
       response => {
         if (response.ok) {
           return response.json();
@@ -70,6 +63,8 @@ export function Home() {
         setData(data);
         var temp = data;
         setHold(temp);
+        setObj(new Tickets());
+
       },
     );
   }, []);
@@ -81,7 +76,7 @@ export function Home() {
   };
 
   //function a is used when someone presses see more or see less hyperlink. Calculates what the tracking variable needs to be to be passed into getTickets function
-  const a = (obj, pageChangeChk) => {
+  const a = (pageChangeChk) => {
     console.log('inside a')
     if (pageChangeChk === 1) {
       console.log('inside see more')
@@ -91,17 +86,17 @@ export function Home() {
         needthis -= needthis - hold.length;
         setTracking(needthis);
         console.log(hold.length + " in home " + tracking);
-        setMoreOrLess(1);
+        setChecking(true);
       }
       else if ((needthis < hold.length)) {
         setTracking(needthis);
         console.log(hold.length + " in THIRD " + tracking + " " + needthis);
-        setMoreOrLess(1);
+        setChecking(true);
       }
       else if (parseInt(tracking) === hold.length && hold.length !== 0) {
         setTracking(tracking);
         console.log(hold.length + " in home fourth " + tracking);
-        setMoreOrLess(1);
+        setChecking(true);
       }
       else {
         console.log("error")
@@ -110,7 +105,7 @@ export function Home() {
     }
     else if (pageChangeChk === 2) {
       console.log('inside see less')
-      var needthis = (parseInt(tracking) - 5)
+      needthis = (parseInt(tracking) - 5)
       if (tracking === hold.length) {
         let loop = tracking;
         while (!(loop % 5 === 0)) {
@@ -121,13 +116,12 @@ export function Home() {
       else if (needthis > 5) {
         console.log("less than, tracking > 5")
         setTracking(a => a - 5);
-        setMoreOrLess(2);
+        setChecking(true);
       }
       else if (needthis <= 5) {
         console.log("less than, tracking < 5 " + tracking)
-        let test = 5
         setTracking(5);
-        setMoreOrLess(2);
+        setChecking(true);
       }
       else {
         console.log("error")
@@ -143,7 +137,6 @@ export function Home() {
   return (
     <div className='banner-container'>
       <img alt="" className="Top-Banner" src={Fly_Now} />
-
       <div className='button-overlay'>
         {<button className="Top-Banner-2" onClick={toggleButton} />}
         {!showButton && (
@@ -171,11 +164,12 @@ export function Home() {
             <li key={index}>{result.name}</li>
           ))}
         </ul>
-
-        {item !== undefined && tracking === 0 ? setTracking(5) : null}
-        {item !== undefined ? obj.getTickets(hold, tracking, MoreOrLess) : null}
-        {item !== undefined && chkMore === true ? <a href='#' onClick={() => { a(obj, 1); }}>show more</a> : null}
-        {item !== undefined && chkLess === true ? <a href='#' onClick={() => { a(obj, 2); }}>show less</a> : null}
+        {data !== undefined && tracking === 0 ? setChecking(true) : null}
+        {data !== undefined && tracking === 0 && hold.length < 5 ? setTracking(hold.length) : null}
+        {data !== undefined && tracking === 0 && hold.length >= 5 ? setTracking(5) : null}
+        {data !== undefined && checking ? obj.getTickets(hold, tracking) : null}
+        {data !== undefined && chkMore === true ? <button onClick={() => { a(1); }}>show more</button> : null}
+        {data !== undefined && chkLess === true ? <button  onClick={() => { a(2); }}>show less</button> : null}
       </div>
     </div>
   );
