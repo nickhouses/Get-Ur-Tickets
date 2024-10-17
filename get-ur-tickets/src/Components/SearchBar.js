@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { TextField,Input, Button, IconButton, InputAdornment } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+import PropTypes from 'prop-types'; // Import PropTypes
+import { TextField, Button, IconButton, InputAdornment } from '@mui/material';
 import axios from 'axios';
+import AirportSearchBar from './AirportSearchBar';
 
 const SearchBar = ({ onSearchResults }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const originAirportCode = 'LAS' // hardcoded but can switch to variable for home city
+  const originAirportCode = AirportSearchBar.location; // hardcoded but can switch to variable for home city
 
 
   // Function to handle input changes
@@ -22,7 +23,7 @@ const SearchBar = ({ onSearchResults }) => {
   };
 
   // Function to handle the search request
-  const handleSearch = async (e) => {
+  const handleSearch = async () => {
         
     // check input using isValidSearchTerm
     if(!isValidSearchTerm(searchTerm)){
@@ -71,7 +72,7 @@ const SearchBar = ({ onSearchResults }) => {
 
 
   const handleKeyPress = (e) => {
-    if (e.key == 'Enter'){
+    if (e.key === 'Enter'){
         handleSearch();
     }
   }
@@ -91,11 +92,11 @@ const SearchBar = ({ onSearchResults }) => {
         onChange={handleInputChange}
         onKeyUpCapture={handleKeyPress}
         placeholder="Search..."
-        InputProps={{
+        Input={{
           endAdornment: searchTerm && (
             <InputAdornment position="end">
               <IconButton onClick={handleClearSearch}>
-                <CloseIcon />
+              {/*reimplement close button*/}
               </IconButton>
             </InputAdornment>
           ),
@@ -105,7 +106,6 @@ const SearchBar = ({ onSearchResults }) => {
       <div className='search-button'>    
             search
             </div>    
-        
       </Button>
       {errorMessage && (
         <div className='error-message'>{errorMessage}</div> // display Error Message
@@ -114,6 +114,9 @@ const SearchBar = ({ onSearchResults }) => {
   );
 };
 
+SearchBar.propTypes = {
+  onSearchResults: PropTypes.func.isRequired,
+};
 
 export default SearchBar;
 

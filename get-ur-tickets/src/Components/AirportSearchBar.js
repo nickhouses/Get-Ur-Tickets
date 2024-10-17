@@ -1,13 +1,16 @@
 import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types'; // Import PropTypes
 import airportData from '../airportData_flatui.json'; // Import JSON
 import { LocationContext } from '../index';           // Import context
 import '../AirportSearchBar.css';
+import SearchBar from './SearchBar';
 
 const AirportSearchBar = ({ onSelect }) => {
-  const { location, setLocation } = useContext(LocationContext);
+  const {location, setLocation } = useContext(LocationContext);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredAirports, setFilteredAirports] = useState([]);
 
+  SearchBar.originAirportCode = location;
   const airports = airportData; // Imported JSON data
 
   const handleSearch = (event) => {
@@ -58,6 +61,10 @@ const AirportSearchBar = ({ onSelect }) => {
       )}
     </div>
   );
+};
+
+AirportSearchBar.propTypes = {
+  onSelect: PropTypes.func.isRequired, // onSelect is required and should be a function
 };
 
 export default AirportSearchBar;

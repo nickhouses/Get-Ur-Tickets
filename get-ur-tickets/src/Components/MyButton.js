@@ -1,18 +1,15 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState } from 'react';
+import React from 'react';
 import { signOut } from "aws-amplify/auth";
+import PropTypes from 'prop-types';
+
 
 const MyButton = ({ to }) =>{
 
-  const [showButton, setShowButton] = useState(true);
-  const toggleButton = () => {
-      setShowButton(!showButton);
-  };
     const navigate = useNavigate();
-
     return (
       <button className="my-button" onClick={() => { 
-        if(to == "signout"){
+        if(to === "signout"){
           signOut()
         }
         else{
@@ -21,8 +18,8 @@ const MyButton = ({ to }) =>{
         }
         }}
         style={{ 
-          width: '75px',
-          height: '50px',
+          width: '90px',
+          height: '75px',
           borderradius: '8px',
           flexdirection: 'row',
           textAlign: 'center',
@@ -32,5 +29,9 @@ const MyButton = ({ to }) =>{
       </button>
     )
 }
+
+MyButton.propTypes = {
+  to: PropTypes.func.isRequired,
+};
 
 export default MyButton;
