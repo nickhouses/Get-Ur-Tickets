@@ -3,7 +3,13 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm ci  # Install dependencies using package-lock.json (faster alternative to npm install)
+        - npm install bootstrap
+        - npm install  react-bootstrap
+        - npm install @mui/material 
+        - npm install @emotion/react 
+        - npm install @emotion/styled 
+        - npm install axios 
+        - npm install aws-amplify @aws-amplify/ui-react
     build:
       commands:
         - npm run build  # Build the app using React's build script
