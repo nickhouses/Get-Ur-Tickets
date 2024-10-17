@@ -25,7 +25,7 @@ export function Home() {
   const [data, setData] = useState();
   const [tracking, setTracking] = useState(0);
   const [hold, setHold] = useState([]);
-  const [obj, setObj] = useState(new Tickets);
+  const [obj, setObj] = useState(new Tickets());
   const [checking, setChecking] = useState(false); //using 1 to show more and 2 to show less. anything else is an error
 
   const [showButton, setShowButton] = useState(true);
@@ -63,7 +63,7 @@ export function Home() {
         setData(data);
         var temp = data;
         setHold(temp);
-        setObj(new Tickets);
+        setObj(new Tickets());
 
       },
     );
@@ -168,8 +168,8 @@ export function Home() {
         {data !== undefined && tracking === 0 && hold.length < 5 ? setTracking(hold.length) : null}
         {data !== undefined && tracking === 0 && hold.length >= 5 ? setTracking(5) : null}
         {data !== undefined && checking ? obj.getTickets(hold, tracking) : null}
-        {data !== undefined && chkMore === true ? <a href='#' onClick={() => { a(1); }}>show more</a> : null}
-        {data !== undefined && chkLess === true ? <a href='#' onClick={() => { a(2); }}>show less</a> : null}
+        {data !== undefined && chkMore === true ? <button onClick={() => { a(1); }}>show more</button> : null}
+        {data !== undefined && chkLess === true ? <button  onClick={() => { a(2); }}>show less</button> : null}
       </div>
     </div>
   );

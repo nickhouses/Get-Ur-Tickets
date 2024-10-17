@@ -72,7 +72,7 @@ const SearchBar = ({ onSearchResults }) => {
 
 
   const handleKeyPress = (e) => {
-    if (e.key == 'Enter'){
+    if (e.key === 'Enter'){
         handleSearch();
     }
   }
