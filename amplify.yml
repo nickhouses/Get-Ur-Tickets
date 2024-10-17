@@ -1,0 +1,20 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci  # Install dependencies using package-lock.json (faster alternative to npm install)
+    build:
+      commands:
+        - npm run build  # Build the app using React's build script
+  artifacts:
+    baseDirectory: build  # React build output directory
+    files:
+      - '**/*'  # Include all files in the build directory
+  cache:
+    paths:
+      - node_modules/**/*  # Cache node_modules for faster future builds
+
+  environment:
+    variables:
+      NODE_OPTIONS: '--max_old_space_size=4096'  # Optional, adjust memory if build runs out of memory
