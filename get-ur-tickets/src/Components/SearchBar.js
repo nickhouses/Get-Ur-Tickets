@@ -7,7 +7,7 @@ import AirportSearchBar from './AirportSearchBar';
 const SearchBar = ({ onSearchResults }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const originAirportCode = 'LAS' // hardcoded but can switch to variable for home city
+  const originAirportCode = AirportSearchBar.location; // hardcoded but can switch to variable for home city
 
 
   // Function to handle input changes
@@ -114,7 +114,7 @@ const SearchBar = ({ onSearchResults }) => {
   );
 };
 
-SearchBar.prototypes = {
+SearchBar.propTypes = {
   onSearchResults: PropTypes.func.isRequired,
 };
 
