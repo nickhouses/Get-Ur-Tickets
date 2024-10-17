@@ -11,6 +11,7 @@ const App = () => {
 
   return (
     <>
+    <Authenticator.Provider>
       {user ? (
         <Routes> {/* If user is logged in, show these routes */}
           <Route path="/Home" element={<Home />} />
@@ -24,14 +25,16 @@ const App = () => {
           <Route path="/Contact Us" element={<Login />} />
         </Routes>
       )}
+      </Authenticator.Provider>
     </>
   );
 };
 
-//Put security checks
+/*/Put security checks
 export default () => (
     <Authenticator.Provider>
       <App />
     </Authenticator.Provider>
-);
+);*/
+export default App;
 

@@ -1,0 +1,82 @@
+[
+    {
+        "Total_Price": 1857.0,
+        "Name": "2024 Formula 1 Pirelli United States Grand Prix - Saturday",
+        "Venue": "Austin+Texas",
+        "Ticket_Price": 179.0,
+        "Ticket_URL": "https://www.ticketmaster.com/2024-formula-1-pirelli-united-states-austin-texas-10-19-2024/event/3A006091CC9350FA",
+        "Flight": {
+            "Price": 338,
+            "URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTE4agcIARIDTEFTcgcIARIDQVVTGh4SCjIwMjQtMTAtMjBqBwgBEgNBVVNyBwgBEgNMQVNCAQFIAXABmAEB",
+            "Airline": "Frontier",
+            "Logo": "https://www.gstatic.com/flights/airline_logos/70px/F9.png",
+            "Travel_Class": "Economy"
+        },
+        "Hotel": {
+            "Price": 1340,
+            "URL": "https://www.google.com/_/TravelFrontendUi/data/batchexecute?rpcids=AtySUc&source-path=/travel/search&hl=en&gl=us&rt=c&soc-app=162&soc-platform=1&soc-device=1",
+            "Name": "Embassy Suites by Hilton Austin Central",
+            "Hotel_Class": "3-star hotel"
+        }
+    },
+    {
+        "Total_Price": 5380.0,
+        "Name": "Individual G04 Formula 1 2024",
+        "Venue": "M\u00e9xico+Ciudad+de+M\u00e9xico",
+        "Ticket_Price": 4767.0,
+        "Ticket_URL": "https://www.ticketmaster.com.mx/individual-g04-formula-1-2024-mexico-27-10-2024/event/140060B8940A0DC4",
+        "Flight": {
+            "Price": 315,
+            "URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTI2agcIARIDTEFTcgcIARIDTUVYGh4SCjIwMjQtMTAtMjhqBwgBEgNNRVhyBwgBEgNMQVNCAQFIAXABmAEB",
+            "Airline": "VivaAerobus",
+            "Logo": "https://www.gstatic.com/flights/airline_logos/70px/VB.png",
+            "Travel_Class": "Economy"
+        },
+        "Hotel": {
+            "Price": 298,
+            "URL": "https://www.google.com/_/TravelFrontendUi/data/batchexecute?rpcids=AtySUc&source-path=/travel/search&hl=en&gl=us&rt=c&soc-app=162&soc-platform=1&soc-device=1",
+            "Name": "Hotel Galer\u00eda Plaza Reforma",
+            "Hotel_Class": "4-star hotel"
+        }
+    },
+    {
+        "Total_Price": 5429.0,
+        "Name": "Individual G04 Formula 1 2024",
+        "Venue": "M\u00e9xico+Ciudad+de+M\u00e9xico",
+        "Ticket_Price": 4766.0,
+        "Ticket_URL": "https://www.ticketmaster.com.mx/individual-g04-formula-1-2024-mexico-25-10-2024/event/140060B893DF0D99",
+        "Flight": {
+            "Price": 385,
+            "URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTI0agcIARIDTEFTcgcIARIDTUVYGh4SCjIwMjQtMTAtMjZqBwgBEgNNRVhyBwgBEgNMQVNCAQFIAXABmAEB",
+            "Airline": "VivaAerobus",
+            "Logo": "https://www.gstatic.com/flights/airline_logos/70px/VB.png",
+            "Travel_Class": "Economy"
+        },
+        "Hotel": {
+            "Price": 278,
+            "URL": "https://www.google.com/_/TravelFrontendUi/data/batchexecute?rpcids=AtySUc&source-path=/travel/search&hl=en&gl=us&rt=c&soc-app=162&soc-platform=1&soc-device=1",
+            "Name": "Hotel Galer\u00eda Plaza Reforma",
+            "Hotel_Class": "4-star hotel"
+        }
+    },
+    {
+        "Total_Price": 5482.0,
+        "Name": "Individual G04 Formula 1 2024",
+        "Venue": "M\u00e9xico+Ciudad+de+M\u00e9xico",
+        "Ticket_Price": 4767.0,
+        "Ticket_URL": "https://www.ticketmaster.com.mx/individual-g04-formula-1-2024-mexico-26-10-2024/event/140060B893FA0DB7",
+        "Flight": {
+            "Price": 365,
+            "URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTI1agcIARIDTEFTcgcIARIDTUVYGh4SCjIwMjQtMTAtMjdqBwgBEgNNRVhyBwgBEgNMQVNCAQFIAXABmAEB",
+            "Airline": "VivaAerobus",
+            "Logo": "https://www.gstatic.com/flights/airline_logos/70px/VB.png",
+            "Travel_Class": "Economy"
+        },
+        "Hotel": {
+            "Price": 350,
+            "URL": "https://www.google.com/_/TravelFrontendUi/data/batchexecute?rpcids=AtySUc&source-path=/travel/search&hl=en&gl=us&rt=c&soc-app=162&soc-platform=1&soc-device=1",
+            "Name": "Hotel Galer\u00eda Plaza Reforma",
+            "Hotel_Class": "4-star hotel"
+        }
+    }
+]

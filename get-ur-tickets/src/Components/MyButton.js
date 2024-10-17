@@ -4,10 +4,6 @@ import { signOut } from "aws-amplify/auth";
 
 const MyButton = ({ to }) =>{
 
-  const [showButton, setShowButton] = useState(true);
-  const toggleButton = () => {
-      setShowButton(!showButton);
-  };
     const navigate = useNavigate();
 
     return (
