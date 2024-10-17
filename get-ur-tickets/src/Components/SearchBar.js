@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField,Input, Button, IconButton, InputAdornment } from '@mui/material';
+import { TextField, Button, IconButton, InputAdornment } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import axios from 'axios';
 
@@ -22,7 +22,7 @@ const SearchBar = ({ onSearchResults }) => {
   };
 
   // Function to handle the search request
-  const handleSearch = async (e) => {
+  const handleSearch = async () => {
         
     // check input using isValidSearchTerm
     if(!isValidSearchTerm(searchTerm)){

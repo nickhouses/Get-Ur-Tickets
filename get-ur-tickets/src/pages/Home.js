@@ -49,7 +49,7 @@ export function Home() {
   // State to store the user's selected home airport location
   const [homeLocation, setHomeLocation] = useState('');
 
-  useEffect(() => {
+  useEffect(() => { //Comment this section out when applying real searches. This will only give test data
     fetch('data/test4.json').then(
       response => {
         if (response.ok) {
@@ -76,7 +76,7 @@ export function Home() {
   };
 
   //function a is used when someone presses see more or see less hyperlink. Calculates what the tracking variable needs to be to be passed into getTickets function
-  const a = (obj, pageChangeChk) => {
+  const a = (pageChangeChk) => {
     console.log('inside a')
     if (pageChangeChk === 1) {
       console.log('inside see more')
@@ -168,9 +168,8 @@ export function Home() {
         {data !== undefined && tracking === 0 && hold.length < 5 ? setTracking(hold.length) : null}
         {data !== undefined && tracking === 0 && hold.length >= 5 ? setTracking(5) : null}
         {data !== undefined && checking ? obj.getTickets(hold, tracking) : null}
-        
-        {data !== undefined && chkMore === true ? <a href='#' onClick={() => { a(obj, 1); }}>show more</a> : null}
-        {data !== undefined && chkLess === true ? <a href='#' onClick={() => { a(obj, 2); }}>show less</a> : null}
+        {data !== undefined && chkMore === true ? <a href='#' onClick={() => { a(1); }}>show more</a> : null}
+        {data !== undefined && chkLess === true ? <a href='#' onClick={() => { a(2); }}>show less</a> : null}
       </div>
     </div>
   );

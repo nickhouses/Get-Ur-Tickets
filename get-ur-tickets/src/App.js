@@ -11,7 +11,7 @@ const App = () => {
 
   return (
     <>
-    <Authenticator.Provider>
+      <Authenticator.Provider>
       {user ? (
         <Routes> {/* If user is logged in, show these routes */}
           <Route path="/Home" element={<Home />} />
