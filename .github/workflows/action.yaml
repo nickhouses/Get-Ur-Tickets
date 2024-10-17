@@ -1,11 +1,11 @@
-name: flake8 Lint
+name: Continuous-Integration
 
 on: [push, pull_request]
 
 jobs:
   flake8-lint:
     runs-on: ubuntu-latest
-    name: Lint
+    name: Python-CI
     steps:
       - name: Check out source repository
         uses: actions/checkout@v3
@@ -22,7 +22,7 @@ jobs:
 
   react-ci:
     runs-on: ubuntu-latest
-    name: React-Continuous-Integration
+    name: React-CI
     steps:
       - name: Check out source repository
         uses: actions/checkout@v2
@@ -33,5 +33,7 @@ jobs:
         working-directory: get-ur-tickets/
       - name: ESLint
         run: npm run Lint
+        working-directory: get-ur-tickets/
       - name: Build the project
         run: npm run build
+        working-directory: get-ur-tickets/
