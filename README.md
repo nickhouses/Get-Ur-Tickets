@@ -1,33 +1,37 @@
 - [Get-Ur-Tickets](#get-ur-tickets)
-- [Process to run application on AWS](#process-to-run-application-on-aws)
-  - [Access the AWS machine](#access-the-aws-machine)
-  - [Get the most up-to-date code](#get-the-most-up-to-date-code)
-  - [Serve the flask application](#serve-the-flask-application)
-    - [The application is now served here](#the-application-is-now-served-here)
-- [Process to run it locally](#process-to-run-it-locally)
-  - [Frontend](#frontend)
-    - [Frontend Optional:](#frontend-optional)
-  - [Backend](#backend)
-  - [Docker](#docker)
-- [How the application works](#how-the-application-works)
+  - [AWS Deployment](#aws-deployment)
+    - [Frontend](#frontend)
+    - [Backend](#backend)
+      - [1. Access the AWS machine](#1-access-the-aws-machine)
+      - [2. Get the most up-to-date code](#2-get-the-most-up-to-date-code)
+      - [3. Serve the flask application](#3-serve-the-flask-application)
+  - [Local Development](#local-development)
+    - [Frontend](#frontend-1)
+      - [Optional](#optional)
+    - [Backend](#backend-1)
+    - [Docker](#docker)
+  - [How the application works](#how-the-application-works)
 
-# Get-Ur-Tickets
-This is repository is for the CS 472 project.
+# [Get-Ur-Tickets](https://main.d356ozzs66r3xx.amplifyapp.com/)
 
-# Process to run application on AWS
-## Access the AWS machine
+## AWS Deployment
+### [Frontend](https://main.d356ozzs66r3xx.amplifyapp.com/)
+The frontend uses CI / CD (Continuous Integration / Continuous Deployment) and will redeploy upon merging.
+
+### [Backend](http://ec2-52-204-31-136.compute-1.amazonaws.com/)
+#### 1. Access the AWS machine
 - Update the permissions on the KeyPair file
   - `chmod 400 MyKeyPair.pem`
 - ssh into AWS machine 
   - `ssh -i MyKeyPair.pem ubuntu@ec2-52-204-31-136.compute-1.amazonaws.com`
 
-## Get the most up-to-date code
+#### 2. Get the most up-to-date code
 - Clone the repository
   - `git clone https://github.com/CS-472/Get-Ur-Tickets.git`
 - Pull the most up-to-date code from the repository
    `git pull`
 
-## Serve the flask application
+#### 3. Serve the flask application
 - Check if there are any active screens
   - `screen -ls`
 - Terminate any active screens
@@ -39,32 +43,35 @@ This is repository is for the CS 472 project.
 - Detach from the current screen
   - Ctrl + A, then D
 
-### The application is now served [here](http://ec2-52-204-31-136.compute-1.amazonaws.com/)
+## Local Development
+### Frontend
+1. Go to the frontend directory
+   - `cd get-ur-tickets`
+2. Install all of the dependencies
+    - `npm install`
+3. Build the application
+    - `npm run build`
+4. Serve the application using waitress
+    - `serve -s build`
 
-# Process to run it locally
-## Frontend
-1. `npm install bootstrap react-bootstrap @mui/icon-material @mui/material @emotion/react @emotion/styled axios aws-amplify @aws-amplify/ui-react` - use this command to # get the dependancies to be able to start it.
-   
-2. `npm start`
-
-### Frontend Optional: 
+#### Optional
 1. If using a Linux machine, or UNIX machines (needs testing), you may run `chmod +x build.sh` if you wish to use the build script instead. 
-
 2. After enabling the build script for execution, run `./build.sh` in the root directory of your repo git clone.
-
 3. This will run all necessary commands to build/aquire dependencies and prompt you to start the webserver locally if you wish.
 
-## Backend
+### Backend
 The entry point of the backend is [flask_app.py](./backend/flask_app.py)
 
-1. Change directories to the backend directory: `cd backend`
-2. Run `waitress-serve --port=80 --call flask_app:create_app`
-3. Run the following command.
-```shell 
-curl -d '{"originAirportCode":"LAS", "keyword":"formula-1"}' -X POST http://ec2-52-204-31-136.compute-1.amazonaws.com/result -H "Content-Type: application/json"
-```
+1. Change directories to the backend directory
+   - `cd backend`
+2. Serve the application
+   - `waitress-serve --port=80 --call flask_app:create_app`
+3. Make POST requests using curl
+    ```shell 
+    curl -d '{"originAirportCode":"LAS", "keyword":"formula-1"}' -X POST http://ec2-52-204-31-136.compute-1.amazonaws.com/result -H "Content-Type: application/json"
+    ```
 
-- If need be, edit the parameters passed by modifying what is inside the curly braces
+   - If need be, edit the parameters passed by modifying what is inside the curly braces
 
 You can expect the output to be in a JSON format like the following.
 ```json
@@ -152,7 +159,7 @@ You can expect the output to be in a JSON format like the following.
 ]
 ```
 
-## Docker
+### Docker
 1. Commands to build and run 
    - To build the container issue the command `docker build -t get-ur-tickets-app .`
    - To run the container issue the command  `docker run -p 3000:3000 get-ur-tickets-app`
@@ -172,8 +179,8 @@ You can expect the output to be in a JSON format like the following.
    - The initial build will take approximately 2 minutes.
    - If the build fails and the error you encounter is 401 unauthorized, make sure you are logged into Docker on your terminal. 
    - The command to log in is `docker login -u <username>`
-
-# How the application works
+  
+## How the application works
 ![](img/System-Diagram.jpg)
 
 GetUrTickets is a RESTful application that works by making GET, POST, PUT, and DELETE requests. The application has a frontend user interface that the user will interact with, and a backend that handles all of the processing of the application. The application will be hosted on Amazon Web Services using [AWS Amplify](https://aws.amazon.com/amplify/). The application will be deployed each time there is a new commit to our team repository.
