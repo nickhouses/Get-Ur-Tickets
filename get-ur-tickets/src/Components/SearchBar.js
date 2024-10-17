@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { TextField, Button, IconButton, InputAdornment } from '@mui/material';
+import PropTypes from 'prop-types'; // Import PropTypes
+import { TextField, Input, Button, IconButton, InputAdornment } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import axios from 'axios';
 
@@ -113,6 +114,9 @@ const SearchBar = ({ onSearchResults }) => {
   );
 };
 
+SearchBar.prototypes = {
+  SearchResults: PropTypes.func.isRequired,
+};
 
 export default SearchBar;
 

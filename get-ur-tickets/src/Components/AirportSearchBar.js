@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types'; // Import PropTypes
 import airportData from '../airportData_flatui.json'; // Import JSON
 import { LocationContext } from '../index';           // Import context
 import '../AirportSearchBar.css';
@@ -58,6 +59,10 @@ const AirportSearchBar = ({ onSelect }) => {
       )}
     </div>
   );
+};
+
+AirportSearchBar.propTypes = {
+  onSelect: PropTypes.func.isRequired, // onSelect is required and should be a function
 };
 
 export default AirportSearchBar;
