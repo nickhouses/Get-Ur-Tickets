@@ -39,7 +39,7 @@ const AirportSearchBar = ({ onSelect }) => {
   };
 
   return (
-    <div className="search-bar">
+    <div className="Airport-search-bar">
       <input
         type="text"
         value={searchTerm}
@@ -51,7 +51,7 @@ const AirportSearchBar = ({ onSelect }) => {
           {filteredAirports.map((airport) => (
             <button 
               key={airport.iata_code} 
-              className="suggestion-button" 
+            
               onClick={() => handleSelect(airport)}
             >
               {airport.name} ({airport.iata_code})

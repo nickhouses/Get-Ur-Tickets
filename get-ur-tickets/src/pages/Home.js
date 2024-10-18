@@ -150,14 +150,14 @@ export function Home() {
 
       {/* Airport Search Bar */}
       <div className="search-container">
-        <AirportSearchBar onSelect={handleAirportSelect} />
-        <div>Your departure airport is set to: {homeLocation}</div>
+        
       </div>
 
       {/* Integrating the SearchBar component */}
       <div className='Second-Row-Ticket-Background'>
         <SearchBar onSearch={handleSearchResults} />
-
+        <AirportSearchBar onSelect={handleAirportSelect} />
+        <div className='Word-Color'> Your departure airport is set to: {homeLocation}</div>
         {/* Display search results */}
         <ul>
           {searchResults.map((result, index) => (
