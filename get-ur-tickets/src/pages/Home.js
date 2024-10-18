@@ -20,35 +20,98 @@ const UserBanner = () => {
 
 export default UserBanner;
 
+//function a is used when someone presses see more or see less hyperlink. Calculates what the tracking variable needs to be to be passed into getTickets function
+const a = (pageChangeChk, tracking, hold, setTracking, setChecking) => {
+  console.log('inside a')
+  if (pageChangeChk === 1) {
+    console.log('inside see more')
+    var needthis = (parseInt(tracking) + 5);
+    console.log(hold.length + " CHECK " + needthis)
+    if (needthis >= hold.length && tracking !== 0) {
+      needthis -= needthis - hold.length;
+      setTracking(needthis);
+      console.log(hold.length + " in home " + tracking);
+      setChecking(true);
+    }
+    else if ((needthis < hold.length)) {
+      setTracking(needthis);
+      console.log(hold.length + " in THIRD " + tracking + " " + needthis);
+      setChecking(true);
+    }
+    else if (parseInt(tracking) === hold.length && hold.length !== 0) {
+      setTracking(tracking);
+      console.log(hold.length + " in home fourth " + tracking);
+      setChecking(true);
+    }
+    else {
+      console.log("error")
+      return
+    }
+  }
+  else if (pageChangeChk === 2) {
+    console.log('inside see less')
+    needthis = (parseInt(tracking) - 5)
+    if (tracking === hold.length) {
+      let loop = tracking;
+      while (!(loop % 5 === 0)) {
+        loop--;
+      }
+      setTracking(loop);
+    }
+    else if (needthis > 5) {
+      console.log("less than, tracking > 5")
+      setTracking(a => a - 5);
+      setChecking(true);
+    }
+    else if (needthis <= 5) {
+      console.log("less than, tracking < 5 " + tracking)
+      setTracking(5);
+      setChecking(true);
+    }
+    else {
+      console.log("error")
+      return
+    }
+  }
+  else {
+    console.log("ERROR: no more pages or less pages true")
+  }
+  return
+}
+
+
+
+
 export function Home() {
 
-  const [data, setData] = useState();
-  const [tracking, setTracking] = useState(0);
-  const [hold, setHold] = useState([]);
-  const [obj, setObj] = useState(new Tickets());
+  const [data, setData] = useState(); //needed for testing
+  const [tracking, setTracking] = useState(0); //used for tracking number of tickets
+  const [hold, setHold] = useState([]); // needed for testing, getting data directly was acting weird
+  const [obj, setObj] = useState(new Tickets()); //stores ticket object
   const [checking, setChecking] = useState(false); //using 1 to show more and 2 to show less. anything else is an error
+  const [homeLocation, setHomeLocation] = useState('');  // State to store the user's selected home airport location
+  const [showButton, setShowButton] = useState(true); //Stores button state
+  const [searchResults, setSearchResults] = useState([]); //stores search result
+  
+    /* Search Bar Start */
+  const handleSearchResults = (results) => {
+    setSearchResults(results); // Update the search results state with API response
+  };
+    /* Search Bar End */
 
-  const [showButton, setShowButton] = useState(true);
+  //toggles button hiding/showing
   const toggleButton = () => {
     setShowButton(!showButton);
   };
 
-  /*
-  const [MenuButton, setMenuButton] = useState(true);
-  const toggleMenu = () => {
-    setMenuButton(!MenuButton);
-  };*/
+    // Airport selection
+    const handleAirportSelect = (airport) => {
+      setHomeLocation(airport.iata_code); // Store the iata code as user's home location
+      console.log("Selected Airport:", airport);
+    };
+    //end Airport selection
 
-  /* Search Bar Start */
-  const [searchResults, setSearchResults] = useState([]);
-  const handleSearchResults = (results) => {
-    setSearchResults(results); // Update the search results state with API response
-  };
-  /* Search Bar End */
-
-  // State to store the user's selected home airport location
-  const [homeLocation, setHomeLocation] = useState('');
-
+    /*
   useEffect(() => { //Comment this section out when applying real searches. This will only give test data
     fetch('data/test4.json').then(
       response => {
@@ -67,76 +130,11 @@ export function Home() {
 
       },
     );
-  }, []);
-
-  // Airport selection
-  const handleAirportSelect = (airport) => {
-    setHomeLocation(airport.iata_code); // Store the iata code as user's home location
-    console.log("Selected Airport:", airport);
-  };
-
-  //function a is used when someone presses see more or see less hyperlink. Calculates what the tracking variable needs to be to be passed into getTickets function
-  const a = (pageChangeChk) => {
-    console.log('inside a')
-    if (pageChangeChk === 1) {
-      console.log('inside see more')
-      var needthis = (parseInt(tracking) + 5);
-      console.log(hold.length + " CHECK " + needthis)
-      if (needthis >= hold.length && tracking !== 0) {
-        needthis -= needthis - hold.length;
-        setTracking(needthis);
-        console.log(hold.length + " in home " + tracking);
-        setChecking(true);
-      }
-      else if ((needthis < hold.length)) {
-        setTracking(needthis);
-        console.log(hold.length + " in THIRD " + tracking + " " + needthis);
-        setChecking(true);
-      }
-      else if (parseInt(tracking) === hold.length && hold.length !== 0) {
-        setTracking(tracking);
-        console.log(hold.length + " in home fourth " + tracking);
-        setChecking(true);
-      }
-      else {
-        console.log("error")
-        return
-      }
-    }
-    else if (pageChangeChk === 2) {
-      console.log('inside see less')
-      needthis = (parseInt(tracking) - 5)
-      if (tracking === hold.length) {
-        let loop = tracking;
-        while (!(loop % 5 === 0)) {
-          loop--;
-        }
-        setTracking(loop);
-      }
-      else if (needthis > 5) {
-        console.log("less than, tracking > 5")
-        setTracking(a => a - 5);
-        setChecking(true);
-      }
-      else if (needthis <= 5) {
-        console.log("less than, tracking < 5 " + tracking)
-        setTracking(5);
-        setChecking(true);
-      }
-      else {
-        console.log("error")
-        return
-      }
-    }
-    else {
-      console.log("ERROR: no more pages or less pages true")
-    }
-    return
-  }
+  }, []);*/
 
   return (
     <div className='banner-container'>
-      <img alt="" className="Top-Banner" src={Fly_Now} />
+      <img alt="Website Banner of Hotel/Flight/Concert" className="Top-Banner" src={Fly_Now}/>
       <div className='button-overlay'>
         {<button className="Top-Banner-2" onClick={toggleButton} />}
         {!showButton && (
@@ -151,7 +149,7 @@ export function Home() {
       {/* Airport Search Bar */}
       <div className="search-container">
         <AirportSearchBar onSelect={handleAirportSelect} />
-        <div>Your departure airport is set to: {homeLocation}</div>
+        <div style={{color: 'white', paddingLeft: '5px'}}>Your departure airport is set to: {homeLocation}</div>
       </div>
 
       {/* Integrating the SearchBar component */}
@@ -168,8 +166,9 @@ export function Home() {
         {data !== undefined && tracking === 0 && hold.length < 5 ? setTracking(hold.length) : null}
         {data !== undefined && tracking === 0 && hold.length >= 5 ? setTracking(5) : null}
         {data !== undefined && checking ? obj.getTickets(hold, tracking) : null}
-        {data !== undefined && chkMore === true ? <button onClick={() => { a(1); }}>show more</button> : null}
-        {data !== undefined && chkLess === true ? <button  onClick={() => { a(2); }}>show less</button> : null}
+        {data !== undefined && chkMore === true ? <button onClick={() => { a(1,tracking, hold, tracking, checking); }}>show more</button> : null}
+        {data !== undefined && chkLess === true ? <button  onClick={() => { a(2,tracking, hold, tracking, checking); }}>show less</button> : null}
+        {searchResults.length === 0 ? <div style={{fontSize:'40px',color: 'white', textAlign:'center'}}> PLEASE ENTER HOME LOCATION AND EVENT NAME. </div> : null}
       </div>
     </div>
   );

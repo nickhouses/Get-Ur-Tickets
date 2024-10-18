@@ -91,7 +91,7 @@ const SearchBar = ({ onSearchResults }) => {
         value={searchTerm}
         onChange={handleInputChange}
         onKeyUpCapture={handleKeyPress}
-        placeholder="Search..."
+        placeholder="Search for event..."
         Input={{
           endAdornment: searchTerm && (
             <InputAdornment position="end">
