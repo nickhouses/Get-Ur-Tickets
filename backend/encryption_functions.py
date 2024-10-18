@@ -32,7 +32,7 @@ def decrypt_file(file_path, key):
     decrypted_data = fernet.decrypt(data)
     data = json.loads(decrypted_data)
 
-    return data['ticket'], data['flight']
+    return data['ticket'], data['serp']
 
 
 if __name__ == "__main__":
