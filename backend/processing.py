@@ -5,7 +5,7 @@ import datetime
 import requests
 # from encryption_functions import get_key, decrypt_file
 
-# KEY_FILE = 'key.encrypted'
+# KEY_FILE = 'key.encrypted' 
 # CONSTANTS_FILE = 'constants.env'
 # TICKET_API_KEY, SERP_API_KEY = decrypt_file(CONSTANTS_FILE,
 #                                            get_key(KEY_FILE))
