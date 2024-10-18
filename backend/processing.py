@@ -16,6 +16,7 @@ TICKET_API_KEY, SERP_API_KEY = decrypt_file(CONSTANTS_FILE,
 # create a session for keep alive
 session = requests.Session()
 
+
 def no_flight_info() -> dict:
     """
     :return: Dictionary of Flight Information
@@ -25,6 +26,7 @@ def no_flight_info() -> dict:
             'Airline': '',
             'Logo': '',
             'Travel_Class': ''}
+
 
 def get_flight_info(origin: str, destination: str, start_date: str,
                     end_date: str) -> dict:
@@ -144,7 +146,8 @@ def get_total_price_from_api(origin: str = 'LAS',
         event_date = event['dates']['start']['localDate']
         event_date = datetime.datetime.strptime(event_date, '%Y-%m-%d')
 
-        if 'url' in event and 'priceRanges' in event and day_ahead.date() < event_date.date():
+        if ('url' in event and 'priceRanges' in event and day_ahead.
+                date() < event_date.date()):
             name = event['name']
             ticket_url = event['url']
             ticket_price = float(event['priceRanges'][0]['min'])
