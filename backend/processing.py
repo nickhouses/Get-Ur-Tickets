@@ -16,6 +16,15 @@ TICKET_API_KEY, SERP_API_KEY = decrypt_file(CONSTANTS_FILE,
 # create a session for keep alive
 session = requests.Session()
 
+def no_flight_info() -> dict:
+    """
+    :return: Dictionary of Flight Information
+    """
+    return {'Price': 0,
+            'URL': '',
+            'Airline': '',
+            'Logo': '',
+            'Travel_Class': ''}
 
 def get_flight_info(origin: str, destination: str, start_date: str,
                     end_date: str) -> dict:
@@ -43,6 +52,13 @@ def get_flight_info(origin: str, destination: str, start_date: str,
             'Travel_Class': best_flight['travel_class']}
 
 
+def no_hotel_info() -> dict:
+    """
+    :return: Dictionary of Hotel Information
+    """
+    return {'Price': 0, 'URL': '', 'Name': ''}
+
+
 def get_hotel_info(venue: str, start_date: str, end_date: str) -> dict:
     """
     :param venue: Location name using the '+' for spaces
@@ -61,13 +77,12 @@ def get_hotel_info(venue: str, start_date: str, end_date: str) -> dict:
     best_hotel = hotels['properties'][0]
 
     if 'rate_per_night' not in best_hotel:
-        return {'Price': 0, 'URL': '', 'Name': '', 'Hotel_Class': ''}
+        return no_hotel_info()
 
     return {'Price': 2 * best_hotel['rate_per_night']
             ['extracted_before_taxes_fees'],
-            'URL': hotels['search_metadata']['google_hotels_url'],
-            'Name': best_hotel['name'],
-            'Hotel_Class': best_hotel['hotel_class']}
+            'URL': best_hotel['link'],
+            'Name': best_hotel['name']}
 
 
 def get_total_price_from_file(origin: str = 'LAS') -> list:
@@ -123,8 +138,13 @@ def get_total_price_from_api(origin: str = 'LAS',
     response.raise_for_status()
     data = response.json()
 
+    day_ahead = datetime.datetime.today() + datetime.timedelta(days=1)
+
     for event in data['_embedded']['events']:
-        if 'url' in event and 'priceRanges' in event:
+        event_date = event['dates']['start']['localDate']
+        event_date = datetime.datetime.strptime(event_date, '%Y-%m-%d')
+
+        if 'url' in event and 'priceRanges' in event and day_ahead.date() < event_date.date():
             name = event['name']
             ticket_url = event['url']
             ticket_price = float(event['priceRanges'][0]['min'])
@@ -137,23 +157,14 @@ def get_total_price_from_api(origin: str = 'LAS',
             venue = city + '+' + state
 
             if airports[venue] == origin:
-                flight = {'Price': 0,
-                          'URL': '',
-                          'Airline': '',
-                          'Logo': '',
-                          'Travel_Class': ''}
-                hotel = {'Price': 0,
-                         'Name': '',
-                         'Hotel_Class': ''}
+                flight = no_flight_info()
+                hotel = no_hotel_info()
 
             else:
-                date = event['dates']['start']['localDate']
-                date = datetime.datetime.strptime(date, '%Y-%m-%d')
-
-                flight_start_date = str(date +
+                flight_start_date = str(event_date +
                                         datetime.timedelta(days=-1)).split(
                     ' ')[0]
-                flight_end_date = str(date +
+                flight_end_date = str(event_date +
                                       datetime.timedelta(days=1)).split(' ')[0]
 
                 flight = get_flight_info(origin, airports[venue],
