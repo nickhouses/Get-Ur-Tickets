@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import MyButton from "../Components/MyButton";
 import Fly_Now from "../Pictures/Fly_Now.png";
 import { Tickets, chkMore, chkLess } from "../Components/TicketGenerator.js";
@@ -87,12 +87,12 @@ export function Home() {
   //const [data, setData] = useState(); //needed for testing
   const [tracking, setTracking] = useState(0); //used for tracking number of tickets
  // const [hold, setHold] = useState([]); // needed for testing, getting data directly was acting weird
-  const [obj, setObj] = useState(new Tickets()); //stores ticket object
+  const [obj, setObj] = useState(); //stores ticket object
   const [checking, setChecking] = useState(false); //using 1 to show more and 2 to show less. anything else is an error
   const [homeLocation, setHomeLocation] = useState('');  // State to store the user's selected home airport location
   const [showButton, setShowButton] = useState(true); //Stores button state
   const [searchResults, setSearchResults] = useState([]); //stores search result
-  
+  //setObj(new Tickets());
     /* Search Bar Start */
   const handleSearchResults = (results) => {
     setSearchResults(results); // Update the search results state with API response
@@ -162,6 +162,7 @@ export function Home() {
             <li key={index}>{result.name}</li>
           ))}
         </ul>*/}
+        {obj === undefined ? setObj(new Tickets()) : null}
         {searchResults.length > 0 && tracking === 0 ? setChecking(true) : null}
         {searchResults.length > 0 && tracking === 0 && searchResults.length < 5 ? setTracking(searchResults.length) : null}
         {searchResults.length > 0 && tracking === 0 && searchResults.length >= 5 ? setTracking(5) : null}
