@@ -27,3 +27,8 @@
     background-color: #0056b3;
   }
   
+  input {
+      width: 43.4%;
+      height: 55px;
+      text-indent: 10px;
+  }
