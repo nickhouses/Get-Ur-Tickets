@@ -21,26 +21,26 @@ const UserBanner = () => {
 export default UserBanner;
 
 //function a is used when someone presses see more or see less hyperlink. Calculates what the tracking variable needs to be to be passed into getTickets function
-const a = (pageChangeChk, tracking, hold, setTracking, setChecking) => {
+const a = (pageChangeChk, tracking, searchResults, setTracking, setChecking) => {
   console.log('inside a')
   if (pageChangeChk === 1) {
     console.log('inside see more')
     var needthis = (parseInt(tracking) + 5);
-    console.log(hold.length + " CHECK " + needthis)
-    if (needthis >= hold.length && tracking !== 0) {
-      needthis -= needthis - hold.length;
+    console.log(searchResults.length + " CHECK " + needthis)
+    if (needthis >= searchResults.length && tracking !== 0) {
+      needthis -= needthis - searchResults.length;
       setTracking(needthis);
-      console.log(hold.length + " in home " + tracking);
+      console.log(searchResults.length + " in home " + tracking);
       setChecking(true);
     }
-    else if ((needthis < hold.length)) {
+    else if ((needthis < searchResults.length)) {
       setTracking(needthis);
-      console.log(hold.length + " in THIRD " + tracking + " " + needthis);
+      console.log(searchResults.length + " in THIRD " + tracking + " " + needthis);
       setChecking(true);
     }
-    else if (parseInt(tracking) === hold.length && hold.length !== 0) {
+    else if (parseInt(tracking) === searchResults.length && searchResults.length !== 0) {
       setTracking(tracking);
-      console.log(hold.length + " in home fourth " + tracking);
+      console.log(searchResults.length + " in home fourth " + tracking);
       setChecking(true);
     }
     else {
@@ -51,7 +51,7 @@ const a = (pageChangeChk, tracking, hold, setTracking, setChecking) => {
   else if (pageChangeChk === 2) {
     console.log('inside see less')
     needthis = (parseInt(tracking) - 5)
-    if (tracking === hold.length) {
+    if (tracking === searchResults.length) {
       let loop = tracking;
       while (!(loop % 5 === 0)) {
         loop--;
@@ -84,9 +84,9 @@ const a = (pageChangeChk, tracking, hold, setTracking, setChecking) => {
 
 export function Home() {
 
-  const [data, setData] = useState(); //needed for testing
+  //const [data, setData] = useState(); //needed for testing
   const [tracking, setTracking] = useState(0); //used for tracking number of tickets
-  const [hold, setHold] = useState([]); // needed for testing, getting data directly was acting weird
+ // const [hold, setHold] = useState([]); // needed for testing, getting data directly was acting weird
   const [obj, setObj] = useState(new Tickets()); //stores ticket object
   const [checking, setChecking] = useState(false); //using 1 to show more and 2 to show less. anything else is an error
   const [homeLocation, setHomeLocation] = useState('');  // State to store the user's selected home airport location
@@ -148,26 +148,26 @@ export function Home() {
 
       {/* Airport Search Bar */}
       <div className="search-container">
-        <AirportSearchBar onSelect={handleAirportSelect} />
-        <div style={{color: 'white', paddingLeft: '5px'}}>Your departure airport is set to: {homeLocation}</div>
+        
       </div>
 
       {/* Integrating the SearchBar component */}
       <div className='Second-Row-Ticket-Background'>
-        <SearchBar onSearch={handleSearchResults} />
-
-        {/* Display search results */}
+        <SearchBar onSearchResults={handleSearchResults} />
+        <AirportSearchBar onSelect={handleAirportSelect} />
+        <div className='Word-Color'> Your departure airport is set to: {homeLocation}</div>
+        {/* Display search results 
         <ul>
           {searchResults.map((result, index) => (
             <li key={index}>{result.name}</li>
           ))}
-        </ul>
-        {data !== undefined && tracking === 0 ? setChecking(true) : null}
-        {data !== undefined && tracking === 0 && hold.length < 5 ? setTracking(hold.length) : null}
-        {data !== undefined && tracking === 0 && hold.length >= 5 ? setTracking(5) : null}
-        {data !== undefined && checking ? obj.getTickets(hold, tracking) : null}
-        {data !== undefined && chkMore === true ? <button onClick={() => { a(1,tracking, hold, tracking, checking); }}>show more</button> : null}
-        {data !== undefined && chkLess === true ? <button  onClick={() => { a(2,tracking, hold, tracking, checking); }}>show less</button> : null}
+        </ul>*/}
+        {searchResults.length > 0 && tracking === 0 ? setChecking(true) : null}
+        {searchResults.length > 0 && tracking === 0 && searchResults.length < 5 ? setTracking(searchResults.length) : null}
+        {searchResults.length > 0 && tracking === 0 && searchResults.length >= 5 ? setTracking(5) : null}
+        {searchResults.length > 0 && checking ? obj.getTickets(searchResults, tracking) : null}
+        {searchResults.length > 0 && chkMore === true ? <button onClick={() => { a(1,tracking, searchResults, tracking, checking); }}>show more</button> : null}
+        {searchResults.length > 0 && chkLess === true ? <button  onClick={() => { a(2,tracking, searchResults, tracking, checking); }}>show less</button> : null}
         {searchResults.length === 0 ? <div style={{fontSize:'40px',color: 'white', textAlign:'center'}}> PLEASE ENTER HOME LOCATION AND EVENT NAME. </div> : null}
       </div>
     </div>

@@ -83,7 +83,10 @@ const SearchBar = ({ onSearchResults }) => {
 
 
   return (
-    <div className="search-bar-container">
+    
+    <div className="search-section">
+      <div className='description'>Please use this search bar to search for an event and select your local airport.  </div>
+       <div className="search-bar-container">
       <TextField
         className="search-input"
         variant="outlined"
@@ -91,8 +94,8 @@ const SearchBar = ({ onSearchResults }) => {
         value={searchTerm}
         onChange={handleInputChange}
         onKeyUpCapture={handleKeyPress}
-        placeholder="Search for event..."
-        Input={{
+        placeholder="Search for an Event..."
+        input={{
           endAdornment: searchTerm && (
             <InputAdornment position="end">
               <IconButton onClick={handleClearSearch}>
@@ -107,12 +110,17 @@ const SearchBar = ({ onSearchResults }) => {
             search
             </div>    
       </Button>
+      </div>
+      
       {errorMessage && (
         <div className='error-message'>{errorMessage}</div> // display Error Message
       )}
+       
     </div>
   );
+
 };
+
 
 SearchBar.propTypes = {
   onSearchResults: PropTypes.func.isRequired,

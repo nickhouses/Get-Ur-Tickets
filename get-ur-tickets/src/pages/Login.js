@@ -28,7 +28,7 @@ export function Login(){
                     We are college students at the University of Las Vegas Nevada and our goal is to show cheaper bundle tickets
                 </h2>
                 <h2 className='Word-Color'>
-                    for events including flights and hotels. To access our search engine please login or create an account.
+                    for events including flights and hotels. To access our search engine please login or create an account below.
                 </h2>
             
             </div>
