@@ -31,7 +31,17 @@ export function Contact() {
 
         {/* User Banner displaying welcome message */}
         <UserBanner />
-      </div>
-    </div>
-  );
+        </div>
+
+{/* Contact Us Section */}
+<div className="contact-info">
+  <h2>Contact Us</h2>
+  <p>Email: contact@example.com</p>
+  <p>Phone: (123) 456-7890</p>
+</div>
+</div>  
+);
 }
+
+
+
