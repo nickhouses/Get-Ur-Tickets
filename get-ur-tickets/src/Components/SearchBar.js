@@ -33,12 +33,13 @@ const SearchBar = ({ onSearchResults }) => {
     }
 
     // API call
-    axios.defaults.baseURL= 'http://ec2-52-204-31-136.compute-1.amazonaws.com';
+    axios.defaults.baseURL= 'https://ec2-52-204-31-136.compute-1.amazonaws.com';
     try {    
-      const response = await axios.post('/result', {
+      const response = await axios.post('/result', 
+        {
         originAirportCode,  
         keyword: searchTerm  // Sending keyword
-      });
+        });
   
       onSearchResults(response.data);  // Update with the data
       console.log(response);  // Log the response for debugging
