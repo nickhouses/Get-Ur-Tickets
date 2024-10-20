@@ -24,7 +24,7 @@ export const LocationProvider = ({ children }) => {
 };
 
 LocationProvider.propTypes = {
-  children: PropTypes.func.isRequired, // onSelect is required and should be a function
+  children: PropTypes.object.isRequired, // onSelect is required and should be a object
 };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

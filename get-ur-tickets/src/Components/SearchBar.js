@@ -95,7 +95,7 @@ const SearchBar = ({ onSearchResults }) => {
         onChange={handleInputChange}
         onKeyUpCapture={handleKeyPress}
         placeholder="Search for an Event..."
-        Input={{
+        input={{
           endAdornment: searchTerm && (
             <InputAdornment position="end">
               <IconButton onClick={handleClearSearch}>
@@ -121,9 +121,7 @@ const SearchBar = ({ onSearchResults }) => {
 
 };
 
-SearchBar.propTypes = {
-  onSearchResults: PropTypes.func.isRequired,
-};
+
 SearchBar.propTypes = {
   onSearchResults: PropTypes.func.isRequired,
 };
