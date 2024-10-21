@@ -77,6 +77,7 @@ def get_hotel_info(venue: str, start_date: str, end_date: str) -> dict:
     hotels = response.json()
 
     best_hotel = hotels['properties'][0]
+
     if 'rate_per_night' not in best_hotel:
         return no_hotel_info()
 
