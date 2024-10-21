@@ -80,7 +80,7 @@ def get_hotel_info(venue: str, start_date: str, end_date: str) -> dict:
 
     if 'rate_per_night' not in best_hotel:
         return no_hotel_info()
-    
+
     link = '' if 'link' not in best_hotel else best_hotel['link']
 
     return {'Price': 2 * best_hotel['rate_per_night']
