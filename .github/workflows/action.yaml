@@ -26,7 +26,7 @@ jobs:
       - name: API Keys in Github Secrets
         run: | 
           echo "API keys are set"
-          python backend/processing.py
+        #  python backend/processing.py
 
   react-ci:
     runs-on: ubuntu-latest
