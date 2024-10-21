@@ -127,13 +127,16 @@ def get_total_price_from_api(origin: str = 'LAS',
     :param keyword: Keyword to pass as
     :return: A sorted list of all the total prices (flight + ticket)
     """
-    airports = {'Miami+Gardens+Florida': 'MIA',
-                'Montreal+Quebec': 'YUL',
-                'Las+Vegas+Nevada': 'LAS',
-                'Austin+Texas': 'AUS',
-                'México+Ciudad+de+México': 'MEX',
-                'Albert+Park+Victoria': 'MEL'
-                }
+
+    with open('../get-ur-tickets/src/airportData_flatui.json', 'r') as file:
+        airports_list = json.load(file)
+
+    airports = {}
+    for item in airports_list:
+        if item['municipality']:
+            city = item['municipality'].replace(' ', '+')
+
+        airports[city] = item['iata_code']
 
     result = []
 
@@ -152,14 +155,18 @@ def get_total_price_from_api(origin: str = 'LAS',
                 date() < event_date.date()):
             name = event['name']
             ticket_url = event['url']
-            ticket_price = float(event['priceRanges'][0]['min'])
 
             location = event['_embedded']['venues'][0]
 
             city = location['city']['name'].replace(' ', '+')
-            state = location['state']['name'].replace(' ', '+')
+            # state = location['state']['name'].replace(' ', '+')
 
-            venue = city + '+' + state
+            venue = city
+
+            if venue not in airports or 'min' not in event['priceRanges'][0]:
+                continue
+
+            ticket_price = float(event['priceRanges'][0]['min'])
 
             if airports[venue] == origin:
                 flight = no_flight_info()
@@ -191,4 +198,4 @@ def get_total_price_from_api(origin: str = 'LAS',
 
 
 if __name__ == '__main__':
-    print(get_total_price_from_api())
+    print(get_total_price_from_api('LAS', 'Taylor Swift'))
