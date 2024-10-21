@@ -92,6 +92,7 @@ export function Home() {
   const [homeLocation, setHomeLocation] = useState('');  // State to store the user's selected home airport location
   const [showButton, setShowButton] = useState(true); //Stores button state
   const [searchResults, setSearchResults] = useState([]); //stores search result
+  
   //setObj(new Tickets());
     /* Search Bar Start */
   const handleSearchResults = (results) => {

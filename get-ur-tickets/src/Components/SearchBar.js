@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext} from 'react';
 import PropTypes from 'prop-types'; // Import PropTypes
 import { TextField, Button, IconButton, InputAdornment } from '@mui/material';
 import axios from 'axios';
-import AirportSearchBar from './AirportSearchBar';
+import AirportSearchBar, {test} from './AirportSearchBar'
+
 
 const SearchBar = ({ onSearchResults }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const originAirportCode = AirportSearchBar.location; // hardcoded but can switch to variable for home city
-
-
+  const [location, setLocation] = useState(AirportSearchBar.location);
+  const originAirportCode = test
   // Function to handle input changes
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
@@ -33,14 +33,17 @@ const SearchBar = ({ onSearchResults }) => {
     }
 
     // API call
-    axios.defaults.baseURL= 'https://ec2-52-204-31-136.compute-1.amazonaws.com';
+    //axios.defaults.baseURL= 'http://ec2-52-204-31-136.compute-1.amazonaws.com';
+    axios.defaults.baseURL= 'http://127.0.0.1:80';
     try {    
       const response = await axios.post('/result', 
         {
-        originAirportCode,  
+        
+        originAirportCode: 'LAS',  
         keyword: searchTerm  // Sending keyword
-        });
-  
+        }
+      );
+      console.log(originAirportCode + " here")
       onSearchResults(response.data);  // Update with the data
       console.log(response);  // Log the response for debugging
     } catch (error) {
