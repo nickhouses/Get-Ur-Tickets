@@ -8,7 +8,7 @@ import {test} from './AirportSearchBar'
 const SearchBar = ({ onSearchResults }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const originAirportCode = test
+  //const originAirportCode = test
   // Function to handle input changes
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
@@ -32,17 +32,17 @@ const SearchBar = ({ onSearchResults }) => {
     }
 
     // API call
-    //axios.defaults.baseURL= 'http://ec2-52-204-31-136.compute-1.amazonaws.com';
-    axios.defaults.baseURL= 'http://127.0.0.1:80';
+    axios.defaults.baseURL= 'http://ec2-52-204-31-136.compute-1.amazonaws.com';
+    //axios.defaults.baseURL= 'http://127.0.0.1:80';
     try {    
       const response = await axios.post('/result', 
         {
         
-        originAirportCode: 'LAS',  
+        originAirportCode: test,  
         keyword: searchTerm  // Sending keyword
         }
       );
-      console.log(originAirportCode + " here")
+      console.log(test + " here")
       onSearchResults(response.data);  // Update with the data
       console.log(response);  // Log the response for debugging
     } catch (error) {
