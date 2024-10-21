@@ -2,7 +2,7 @@ import React, { useState} from 'react';
 import PropTypes from 'prop-types'; // Import PropTypes
 import { TextField, Button, IconButton, InputAdornment } from '@mui/material';
 import axios from 'axios';
-import AirportSearchBar, {test} from './AirportSearchBar'
+import {test} from './AirportSearchBar'
 
 
 const SearchBar = ({ onSearchResults }) => {
