@@ -81,9 +81,11 @@ def get_hotel_info(venue: str, start_date: str, end_date: str) -> dict:
     if 'rate_per_night' not in best_hotel:
         return no_hotel_info()
 
+    link = '' if 'link' not in best_hotel else best_hotel['link']
+
     return {'Price': 2 * best_hotel['rate_per_night']
             ['extracted_before_taxes_fees'],
-            'URL': best_hotel['link'],
+            'URL': link,
             'Name': best_hotel['name']}
 
 
@@ -125,13 +127,16 @@ def get_total_price_from_api(origin: str = 'LAS',
     :param keyword: Keyword to pass as
     :return: A sorted list of all the total prices (flight + ticket)
     """
-    airports = {'Miami+Gardens+Florida': 'MIA',
-                'Montreal+Quebec': 'YUL',
-                'Las+Vegas+Nevada': 'LAS',
-                'Austin+Texas': 'AUS',
-                'México+Ciudad+de+México': 'MEX',
-                'Albert+Park+Victoria': 'MEL'
-                }
+
+    with open('../get-ur-tickets/src/airportData_flatui.json', 'r') as file:
+        airports_list = json.load(file)
+
+    airports = {}
+    for item in airports_list:
+        if item['municipality']:
+            city = item['municipality'].replace(' ', '+')
+
+        airports[city] = item['iata_code']
 
     result = []
 
@@ -150,14 +155,18 @@ def get_total_price_from_api(origin: str = 'LAS',
                 date() < event_date.date()):
             name = event['name']
             ticket_url = event['url']
-            ticket_price = float(event['priceRanges'][0]['min'])
 
             location = event['_embedded']['venues'][0]
 
             city = location['city']['name'].replace(' ', '+')
-            state = location['state']['name'].replace(' ', '+')
+            # state = location['state']['name'].replace(' ', '+')
 
-            venue = city + '+' + state
+            venue = city
+
+            if venue not in airports or 'min' not in event['priceRanges'][0]:
+                continue
+
+            ticket_price = float(event['priceRanges'][0]['min'])
 
             if airports[venue] == origin:
                 flight = no_flight_info()
@@ -189,4 +198,4 @@ def get_total_price_from_api(origin: str = 'LAS',
 
 
 if __name__ == '__main__':
-    print(get_total_price_from_api())
+    print(get_total_price_from_api('LAS', 'Taylor Swift'))
