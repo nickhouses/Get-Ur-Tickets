@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react';
+import React, { useState} from 'react';
 import PropTypes from 'prop-types'; // Import PropTypes
 import { TextField, Button, IconButton, InputAdornment } from '@mui/material';
 import axios from 'axios';
@@ -8,7 +8,6 @@ import AirportSearchBar, {test} from './AirportSearchBar'
 const SearchBar = ({ onSearchResults }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [location, setLocation] = useState(AirportSearchBar.location);
   const originAirportCode = test
   // Function to handle input changes
   const handleInputChange = (e) => {
