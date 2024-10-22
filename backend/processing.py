@@ -164,7 +164,8 @@ def get_total_price_from_api(origin: str = 'LAS',
 
                 venue = city
 
-                if venue not in airports or 'min' not in event['priceRanges'][0]:
+                if (venue not in airports or
+                        'min' not in event['priceRanges'][0]):
                     continue
 
                 ticket_price = float(event['priceRanges'][0]['min'])
@@ -178,10 +179,12 @@ def get_total_price_from_api(origin: str = 'LAS',
                                             datetime.timedelta(days=-1)).split(
                         ' ')[0]
                     flight_end_date = str(event_date +
-                                          datetime.timedelta(days=1)).split(' ')[0]
+                                          datetime.timedelta(days=1)).split(
+                        ' ')[0]
 
                     flight = get_flight_info(origin, airports[venue],
-                                             flight_start_date, flight_end_date)
+                                             flight_start_date,
+                                             flight_end_date)
                     hotel = get_hotel_info(venue, flight_start_date,
                                            flight_end_date)
 
@@ -201,4 +204,4 @@ def get_total_price_from_api(origin: str = 'LAS',
 
 
 if __name__ == '__main__':
-    print(get_total_price_from_api('LAX', 'Coldplay'))
+    print(get_total_price_from_api('JFK', 'Coldplay'))
