@@ -148,54 +148,60 @@ def get_total_price_from_api(origin: str = 'LAS',
     day_ahead = datetime.datetime.today() + datetime.timedelta(days=1)
 
     for event in data['_embedded']['events']:
-        event_date = event['dates']['start']['localDate']
-        event_date = datetime.datetime.strptime(event_date, '%Y-%m-%d')
+        try:
+            event_date = event['dates']['start']['localDate']
+            event_date = datetime.datetime.strptime(event_date, '%Y-%m-%d')
 
-        if ('url' in event and 'priceRanges' in event and day_ahead.
-                date() < event_date.date()):
-            name = event['name']
-            ticket_url = event['url']
+            if ('url' in event and 'priceRanges' in event and day_ahead.
+                    date() < event_date.date()):
+                name = event['name']
+                ticket_url = event['url']
 
-            location = event['_embedded']['venues'][0]
+                location = event['_embedded']['venues'][0]
 
-            city = location['city']['name'].replace(' ', '+')
-            # state = location['state']['name'].replace(' ', '+')
+                city = location['city']['name'].replace(' ', '+')
+                # state = location['state']['name'].replace(' ', '+')
 
-            venue = city
+                venue = city
 
-            if venue not in airports or 'min' not in event['priceRanges'][0]:
-                continue
+                if (venue not in airports or
+                        'min' not in event['priceRanges'][0]):
+                    continue
 
-            ticket_price = float(event['priceRanges'][0]['min'])
+                ticket_price = float(event['priceRanges'][0]['min'])
 
-            if airports[venue] == origin:
-                flight = no_flight_info()
-                hotel = no_hotel_info()
+                if airports[venue] == origin:
+                    flight = no_flight_info()
+                    hotel = no_hotel_info()
 
-            else:
-                flight_start_date = str(event_date +
-                                        datetime.timedelta(days=-1)).split(
-                    ' ')[0]
-                flight_end_date = str(event_date +
-                                      datetime.timedelta(days=1)).split(' ')[0]
+                else:
+                    flight_start_date = str(event_date +
+                                            datetime.timedelta(days=-1)).split(
+                        ' ')[0]
+                    flight_end_date = str(event_date +
+                                          datetime.timedelta(days=1)).split(
+                        ' ')[0]
 
-                flight = get_flight_info(origin, airports[venue],
-                                         flight_start_date, flight_end_date)
-                hotel = get_hotel_info(venue, flight_start_date,
-                                       flight_end_date)
+                    flight = get_flight_info(origin, airports[venue],
+                                             flight_start_date,
+                                             flight_end_date)
+                    hotel = get_hotel_info(venue, flight_start_date,
+                                           flight_end_date)
 
-            result.append({'Total_Price': ticket_price +
-                           flight['Price'] + hotel['Price'],
-                           'Name': name,
-                           'Venue': venue,
-                           'Ticket_Price': ticket_price,
-                           'Ticket_URL': ticket_url,
-                           'Flight': flight,
-                           'Hotel': hotel,
-                           })
+                result.append({'Total_Price': ticket_price +
+                               flight['Price'] + hotel['Price'],
+                               'Name': name,
+                               'Venue': venue,
+                               'Ticket_Price': ticket_price,
+                               'Ticket_URL': ticket_url,
+                               'Flight': flight,
+                               'Hotel': hotel,
+                               })
+        except KeyError:
+            continue
 
     return json.dumps(sorted(result, key=lambda x: x['Total_Price']))
 
 
 if __name__ == '__main__':
-    print(get_total_price_from_api('LAS', 'Taylor Swift'))
+    print(get_total_price_from_api('JFK', 'Coldplay'))
