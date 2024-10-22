@@ -32,12 +32,11 @@ const SearchBar = ({ onSearchResults }) => {
     }
 
     // API call
-    axios.defaults.baseURL= 'http://ec2-52-204-31-136.compute-1.amazonaws.com';
-    //axios.defaults.baseURL= 'http://127.0.0.1:80';
+    axios.defaults.baseURL= 'https://geturtickets.pythonanywhere.com/';
+   // axios.defaults.baseURL= 'http://127.0.0.1:80';
     try {    
       const response = await axios.post('/result', 
         {
-        
         originAirportCode: test,  
         keyword: searchTerm  // Sending keyword
         }

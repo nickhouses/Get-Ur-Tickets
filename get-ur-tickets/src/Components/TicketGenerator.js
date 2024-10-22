@@ -125,7 +125,7 @@ import DetailsPopover from "../Components/popOver.tsx";
             {{ 
                 flex: 1, 
                 textAlign: 'right', 
-                whiteSpace: 'nowrap',
+                //whiteSpace: 'nowrap',
             }}>
                 <strong>Estimated Total Price:</strong> {"$" + this.total}
             </div>
