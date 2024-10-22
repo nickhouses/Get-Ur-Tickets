@@ -4,7 +4,7 @@ import airportData from '../airportData_flatui.json'; // Import JSON
 import { LocationContext } from '../index';           // Import context
 import '../AirportSearchBar.css';
 import SearchBar from './SearchBar';
-
+export var test = "";
 const AirportSearchBar = ({ onSelect }) => {
   const {location, setLocation } = useContext(LocationContext);
   const [searchTerm, setSearchTerm] = useState('');
@@ -22,6 +22,7 @@ const AirportSearchBar = ({ onSelect }) => {
       setFilteredAirports([]);
       return;
     }
+
   
     // Filter out municipality (city) and iata code (airport code)
     const filtered = airports.filter(airport =>
@@ -36,6 +37,8 @@ const AirportSearchBar = ({ onSelect }) => {
     setFilteredAirports([]);
     setLocation(airport);
     if (onSelect) onSelect(airport);
+    test = airport.iata_code;
+    console.log(test);
   };
 
   return (
