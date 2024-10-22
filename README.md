@@ -19,11 +19,44 @@
 The frontend uses CI / CD (Continuous Integration / Continuous Deployment) and will redeploy upon merging.
 
 ### [Backend](http://ec2-52-204-31-136.compute-1.amazonaws.com/)
-#### 1. Access the AWS machine
-- Update the permissions on the KeyPair file
-  - `chmod 400 MyKeyPair.pem`
-- ssh into AWS machine 
-  - `ssh -i MyKeyPair.pem ubuntu@ec2-52-204-31-136.compute-1.amazonaws.com`
+#### 1. Access the AWS EC2 Instance
+- **Creating a new Key Pair**
+    - Log into the AWS Management Console and navigate to "Key Pairs" under the **Network & Security** section.
+    - Select **Create Key Pair** at the top right of the page.
+        - Enter a name for the key pair.
+        - Choose **RSA** as the key type.
+        - Select **.pem** as the format.
+    - Once the key pair is created, the `.pem` file will be automatically downloaded to your computer.
+    - Move the `.pem` file into your local project repository for easy access.
+
+- **Update the permissions on the Key Pair file:**
+  - Run the following command:
+    ```bash
+    chmod 400 MyKeyPair.pem
+    ```
+- **SSH into the EC2 instance:**
+  - Use the following command to connect:
+    ```bash
+    ssh -i "MyKeyPair.pem" ubuntu@ec2-52-204-31-136.compute-1.amazonaws.com
+    ```
+- **Troubleshooting "Permission denied (public key)" error:**
+  - If this error occurs, the public key may not be correctly added to the EC2 instance.
+  - Follow these steps to resolve it:
+    1. Go to the **EC2 Dashboard**.
+    2. Select the EC2 instance you want to access.
+    3. Click **Connect** in the top right.
+    4. Once connected, enter the following command to navigate to the directory where SSH keys are stored:
+       ```bash
+       sudo vi ~/.ssh/authorized_keys
+       ```
+    5. Leave this file open, and open a terminal on your local machine where the `.pem` file is stored.
+    6. Extract the public key from your `.pem` file using the following command:
+       ```bash
+       ssh-keygen -y -f MyKeyPair.pem
+       ```
+    7. Copy the output (public key) and paste it into the `authorized_keys` file on the EC2 instance.
+    8. Save and exit the `vi` editor.
+    9. Retry SSHing into the EC2 instance from your terminal.
 
 #### 2. Get the most up-to-date code
 - Clone the repository
