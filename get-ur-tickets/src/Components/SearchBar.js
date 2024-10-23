@@ -8,7 +8,6 @@ import {test} from './AirportSearchBar'
 const SearchBar = ({ onSearchResults }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  //const originAirportCode = test
   // Function to handle input changes
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
@@ -33,7 +32,7 @@ const SearchBar = ({ onSearchResults }) => {
 
     // API call
     axios.defaults.baseURL= 'https://geturtickets.pythonanywhere.com/';
-   // axios.defaults.baseURL= 'http://127.0.0.1:80';
+    // axios.defaults.baseURL= 'http://127.0.0.1:80';
     try {    
       const response = await axios.post('/result', 
         {
@@ -120,9 +119,7 @@ const SearchBar = ({ onSearchResults }) => {
        
     </div>
   );
-
 };
-
 
 SearchBar.propTypes = {
   onSearchResults: PropTypes.func.isRequired,
