@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types'; // Import PropTypes
 import { TextField, Button, IconButton, InputAdornment } from '@mui/material';
 import axios from 'axios';
@@ -8,6 +8,7 @@ import {test} from './AirportSearchBar'
 const SearchBar = ({ onSearchResults }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   // Function to handle input changes
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
@@ -29,7 +30,7 @@ const SearchBar = ({ onSearchResults }) => {
       setSearchTerm('');
       return;
     }
-
+    setLoading(true);
     // API call
     axios.defaults.baseURL= 'https://geturtickets.pythonanywhere.com/';
     // axios.defaults.baseURL= 'http://127.0.0.1:80';
@@ -45,8 +46,10 @@ const SearchBar = ({ onSearchResults }) => {
       console.log(response);  // Log the response for debugging
     } catch (error) {
       console.error('Error fetching search results:', error);  // Log errors if they occur
+    } finally {
+      setLoading(false);
     }
-  };
+  }
       
         /*
       const response = await fetch('/result', { // proxy not working
@@ -116,7 +119,7 @@ const SearchBar = ({ onSearchResults }) => {
       {errorMessage && (
         <div className='error-message'>{errorMessage}</div> // display Error Message
       )}
-       
+       {loading && <div className='Second-Row-Ticket-Background' style={{ textAlign: 'center', color: 'white', fontSize: '20pt'}}> Loading... </div>}
     </div>
   );
 };
