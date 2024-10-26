@@ -52,7 +52,7 @@ const AirportSearchBar = ({ onSelect }) => {
         placeholder="Search for an airport..."
       />
       {searchTerm && filteredAirports.length > 0 && (
-        <div className="suggestions" style={{marginTop: '3%'}}>
+        <div className="suggestions" >
           {filteredAirports.map((airport) => (
             <button 
               key={airport.iata_code} 
