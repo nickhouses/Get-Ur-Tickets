@@ -44,17 +44,17 @@ const AirportSearchBar = ({ onSelect }) => {
   return (
     <div className="Airport-search-bar">
       <input
+        style={{width: '42%'}}
         type="text"
         value={searchTerm}
         onChange={handleSearch}
         placeholder="Search for an airport..."
       />
       {searchTerm && filteredAirports.length > 0 && (
-        <div className="suggestions">
+        <div className="suggestions" style={{marginTop: '3%'}}>
           {filteredAirports.map((airport) => (
             <button 
               key={airport.iata_code} 
-            
               onClick={() => handleSelect(airport)}
             >
               {airport.name} ({airport.iata_code})
@@ -62,6 +62,7 @@ const AirportSearchBar = ({ onSelect }) => {
           ))}
         </div>
       )}
+      <div className='description' > Your departure airport is set to: {test}</div>
     </div>
   );
 };
