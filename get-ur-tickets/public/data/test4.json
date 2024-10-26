@@ -78,5 +78,45 @@
             "Name": "Hotel Galer\u00eda Plaza Reforma",
             "Hotel_Class": "4-star hotel"
         }
+    },
+    {
+        "Total_Price": 5482.0,
+        "Name": "Individual G04 Formula 1 2024",
+        "Venue": "M\u00e9xico+Ciudad+de+M\u00e9xico",
+        "Ticket_Price": 4767.0,
+        "Ticket_URL": "https://www.ticketmaster.com.mx/individual-g04-formula-1-2024-mexico-26-10-2024/event/140060B893FA0DB7",
+        "Flight": {
+            "Price": 365,
+            "URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTI1agcIARIDTEFTcgcIARIDTUVYGh4SCjIwMjQtMTAtMjdqBwgBEgNNRVhyBwgBEgNMQVNCAQFIAXABmAEB",
+            "Airline": "VivaAerobus",
+            "Logo": "https://www.gstatic.com/flights/airline_logos/70px/VB.png",
+            "Travel_Class": "Economy"
+        },
+        "Hotel": {
+            "Price": 350,
+            "URL": "https://www.google.com/_/TravelFrontendUi/data/batchexecute?rpcids=AtySUc&source-path=/travel/search&hl=en&gl=us&rt=c&soc-app=162&soc-platform=1&soc-device=1",
+            "Name": "Hotel Galer\u00eda Plaza Reforma",
+            "Hotel_Class": "4-star hotel"
+        }
+    },
+    {
+        "Total_Price": 5482.0,
+        "Name": "Individual G04 Formula 1 2024",
+        "Venue": "M\u00e9xico+Ciudad+de+M\u00e9xico",
+        "Ticket_Price": 4767.0,
+        "Ticket_URL": "https://www.ticketmaster.com.mx/individual-g04-formula-1-2024-mexico-26-10-2024/event/140060B893FA0DB7",
+        "Flight": {
+            "Price": 365,
+            "URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTI1agcIARIDTEFTcgcIARIDTUVYGh4SCjIwMjQtMTAtMjdqBwgBEgNNRVhyBwgBEgNMQVNCAQFIAXABmAEB",
+            "Airline": "VivaAerobus",
+            "Logo": "https://www.gstatic.com/flights/airline_logos/70px/VB.png",
+            "Travel_Class": "Economy"
+        },
+        "Hotel": {
+            "Price": 350,
+            "URL": "https://www.google.com/_/TravelFrontendUi/data/batchexecute?rpcids=AtySUc&source-path=/travel/search&hl=en&gl=us&rt=c&soc-app=162&soc-platform=1&soc-device=1",
+            "Name": "Hotel Galer\u00eda Plaza Reforma",
+            "Hotel_Class": "4-star hotel"
+        }
     }
 ]

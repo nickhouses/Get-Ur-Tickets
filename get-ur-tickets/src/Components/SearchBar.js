@@ -1,14 +1,17 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types'; // Import PropTypes
 import { TextField, Button, IconButton, InputAdornment } from '@mui/material';
 import axios from 'axios';
 import {test} from './AirportSearchBar'
 
+//export var effect = false; 
+//effect && div will be used in Home.js to make the current tickets disappear when the next are loading.Have to figure out formatting to force loading below please enter airport before search line.
+
 
 const SearchBar = ({ onSearchResults }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  //const originAirportCode = test
+  const [loading, setLoading] = useState(false);
   // Function to handle input changes
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
@@ -30,10 +33,11 @@ const SearchBar = ({ onSearchResults }) => {
       setSearchTerm('');
       return;
     }
-
+    setLoading(true);
+    //effect = true;
     // API call
     axios.defaults.baseURL= 'https://geturtickets.pythonanywhere.com/';
-   // axios.defaults.baseURL= 'http://127.0.0.1:80';
+    // axios.defaults.baseURL= 'http://127.0.0.1:80';
     try {    
       const response = await axios.post('/result', 
         {
@@ -46,8 +50,11 @@ const SearchBar = ({ onSearchResults }) => {
       console.log(response);  // Log the response for debugging
     } catch (error) {
       console.error('Error fetching search results:', error);  // Log errors if they occur
+    } finally {
+      setLoading(false);
+      //effect = false;
     }
-  };
+  }
       
         /*
       const response = await fetch('/result', { // proxy not working
@@ -87,12 +94,11 @@ const SearchBar = ({ onSearchResults }) => {
   return (
     
     <div className="search-section">
-      <div className='description'>Please use this search bar to search for an event and select your local airport.  </div>
-       <div className="search-bar-container">
+      <div className="search-bar-container">
       <TextField
+        disabled = {test === '' ? true : false}
         className="search-input"
         variant="outlined"
-        fullWidth
         value={searchTerm}
         onChange={handleInputChange}
         onKeyUpCapture={handleKeyPress}
@@ -107,22 +113,19 @@ const SearchBar = ({ onSearchResults }) => {
           ),
         }}
       />
-      <Button  onClick={handleSearch}>
-      <div className='search-button'>    
+      </div>
+      <Button onClick={handleSearch}>
+      <div className='search-button'  style={{cursor: test === '' ? 'not-allowed' : 'pointer', flexDirection: 'row'}}>    
             search
             </div>    
       </Button>
-      </div>
-      
       {errorMessage && (
         <div className='error-message'>{errorMessage}</div> // display Error Message
       )}
-       
+       {loading && <div className='Second-Row-Ticket-Background' style={{ textAlign: 'center', color: 'white', fontSize: '20pt'}}> Loading... </div>}
     </div>
   );
-
 };
-
 
 SearchBar.propTypes = {
   onSearchResults: PropTypes.func.isRequired,
