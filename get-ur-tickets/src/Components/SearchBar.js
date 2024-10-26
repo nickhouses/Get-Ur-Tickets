@@ -4,6 +4,9 @@ import { TextField, Button, IconButton, InputAdornment } from '@mui/material';
 import axios from 'axios';
 import {test} from './AirportSearchBar'
 
+//export var effect = false; 
+//effect && div will be used in Home.js to make the current tickets disappear when the next are loading.Have to figure out formatting to force loading below please enter airport before search line.
+
 
 const SearchBar = ({ onSearchResults }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -31,6 +34,7 @@ const SearchBar = ({ onSearchResults }) => {
       return;
     }
     setLoading(true);
+    //effect = true;
     // API call
     axios.defaults.baseURL= 'https://geturtickets.pythonanywhere.com/';
     // axios.defaults.baseURL= 'http://127.0.0.1:80';
@@ -48,6 +52,7 @@ const SearchBar = ({ onSearchResults }) => {
       console.error('Error fetching search results:', error);  // Log errors if they occur
     } finally {
       setLoading(false);
+      //effect = false;
     }
   }
       
@@ -89,12 +94,11 @@ const SearchBar = ({ onSearchResults }) => {
   return (
     
     <div className="search-section">
-      <div className='description'>Please use this search bar to search for an event and select your local airport.  </div>
-       <div className="search-bar-container">
+      <div className="search-bar-container">
       <TextField
+        disabled = {test === '' ? true : false}
         className="search-input"
         variant="outlined"
-        fullWidth
         value={searchTerm}
         onChange={handleInputChange}
         onKeyUpCapture={handleKeyPress}
@@ -110,7 +114,7 @@ const SearchBar = ({ onSearchResults }) => {
         }}
       />
       <Button  onClick={handleSearch}>
-      <div className='search-button'>    
+      <div className='search-button'  style={{cursor: test === '' ? 'not-allowed' : 'pointer'}}>    
             search
             </div>    
       </Button>

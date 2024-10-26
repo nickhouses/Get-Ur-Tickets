@@ -17,13 +17,9 @@ const UserBanner = () => {
     </Authenticator>
   );
 };
-
 export default UserBanner;
 
 //function a is used when someone presses see more or see less hyperlink. Calculates what the tracking variable needs to be to be passed into getTickets function
-
-
-
 export function Home() {
 
   const [tracking, setTracking] = useState(0); //used for tracking number of tickets
@@ -93,11 +89,18 @@ export function Home() {
     return
   }
 
-
-  //setObj(new Tickets());
     /* Search Bar Start */
-  const handleSearchResults = (results) => {
+  const HandleSearchResults = (results) => {
+    console.log("insideHandle " + results)
+    setTracking(0);
     setSearchResults(results); // Update the search results state with API response
+    if(results.length === 0){
+      console.log("!?!?!")
+      setHold(true);
+    }
+    else if(results.length !== 0 && hold === true){
+      setHold(false);
+    }
   };
     /* Search Bar End */
 
@@ -107,33 +110,19 @@ export function Home() {
   };
 
     // Airport selection
-    const handleAirportSelect = (airport) => {
-      setHomeLocation(airport.iata_code); // Store the iata code as user's home location
-      console.log("Selected Airport:", airport);
-    };
+  const handleAirportSelect = (airport) => {
+    setHomeLocation(airport.iata_code); // Store the iata code as user's home location
+    console.log("Selected Airport:", homeLocation);  // State to store the user's selected home airport location
+   };
     //end Airport selection
-
-
 
   //if there are any changes to searchResults it sets tracking to 0. Fixes ticket population issue.
   useEffect(() => {
-    
-    setTracking(0);
-    if(ref.current){
-      if(searchResults.length === 0){
-        console.log("!?!?!")
-        setHold(true);
-      }
-      else if(searchResults.length !== 0 && hold === true){
-        setHold(false);
-      }
-    }
-    else{
+    if(!ref.current){
       setObj(new Tickets())
       ref.current = true;
     }
-  }, [searchResults, hold]);
-
+  },[ref]);
 
   return (
     <div className='banner-container'>
@@ -151,16 +140,18 @@ export function Home() {
 
       {/* Integrating the SearchBar component */}
       <div className='Second-Row-Ticket-Background'>
-        <SearchBar onSearchResults={handleSearchResults}/>
-        <AirportSearchBar onSelect={handleAirportSelect}/>
-        <div className='Word-Color'> Your departure airport is set to: {homeLocation}</div>
-        {searchResults.length > 0 && tracking === 0 ? setChecking(true) : null}
+          <AirportSearchBar onSelect={handleAirportSelect}/>
+          <SearchBar onSearchResults={HandleSearchResults}/>
+        {/*Add a div below search bars so that we can add loading && div to clear tickets when loading*/}
+        {searchResults.length > 0 && tracking === 0 ? setChecking(true): null}
         {searchResults.length > 0 && tracking === 0 && searchResults.length < 5 ? setTracking(searchResults.length) : null}
         {searchResults.length > 0 && tracking === 0 && searchResults.length >= 5 ? setTracking(5) : null}
+        {console.log(tracking + " ahhhhhhh")}
         {searchResults.length > 0 && checking ? obj.getTickets(searchResults, tracking) : null}
         {searchResults.length > 0 && chkMore === true ? <button onClick={() => { adjTrack(1); }}>show more</button> : null}
         {searchResults.length > 0 && chkLess === true ? <button  onClick={() => { adjTrack(2); }}>show less</button> : null}
         {hold === true ? <div style={{ textAlign: 'center', color: 'white', fontSize: '20pt'}}>No results found.</div> : null}
+        {console.log("end of home")}
       </div>
     </div>
   );

@@ -92,8 +92,9 @@ body{
 
 /* Search bar */
 .search-bar-container {
+  flex-direction: row;
   display: flex;
-  width: 50%;
+  width: 35%;
   align-items: center;
   background-color: #3a373705;
   padding: 5px;
@@ -144,9 +145,11 @@ body{
 
 /* Airport Bar */
 .Airport-search-bar {
+  flex-direction: row;
+  display: flex;
   position: relative;
   width: 100%; /* Adjust this to control the width */
-  max-width: 28%; 
+  max-width: 70%; 
   padding: 5px;
   border-radius: 5px;
 }
@@ -163,9 +166,10 @@ body{
   position: absolute;
   background-color: white;
   border: 1px solid #ccc;
-  width: 100%; 
+  width: 41.8%; 
   max-height: 200px;
   overflow-y: auto;
+  z-index: 100;
 }
 
 .suggestions button {
@@ -217,7 +221,7 @@ body{
   width: 99.1vw;
   height: 43.5vh;
   background-color: rgb(15, 15, 15); 
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .Ticket-Box{
