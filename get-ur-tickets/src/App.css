@@ -58,7 +58,6 @@ body{
 .Nav-Banner {
   right: 0.2%;
   color: #fffefe;
-  font-size: calc(3px + 1vw);
 }
 
 .button-overlay{
@@ -91,13 +90,20 @@ body{
 }
 
 /* Search bar */
-.search-bar-container {
-  flex-direction: row;
+.search-section{
+  flex-direction: column;
   display: flex;
-  width: 35%;
   align-items: center;
+  justify-content: center;
+  width: 100%; /* Adjust this to control the width */
+  border-radius: 5px;
+}
+
+.search-bar-container {
+  display: flex;
+  align-self: center;
+  width: 35%;
   background-color: #3a373705;
-  padding: 5px;
   border-radius: 5px;
   box-shadow: 0px 2px 5px rgb(20, 19, 19);
 }
@@ -108,6 +114,7 @@ body{
 }
 
 .search-button {
+  flex-direction: column;
   margin-left: 15px;              /* Space between button and input */
   background-color: #4f59dd;      
   color: #ffffff;                 
@@ -137,6 +144,8 @@ body{
 }
 
 .description {
+  position: relative;
+  flex-direction: row;
   margin-left: 20px;
   color: #fffefe;
   font-size: calc(16px + 1vw);
@@ -145,12 +154,12 @@ body{
 
 /* Airport Bar */
 .Airport-search-bar {
-  flex-direction: row;
-  display: flex;
   position: relative;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%; /* Adjust this to control the width */
-  max-width: 70%; 
-  padding: 5px;
   border-radius: 5px;
 }
 
@@ -164,10 +173,11 @@ body{
 
 .suggestions {
   position: absolute;
+  top: 65%;
   background-color: white;
   border: 1px solid #ccc;
   width: 41.8%; 
-  max-height: 200px;
+  max-height: 100px;
   overflow-y: auto;
   z-index: 100;
 }
@@ -269,6 +279,8 @@ body{
 
 .Word-Color{
   color: white;
+  font-size: calc(3px + 1vw);
+  line-height: 10px;
 }
 
 .blank{
