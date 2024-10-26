@@ -112,7 +112,7 @@ export function Home() {
     // Airport selection
   const handleAirportSelect = (airport) => {
     setHomeLocation(airport.iata_code); // Store the iata code as user's home location
-    console.log("Selected Airport:", airport);
+    console.log("Selected Airport:", homeLocation);  // State to store the user's selected home airport location
    };
     //end Airport selection
 
