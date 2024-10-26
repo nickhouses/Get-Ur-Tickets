@@ -43,8 +43,9 @@ const AirportSearchBar = ({ onSelect }) => {
 
   return (
     <div className="Airport-search-bar">
+      <div className='description' >Enter your Home Airport. Currently set to: {test}</div>
       <input
-        style={{width: '42%'}}
+        style={{width: '42%', alignItems: 'center'}}
         type="text"
         value={searchTerm}
         onChange={handleSearch}
@@ -62,7 +63,8 @@ const AirportSearchBar = ({ onSelect }) => {
           ))}
         </div>
       )}
-      <div className='description' > Your departure airport is set to: {test}</div>
+      <br/>
+      <div className='description'>Search for Event.</div>
     </div>
   );
 };

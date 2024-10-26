@@ -113,13 +113,12 @@ const SearchBar = ({ onSearchResults }) => {
           ),
         }}
       />
-      <Button  onClick={handleSearch}>
-      <div className='search-button'  style={{cursor: test === '' ? 'not-allowed' : 'pointer'}}>    
+      </div>
+      <Button onClick={handleSearch}>
+      <div className='search-button'  style={{cursor: test === '' ? 'not-allowed' : 'pointer', flexDirection: 'row'}}>    
             search
             </div>    
       </Button>
-      </div>
-      
       {errorMessage && (
         <div className='error-message'>{errorMessage}</div> // display Error Message
       )}
