@@ -2,7 +2,7 @@
   - [AWS Deployment](#aws-deployment)
     - [Frontend](#frontend)
     - [Backend](#backend)
-      - [1. Access the AWS machine](#1-access-the-aws-machine)
+      - [1. Access the AWS EC2 Instance](#1-access-the-aws-ec2-instance)
       - [2. Get the most up-to-date code](#2-get-the-most-up-to-date-code)
       - [3. Serve the flask application](#3-serve-the-flask-application)
   - [Local Development](#local-development)
