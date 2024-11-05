@@ -1,80 +1,30 @@
 - [Get-Ur-Tickets](#get-ur-tickets)
-  - [AWS Deployment](#aws-deployment)
-    - [Frontend](#frontend)
-    - [Backend](#backend)
-      - [1. Access the AWS machine](#1-access-the-aws-machine)
-      - [2. Get the most up-to-date code](#2-get-the-most-up-to-date-code)
-      - [3. Serve the flask application](#3-serve-the-flask-application)
+  - [Production Deployment](#production-deployment)
+    - [AWS Amplify Frontend Deployment](#aws-amplify-frontend-deployment)
+    - [Python Anywhere Backend Deployment](#python-anywhere-backend-deployment)
   - [Local Development](#local-development)
-    - [Frontend](#frontend-1)
+    - [Frontend](#frontend)
       - [Optional](#optional)
-    - [Backend](#backend-1)
+    - [Backend](#backend)
     - [Docker](#docker)
   - [How the application works](#how-the-application-works)
 
 # [Get-Ur-Tickets](https://main.d356ozzs66r3xx.amplifyapp.com/)
 
-## AWS Deployment
-### [Frontend](https://main.d356ozzs66r3xx.amplifyapp.com/)
+## Production Deployment
+### [AWS Amplify Frontend Deployment](https://main.d356ozzs66r3xx.amplifyapp.com/)
 The frontend uses CI / CD (Continuous Integration / Continuous Deployment) and will redeploy upon merging.
 
-### [Backend](http://ec2-52-204-31-136.compute-1.amazonaws.com/)
-#### 1. Access the AWS EC2 Instance
-- **Creating a new Key Pair**
-    - Log into the AWS Management Console and navigate to "Key Pairs" under the **Network & Security** section.
-    - Select **Create Key Pair** at the top right of the page.
-        - Enter a name for the key pair.
-        - Choose **RSA** as the key type.
-        - Select **.pem** as the format.
-    - Once the key pair is created, the `.pem` file will be automatically downloaded to your computer.
-    - Move the `.pem` file into your local project repository for easy access.
+### [Python Anywhere Backend Deployment](http://GetUrTickets.pythonanywhere.com/)
+1. Switch to the Console tab
+   1. Open a bash console
+   2. Navigate to the project directory
+   3. Pull the most up-to-date code from the repository
+        - `git pull`
 
-- **Update the permissions on the Key Pair file:**
-  - Run the following command:
-    ```bash
-    chmod 400 MyKeyPair.pem
-    ```
-- **SSH into the EC2 instance:**
-  - Use the following command to connect:
-    ```bash
-    ssh -i "MyKeyPair.pem" ubuntu@ec2-52-204-31-136.compute-1.amazonaws.com
-    ```
-- **Troubleshooting "Permission denied (public key)" error:**
-  - If this error occurs, the public key may not be correctly added to the EC2 instance.
-  - Follow these steps to resolve it:
-    1. Go to the **EC2 Dashboard**.
-    2. Select the EC2 instance you want to access.
-    3. Click **Connect** in the top right.
-    4. Once connected, enter the following command to navigate to the directory where SSH keys are stored:
-       ```bash
-       sudo vi ~/.ssh/authorized_keys
-       ```
-    5. Leave this file open, and open a terminal on your local machine where the `.pem` file is stored.
-    6. Extract the public key from your `.pem` file using the following command:
-       ```bash
-       ssh-keygen -y -f MyKeyPair.pem
-       ```
-    7. Copy the output (public key) and paste it into the `authorized_keys` file on the EC2 instance.
-    8. Save and exit the `vi` editor.
-    9. Retry SSHing into the EC2 instance from your terminal.
-
-#### 2. Get the most up-to-date code
-- Clone the repository
-  - `git clone https://github.com/CS-472/Get-Ur-Tickets.git`
-- Pull the most up-to-date code from the repository
-   `git pull`
-
-#### 3. Serve the flask application
-- Check if there are any active screens
-  - `screen -ls`
-- Terminate any active screens
-  - `screen -X -S <session_id> quit`
-- Resume any active screens
-  - `screen -r`
-- Serve the flask application
-  - `sudo waitress-serve --port=80 --call flask_app:create_app`
-- Detach from the current screen
-  - Ctrl + A, then D
+2. Switch to the Web tab
+   1. Ensure the Virtualenv path is set
+   2. Click the green reload button at the top of the page
 
 ## Local Development
 ### Frontend
@@ -97,13 +47,25 @@ The entry point of the backend is [flask_app.py](./backend/flask_app.py)
 
 1. Change directories to the backend directory
    - `cd backend`
-2. Serve the application
+2. Create requirements.txt
+   - `pipreqs .` 
+3. Create a virtual environment
+   - `python -m venv venv`
+4. Activate the virtual environment
+   - Windows
+     - `.\venv\Scripts\activate`
+   - MacOS
+     - `source venv/bin/activate`
+5. Install Dependencies
+    - `pip install -r requirements.txt`
+6. Serve the application
    - `waitress-serve --port=80 --call flask_app:create_app`
-3. Make POST requests using curl
+7. Deactivate Virutal Environment
+   - `deactivate`
+8. Make POST requests using curl
     ```shell 
-    curl -d '{"originAirportCode":"LAS", "keyword":"formula-1"}' -X POST http://ec2-52-204-31-136.compute-1.amazonaws.com/result -H "Content-Type: application/json"
+    curl -d '{"originAirportCode":"LAS", "keyword":"formula-1"}' -X POST https://GetUrTickets.pythonanywhere.com/result -H "Content-Type: application/json"
     ```
-
    - If need be, edit the parameters passed by modifying what is inside the curly braces
 
 You can expect the output to be in a JSON format like the following.
