@@ -60,7 +60,9 @@ The entry point of the backend is [flask_app.py](./backend/flask_app.py)
     - `pip install -r requirements.txt`
 6. Serve the application
    - `waitress-serve --port=80 --call flask_app:create_app`
-7. Make POST requests using curl
+7. Deactivate Virutal Environment
+   - `deactivate`
+8. Make POST requests using curl
     ```shell 
     curl -d '{"originAirportCode":"LAS", "keyword":"formula-1"}' -X POST https://GetUrTickets.pythonanywhere.com/result -H "Content-Type: application/json"
     ```
