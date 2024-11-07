@@ -147,8 +147,8 @@ def get_total_price_from_api(origin: str = 'LAS',
 
     day_ahead = datetime.datetime.today() + datetime.timedelta(days=1)
 
-    for event in data['_embedded']['events']:
-        try:
+    try:
+        for event in data['_embedded']['events']:
             event_date = event['dates']['start']['localDate']
             event_date = datetime.datetime.strptime(event_date, '%Y-%m-%d')
 
@@ -197,10 +197,8 @@ def get_total_price_from_api(origin: str = 'LAS',
                                'Flight': flight,
                                'Hotel': hotel,
                                })
-        except KeyError:
-            continue
-
-    return json.dumps(sorted(result, key=lambda x: x['Total_Price']))
+    finally:
+        return json.dumps(sorted(result, key=lambda x: x['Total_Price']))
 
 
 if __name__ == '__main__':
