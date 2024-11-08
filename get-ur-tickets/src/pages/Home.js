@@ -6,9 +6,9 @@ import AirportSearchBar from '../Components/AirportSearchBar'; // From File 1
 import SearchBar from '../Components/SearchBar.js'; // From File 2
 import "bootstrap/dist/css/bootstrap.css";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image';
+//import Row from "react-bootstrap/Row";
+//import Col from 'react-bootstrap/Col';
+//import Image from 'react-bootstrap/Image';
 
 const UserBanner = () => {
   return (
