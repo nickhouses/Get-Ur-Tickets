@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useRef} from 'react';
 import MyButton from "../Components/MyButton";
-import Fly_Now from "../Pictures/Fly_Now.png";
 import { Tickets, chkMore, chkLess } from "../Components/TicketGenerator.js";
 import { Authenticator } from '@aws-amplify/ui-react';
 import AirportSearchBar from '../Components/AirportSearchBar'; // From File 1
 import SearchBar from '../Components/SearchBar.js'; // From File 2
+import "bootstrap/dist/css/bootstrap.css";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from 'react-bootstrap/Col';
+import Image from 'react-bootstrap/Image';
 
 const UserBanner = () => {
   return (
@@ -125,20 +129,19 @@ export function Home() {
   },[ref]);
 
   return (
-    <div className='banner-container'>
-      <img alt="Website Banner of Hotel/Flight/Concert" className="Top-Banner" src={Fly_Now}/>
+    <Container fluid className='banner-container' style={{padding: "0%", margin:"0%", overflow:"scroll"}}>
+      <div>
       <div className='button-overlay'>
         {<button className="Top-Banner-2" onClick={toggleButton} />}
         {!showButton && (
-          <div className='button-group'>
-            <MyButton to="Contact Us" />
-            <MyButton to="signout" />
-          </div>
+        <div className='button-group' >
+          <MyButton to="Contact Us" />
+          <MyButton to="signout" />
+        </div>
         )}
         <UserBanner />
-      </div>
-
-      {/* Integrating the SearchBar component */}
+        </div>
+      <div class="background"></div>
       <div className='Second-Row-Ticket-Background'>
           <AirportSearchBar onSelect={handleAirportSelect}/>
           <SearchBar onSearchResults={HandleSearchResults}/>
@@ -146,13 +149,12 @@ export function Home() {
         {searchResults.length > 0 && tracking === 0 ? setChecking(true): null}
         {searchResults.length > 0 && tracking === 0 && searchResults.length < 5 ? setTracking(searchResults.length) : null}
         {searchResults.length > 0 && tracking === 0 && searchResults.length >= 5 ? setTracking(5) : null}
-        {console.log(tracking + " ahhhhhhh")}
         {searchResults.length > 0 && checking ? obj.getTickets(searchResults, tracking) : null}
         {searchResults.length > 0 && chkMore === true ? <button onClick={() => { adjTrack(1); }}>show more</button> : null}
         {searchResults.length > 0 && chkLess === true ? <button  onClick={() => { adjTrack(2); }}>show less</button> : null}
         {hold === true ? <div style={{ textAlign: 'center', color: 'white', fontSize: '20pt'}}>No results found.</div> : null}
-        {console.log("end of home")}
       </div>
-    </div>
+      </div>
+    </Container>
   );
 }
