@@ -141,7 +141,7 @@ export function Home() {
         )}
         <UserBanner />
         </div>
-      <div class="background"></div>
+      <div className="background"></div>
       <div className='Second-Row-Ticket-Background'>
           <AirportSearchBar onSelect={handleAirportSelect}/>
           <SearchBar onSearchResults={HandleSearchResults}/>

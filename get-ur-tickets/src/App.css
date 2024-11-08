@@ -298,9 +298,11 @@ body{
 }
 
 .Word-Color{
-  color: rgb(255, 254, 254);
+  color: rgb(255, 255, 255);
   font-size: calc(3px + 1vw);
   line-height: 10px;
+  background-color: #000000;
+  background-size: 20px 20px;
 }
 
 .blank{
