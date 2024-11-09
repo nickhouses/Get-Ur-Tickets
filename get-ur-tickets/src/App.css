@@ -41,32 +41,46 @@ body{
   background-color: rgb(15,15,15);
 }
 
+.background{
+  background-image: url("./Pictures/NewBanner.png");
+  min-height: 100vh;
+  background-attachment:fixed;
+  background-position:center;
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+}
+
 .banner-container{
   position: relative;
-  width: 99.1vw;
-  min-height: 100vh;
+  padding-right: 0%;
+  max-height: 100vh;
   background-color: rgb(15,15,15);
 }
 
 .Top-Banner {
-  position: flex;
+  position: relative;
   width: 100%;
-  height: auto;
+  height: 100vh;
   display: block; 
+  background-attachment: fixed;
 }
 
 .Nav-Banner {
+  position:absolute;
   right: 0.2%;
-  color: #fffefe;
+  margin-top: 6%;
+  color: #2bff01;
 }
 
 .button-overlay{
-  position: absolute;
+  position: sticky;
   top: 0;
   right: 2%;
-  display: flex;
+  display:flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
+  z-index: 100;
+  background: transparent;
 }
 
 .Top-Banner-2 {
@@ -76,17 +90,22 @@ body{
   height: 80px;
   color: white;
   padding: 10px 20px;
+  margin-right: 3%;
   border: none;
   border-radius: 50%;
   cursor: pointer;
   margin-bottom: 10px;
   margin-top: 10px;
+  position:absolute;
 }
 
 .button-group{
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-right: 2.5%;
+  position: absolute;
+  margin-top: 8%;
 }
 
 /* Search bar */
@@ -177,7 +196,7 @@ body{
   background-color: white;
   border: 1px solid #ccc;
   width: 41.8%; 
-  max-height: 100px;
+  max-height: 200px;
   overflow-y: auto;
   z-index: 100;
 }
@@ -227,9 +246,10 @@ body{
 
 .Second-Row-Ticket-Background{
   flex: 1;
-  position: flex;
+  position: relative;
+  top: 20px;
   width: 99.1vw;
-  height: 43.5vh;
+  height: 100vh;
   background-color: rgb(15, 15, 15); 
   flex-direction: column;
 }
@@ -278,9 +298,11 @@ body{
 }
 
 .Word-Color{
-  color: white;
+  color: rgb(255, 255, 255);
   font-size: calc(3px + 1vw);
   line-height: 10px;
+  background-color: #000000;
+  background-size: 20px 20px;
 }
 
 .blank{

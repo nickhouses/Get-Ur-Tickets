@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import MyButton from "../Components/MyButton"; 
 import UserBanner from './Home'          
-import Fly_Now from "../Pictures/Fly_Now.png";
+import Fly_Now from "../Pictures/NewBanner.png";
 
 export function Contact() {
   const [showButton, setShowButton] = useState(true);

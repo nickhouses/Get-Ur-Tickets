@@ -69,7 +69,9 @@ import DetailsPopover from "../Components/popOver.tsx";
             {{ 
                 flex: 1, 
                 textAlign: 'left', 
-                paddingRight: '10px' 
+                paddingRight: '10px',
+                Width: '19vw',
+                maxWidth: '19vw'
             }}>
                 <strong>Location:</strong>
                 <br/> {this.eventlocation}     
@@ -79,7 +81,9 @@ import DetailsPopover from "../Components/popOver.tsx";
             {{ 
                 flex: 2, 
                 textAlign: 'left', 
-                paddingRight: '10px' 
+                paddingRight: '10px',
+                Width: '19vw',
+                maxWidth: '19vw'
             }}>
                 <strong>Event Price:</strong> {'$' + this.tempHoldEvent.toFixed(2)}
                 <br/>
@@ -93,7 +97,9 @@ import DetailsPopover from "../Components/popOver.tsx";
             {{ 
                 flex: 2, 
                 textAlign: 'left', 
-                paddingRight: '10px' 
+                paddingRight: '10px',
+                Width: '19vw',
+                maxWidth: '19vw'
             }}>
                 <strong>Flight Price:
                 </strong> {'$' + this.tempHoldFlight.toFixed(2)}
@@ -117,7 +123,9 @@ import DetailsPopover from "../Components/popOver.tsx";
             {{ 
                 flex: 2, 
                 textAlign: 'left', 
-                paddingRight: '10px' 
+                paddingRight: '10px',
+                Width: '19vw',
+                maxWidth: '19vw'
             }}>
                 <strong>Flight Price:N/A-Home Loaction</strong>
             </div>
@@ -128,7 +136,9 @@ import DetailsPopover from "../Components/popOver.tsx";
             {{  
                 flex: 2, 
                 textAlign: 'left', 
-                paddingRight: '10px' 
+                paddingRight: '10px', 
+                Width: '19vw',
+                maxWidth: '19vw'
             }}>
                 <strong>Hotel Price:</strong> {'$' + this.tempHoldHotel.toFixed(2)}
                 <br/>
@@ -143,7 +153,9 @@ import DetailsPopover from "../Components/popOver.tsx";
             {{  
                 flex: 2, 
                 textAlign: 'left', 
-                paddingRight: '10px' 
+                paddingRight: '10px',
+                Width: '19vw',
+                maxWidth: '19vw'
             }}>
                 <strong>Hotel Price: N/A-Home Location</strong>
                 <br/>
@@ -156,7 +168,8 @@ import DetailsPopover from "../Components/popOver.tsx";
             {{ 
                 flex: 1, 
                 textAlign: 'right', 
-                //whiteSpace: 'nowrap',
+                Width: '19vw',
+                maxWidth: '19vw'
             }}>
                 <strong>Estimated Total Price:</strong> {"$" + this.tempHoldTotal.toFixed(2)}
             </div>
