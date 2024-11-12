@@ -14,7 +14,7 @@ const App = () => {
   return (
     // Wrap the app in the Authenticator.Provider
     <Authenticator.Provider>
-      <div style={{ backgroundColor: '#0F0F0F', minHeight: '100vh', color: 'white', paddingTop: 70}}>
+      <div style={{ backgroundColor: '#0F0F0F', minHeight: '100vh', color: 'white', paddingTop: 75}}>
         <Layout>
           <Routes>
             {/* Check if user is logged in */}
