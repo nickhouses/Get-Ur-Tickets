@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef} from 'react';
-import MyButton from "../Components/MyButton";
 import { Tickets, chkMore, chkLess } from "../Components/TicketGenerator.js";
-import { useAuthenticator } from '@aws-amplify/ui-react';
 import AirportSearchBar from '../Components/AirportSearchBar'; // From File 1
 import SearchBar from '../Components/SearchBar.js'; // From File 2
 import "bootstrap/dist/css/bootstrap.css";
@@ -10,6 +8,7 @@ import NewBanner from "../Pictures/NewBanner.png"
 //import Row from "react-bootstrap/Row";
 //import Col from 'react-bootstrap/Col';
 //import Image from 'react-bootstrap/Image';
+import ScrollComponent from '../Components/ScrollComponent.js'
 
 //function a is used when someone presses see more or see less hyperlink. Calculates what the tracking variable needs to be to be passed into getTickets function
 export function Home() {
@@ -19,7 +18,7 @@ export function Home() {
   const [obj, setObj] = useState(); //stores ticket object
   const [checking, setChecking] = useState(false); //using 1 to show more and 2 to show less. anything else is an error
   const [homeLocation, setHomeLocation] = useState('');  // State to store the user's selected home airport location
-  const [showButton, setShowButton] = useState(true); //Stores button state
+  const [profile, setProfile] = useState(false); //Profile used for profile component transformation
   const [searchResults, setSearchResults] = useState([]); //stores search result
   const ref = useRef(false);//used to make the initial render not use the useEffect 
 
@@ -97,9 +96,6 @@ export function Home() {
     /* Search Bar End */
 
   //toggles button hiding/showing
-  const toggleButton = () => {
-    setShowButton(!showButton);
-  };
 
     // Airport selection
   const handleAirportSelect = (airport) => {
@@ -116,33 +112,24 @@ export function Home() {
     }
   },[ref]);
 
-  const [notTop, setnotTop] = useState()
-  const [scrollPosition, setScrollPosition] = useState(0);
-
   const handleScroll = (e) => {
-      const { scrollTop, scrollHeight, clientHeight } = e.target;
-      const position = Math.ceil(
-          (scrollTop / (scrollHeight - clientHeight)) * 100
-      );
-      setScrollPosition(position);
-  };
-
-  useEffect(() =>{
-    if(scrollPosition > 0){
-      setnotTop(true);
+    const { scrollTop, scrollHeight, clientHeight } = e.target;
+    const position = Math.ceil(
+        (scrollTop / (scrollHeight - clientHeight)) * 100
+    );
+    console.log("inside handle " + position)
+    if(position === 0){
+      setProfile(false);
     }
     else{
-      console.log(" < 0 " + scrollPosition)
-      setnotTop(false);
+      setProfile(true);
     }
-  },[scrollPosition])
+};
 
-
-
-  const { user } = useAuthenticator();
   return (
     <Container fluid className='banner-container' style={{padding: "0%", margin:"0%", overflow:"auto", overflowX: 'hidden'}} onScroll={handleScroll}>
-
+      {<ScrollComponent onScrollSelect={profile}/>}
+      {/*
       <div className='button-overlay'>
         {!notTop && <button id='Top-Banner-2' style={{animation: 'square-circle .5s', animationFillMode:'forwards'}}  onClick={toggleButton} />}
         {notTop && <button id='Top-Banner-2' style={{animation: 'circle-square .5s', animationFillMode:'forwards'}}  onClick={toggleButton} />}
@@ -154,7 +141,7 @@ export function Home() {
         )}
           <div className="Nav-Banner"></div>
           {!notTop && <div className="Word-Color">Welcome, {user.username}!</div>}
-      </div>
+      </div>*/}
       <div>
         <img src={NewBanner} alt='NewBanner' className="background"></img>
         <div style={{position:'absolute', top:'18%', left:'45%', fontSize:'300%', fontFamily:'sans-serif'}}>GET UR TICKETS</div>
