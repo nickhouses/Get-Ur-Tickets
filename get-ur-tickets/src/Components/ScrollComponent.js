@@ -1,6 +1,8 @@
 import React, { useState} from 'react';
 import MyButton from "../Components/MyButton";
 import { useAuthenticator } from '@aws-amplify/ui-react';
+import PropTypes from 'prop-types'; // Import PropTypes
+
 
 const ScrollComponent = ({onScrollSelect}) => {
 const [showButton, setShowButton] = useState(true); //Stores button state
@@ -26,4 +28,8 @@ return (
   </div>
 )
 };
+
+ScrollComponent.propTypes = {
+    onScrollSelect: PropTypes.bool.isRequired, // onSelect is required and should be a function
+  };
 export default ScrollComponent;
