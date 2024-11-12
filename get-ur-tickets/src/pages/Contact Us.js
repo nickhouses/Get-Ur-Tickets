@@ -1,46 +1,41 @@
 import React, { useState } from 'react';
-import MyButton from "../Components/MyButton"; 
-import UserBanner from './Home'          
-import Fly_Now from "../Pictures/NewBanner.png";
+import ScrollComponent from '../Components/ScrollComponent.js'
+import Container from "react-bootstrap/Container";
+import NewBanner from "../Pictures/NewBanner.png"
 
 export function Contact() {
-  const [showButton, setShowButton] = useState(true);
+  const [profile, setProfile] = useState(false); //Profile used for profile component transformation
 
-  // Function to toggle buttons visibility
-  const toggleButton = () => {
-    setShowButton(!showButton);
+  const handleScroll = (e) => {
+    const { scrollTop, scrollHeight, clientHeight } = e.target;
+    const position = Math.ceil(
+        (scrollTop / (scrollHeight - clientHeight)) * 100
+    );
+    console.log("inside handle " + position)
+    if(position === 0){
+      setProfile(false);
+    }
+    else{
+      setProfile(true);
+    }
   };
 
   return (
-    <div className='banner-container'>
-      {/* Banner Image */}
-      <img alt="Website Banner of Hotel/Flight/Concert" className="Top-Banner" src={Fly_Now} />
+    <Container fluid className='banner-container' style={{padding: "0%", margin:"0%", overflow:"auto", overflowX: 'hidden'}} onScroll={handleScroll}>
+      {<ScrollComponent onScrollSelect={profile}/>}
+      <div>
+        <img src={NewBanner} alt='NewBanner' className="background"></img>
+        <div style={{position:'absolute', top:'18%', left:'45%', fontSize:'300%', fontFamily:'sans-serif'}}>GET UR TICKETS</div>
+      </div>
 
-      {/* Button overlay and User Banner */}
-      <div className='button-overlay'>
-        {/* Button to show or hide the Contact/Signout buttons */}
-        <button className="Top-Banner-2" onClick={toggleButton} />
-
-        {/* Conditionally show buttons */}
-        {!showButton && (
-          <div className='button-group'>
-            <MyButton to="Home" />
-            <MyButton to="signout" />
-          </div>
-        )}
-
-        {/* User Banner displaying welcome message */}
-        <UserBanner />
-        </div>
-
-{/* Contact Us Section */}
-<div className="contact-info">
-  <h2>Contact Us</h2>
-  <p>Email: contact@example.com</p>
-  <p>Phone: (123) 456-7890</p>
-</div>
-</div>  
-);
+      {/* Contact Us Section */}
+      <div className="contact-info">
+        <h2>Contact Us</h2>
+        <p>Email: contact@example.com</p>
+        <p>Phone: (123) 456-7890</p>
+      </div>
+    </Container>  
+  );
 }
 
 
