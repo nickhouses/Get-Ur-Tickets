@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import MyButton from "../Components/MyButton"; 
-import UserBanner from './Home'          
+import MyButton from "../Components/MyButton";        
 import Fly_Now from "../Pictures/NewBanner.png";
+import { useAuthenticator } from '@aws-amplify/ui-react';
 
 export function Contact() {
   const [showButton, setShowButton] = useState(true);
@@ -10,6 +10,8 @@ export function Contact() {
   const toggleButton = () => {
     setShowButton(!showButton);
   };
+
+  const { user } = useAuthenticator();
 
   return (
     <div className='banner-container'>
@@ -30,7 +32,10 @@ export function Contact() {
         )}
 
         {/* User Banner displaying welcome message */}
-        <UserBanner />
+        <div style={{marginTop: "5%"}}>
+          <div className="Nav-Banner"></div>
+          <div className="Word-Color" style={{color:"white"}}>Welcome, {user.username}!</div>
+        </div>
         </div>
 
 {/* Contact Us Section */}

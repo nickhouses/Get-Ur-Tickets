@@ -193,7 +193,6 @@ import DetailsPopover from "../Components/popOver.tsx";
             /*For loop to push Ticket display into array, testing with 5 for now. Here you will get the number of result and ticket information from get command */
 
             for ( let i = 0; i < tracking; i++){
-                console.log("!!!!!! " + i + "  " + ticketNum.length + "  " + tracking)
                 let tmp = ticketNum[i]["Venue"]
                 tmp = tmp.replaceAll("+", " "); // replaces all + in venue name
                 this.setParams(ticketNum[i]["Name"],ticketNum[i]["Ticket_URL"],tmp,ticketNum[i]["Ticket_Price"], //event name, event hyperlink, event location, event price
