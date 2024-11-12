@@ -5,6 +5,7 @@ import { Login } from './pages/Login';
 import { Contact } from './pages/Contact Us';
 import { Routes, Route} from 'react-router-dom';
 import { Authenticator, useAuthenticator } from '@aws-amplify/ui-react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   const { user } = useAuthenticator();
