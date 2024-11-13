@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ScrollComponent from '../Components/ScrollComponent.js';
 import Container from "react-bootstrap/Container";
 import NewBanner from "../Pictures/NewBanner.png";
+import NewLogo from "../Pictures/newLogo.png";
 
 export function Contact() {
   const [profile, setProfile] = useState(false); // Profile used for profile component transformation
@@ -39,19 +40,21 @@ export function Contact() {
   };
 
   return (
-    <Container fluid className='banner-container' style={{ padding: "0%", margin: "0%", overflow: "auto", overflowX: 'hidden' }} onScroll={handleScroll}>
+    <Container fluid className='banner-container' style={{padding: "0%", margin:"0%", overflow:"auto", overflowX: 'hidden', backgroundColor: '#0f0f0f'}} onScroll={handleScroll}>
       <ScrollComponent onScrollSelect={profile} />
       
       {/* Banner Section */}
-      <div>
-        <img src={NewBanner} alt='NewBanner' className="background" />
-        <div style={{ position: 'absolute', top: '18%', left: '45%', fontSize: '300%', fontFamily: 'sans-serif' }}>GET UR TICKETS</div>
+      <div className="d-flex flex-column justify-content-center align-items-center" style={{ height: '50vh' }}>
+        <img src={NewLogo} alt="Logo" className="img-fluid" style={{ maxWidth: '200px', height: 'auto' }} />
+        <div className="text-center mt-3" style={{ fontSize: '4rem', fontFamily: 'sans-serif' }}>
+          GET UR TICKETS
+        </div>
       </div>
 
       {/* Contact Us Form */}
       <div className="contact-info">
         <h2>Contact Us</h2>
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '400px', margin: '20px auto' }}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '400px', margin: '20px auto',  }}>
           {/* First Name and Last Name fields in a row */}
           <div style={{ display: 'flex', gap: '10px' }}>
             <div style={{ flex: 1 }}>

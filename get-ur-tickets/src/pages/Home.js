@@ -4,7 +4,9 @@ import AirportSearchBar from '../Components/AirportSearchBar'; // From File 1
 import SearchBar from '../Components/SearchBar.js'; // From File 2
 import "bootstrap/dist/css/bootstrap.css";
 import Container from "react-bootstrap/Container";
-import NewBanner from "../Pictures/NewBanner.png"
+import NewBanner from "../Pictures/NewBanner.png";
+import NewLogo from "../Pictures/newLogo.png";
+
 //import Row from "react-bootstrap/Row";
 //import Col from 'react-bootstrap/Col';
 //import Image from 'react-bootstrap/Image';
@@ -127,7 +129,7 @@ export function Home() {
 };
 
   return (
-    <Container fluid className='banner-container' style={{padding: "0%", margin:"0%", overflow:"auto", overflowX: 'hidden'}} onScroll={handleScroll}>
+    <Container fluid className='banner-container' style={{padding: "0%", margin:"0%", overflow:"auto", overflowX: 'hidden', backgroundColor: '#0f0f0f'}} onScroll={handleScroll}>
       {<ScrollComponent onScrollSelect={profile}/>}
       {/*
       <div className='button-overlay'>
@@ -143,9 +145,14 @@ export function Home() {
           {!notTop && <div className="Word-Color">Welcome, {user.username}!</div>}
       </div>*/}
       <div>
-        <img src={NewBanner} alt='NewBanner' className="background"></img>
-        <div style={{position:'absolute', top:'18%', left:'45%', fontSize:'300%', fontFamily:'sans-serif'}}>GET UR TICKETS</div>
+            <div className="d-flex flex-column justify-content-center align-items-center" style={{ height: '50vh' }}>
+        <img src={NewLogo} alt="Logo" className="img-fluid" style={{ maxWidth: '200px', height: 'auto' }} />
+        <div className="text-center mt-3" style={{ fontSize: '4rem', fontFamily: 'sans-serif' }}>
+          GET UR TICKETS
+        </div>
       </div>
+      </div>
+
       <div className='Second-Row-Ticket-Background'>
         <AirportSearchBar onSelect={handleAirportSelect}/>
         <SearchBar onSearchResults={HandleSearchResults}/>
