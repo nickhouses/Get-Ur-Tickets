@@ -4,7 +4,6 @@ import AirportSearchBar from '../Components/AirportSearchBar'; // From File 1
 import SearchBar from '../Components/SearchBar.js'; // From File 2
 import "bootstrap/dist/css/bootstrap.css";
 import Container from "react-bootstrap/Container";
-import NewBanner from "../Pictures/NewBanner.png";
 import NewLogo from "../Pictures/newLogo.png";
 
 //import Row from "react-bootstrap/Row";
@@ -145,7 +144,7 @@ export function Home() {
           {!notTop && <div className="Word-Color">Welcome, {user.username}!</div>}
       </div>*/}
       <div>
-            <div className="d-flex flex-column justify-content-center align-items-center" style={{ height: '50vh' }}>
+        <div className="d-flex flex-column justify-content-center align-items-center" style={{ height: '50vh' }}>
         <img src={NewLogo} alt="Logo" className="img-fluid" style={{ maxWidth: '200px', height: 'auto' }} />
         <div className="text-center mt-3" style={{ fontSize: '4rem', fontFamily: 'sans-serif' }}>
           GET UR TICKETS

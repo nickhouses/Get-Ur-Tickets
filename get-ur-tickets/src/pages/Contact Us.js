@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import ScrollComponent from '../Components/ScrollComponent.js';
 import Container from "react-bootstrap/Container";
-import NewBanner from "../Pictures/NewBanner.png";
 import NewLogo from "../Pictures/newLogo.png";
 
 export function Contact() {
