@@ -1,7 +1,8 @@
 - [Get-Ur-Tickets](#get-ur-tickets)
   - [Production Deployment](#production-deployment)
-    - [AWS Amplify Frontend Deployment](#aws-amplify-frontend-deployment)
-    - [Python Anywhere Backend Deployment](#python-anywhere-backend-deployment)
+    - [AWS Amplify Frontend](#aws-amplify-frontend)
+    - [Python Anywhere Backend](#python-anywhere-backend)
+      - [Deployment Steps](#deployment-steps)
   - [Local Development](#local-development)
     - [Frontend](#frontend)
       - [Optional](#optional)
@@ -12,10 +13,13 @@
 # [Get-Ur-Tickets](https://main.d356ozzs66r3xx.amplifyapp.com/)
 
 ## Production Deployment
-### [AWS Amplify Frontend Deployment](https://main.d356ozzs66r3xx.amplifyapp.com/)
+### [AWS Amplify Frontend](https://main.d356ozzs66r3xx.amplifyapp.com/)
 The frontend uses CI / CD (Continuous Integration / Continuous Deployment) and will redeploy upon merging.
 
-### [Python Anywhere Backend Deployment](http://GetUrTickets.pythonanywhere.com/)
+### [Python Anywhere Backend](https://GetUrTickets.pythonanywhere.com/)
+Our backend application was deployed on [Python Anywhere's free plan](https://www.pythonanywhere.com/pricing/). This means the backend application only has 1 web worker per web app, and will queue multiple requests while the front of the queue is being processed.
+
+#### Deployment Steps
 1. Switch to the Console tab
    1. Open a bash console
    2. Navigate to the project directory

@@ -5,9 +5,6 @@ import SearchBar from '../Components/SearchBar.js'; // From File 2
 import "bootstrap/dist/css/bootstrap.css";
 import Container from "react-bootstrap/Container";
 import NewLogo from "../Pictures/newLogo.png";
-//import Row from "react-bootstrap/Row";
-//import Col from 'react-bootstrap/Col';
-//import Image from 'react-bootstrap/Image';
 
 //function a is used when someone presses see more or see less hyperlink. Calculates what the tracking variable needs to be to be passed into getTickets function
 export function Home() {
@@ -113,12 +110,13 @@ export function Home() {
     <Container fluid className='banner-container' style={{padding: "0%", margin:"0%", overflowX: 'hidden'}}>
       <div>
         <div className="d-flex flex-column justify-content-center align-items-center" style={{ height: '50vh' }}>
-        <img src={NewLogo} alt="Logo" className="img-fluid" style={{ maxWidth: '200px', height: 'auto' }} />
-        <div className="text-center mt-3" style={{ fontSize: '4rem', fontFamily: 'sans-serif' }}>
-          GET UR TICKETS
+          <img src={NewLogo} alt="Logo" className="img-fluid" style={{ maxWidth: '200px', height: 'auto' }} />
+          <div className="text-center mt-3" style={{ fontSize: '4rem', fontFamily: 'sans-serif' }}>
+              GET UR TICKETS
+          </div>
         </div>
       </div>
-      </div>
+
       <div className='Second-Row-Ticket-Background'>
         <AirportSearchBar onSelect={handleAirportSelect}/>
         <SearchBar onSearchResults={HandleSearchResults}/>

@@ -68,7 +68,7 @@ const AirportSearchBar = ({ onSelect }) => {
         </div>
       )}
       <br/>
-      <div className='description'>Search for Event.</div>
+      <div className='description'>Search for an Event.</div>
     </div>
   );
 };

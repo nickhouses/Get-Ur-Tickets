@@ -5,6 +5,7 @@ import datetime
 import requests
 from encryption_functions import get_key, decrypt_file
 
+RESULT_LIMIT = 3
 KEY_FILE = 'key.encrypted'
 CONSTANTS_FILE = 'constants.env'
 TICKET_API_KEY, SERP_API_KEY = decrypt_file(CONSTANTS_FILE,
@@ -147,6 +148,8 @@ def get_total_price_from_api(origin: str = 'LAS',
 
     day_ahead = datetime.datetime.today() + datetime.timedelta(days=1)
 
+    result_counter = 1
+
     try:
         for event in data['_embedded']['events']:
             event_date = event['dates']['start']['localDate']
@@ -197,9 +200,14 @@ def get_total_price_from_api(origin: str = 'LAS',
                                'Flight': flight,
                                'Hotel': hotel,
                                })
+
+                if result_counter < RESULT_LIMIT:
+                    result_counter += 1
+                else:
+                    break
     finally:
         return json.dumps(sorted(result, key=lambda x: x['Total_Price']))
 
 
 if __name__ == '__main__':
-    print(get_total_price_from_api('JFK', 'Coldplay'))
+    print(get_total_price_from_api('LAX', 'Celtics'))

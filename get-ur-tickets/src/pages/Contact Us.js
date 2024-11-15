@@ -44,7 +44,7 @@ export function Contact() {
       {/* Contact Us Form */}
       <div className="contact-info">
         <h2>Contact Us</h2>
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '400px', margin: '20px auto' }}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '400px', margin: '20px auto',  }}>
           {/* First Name and Last Name fields in a row */}
           <div style={{ display: 'flex', gap: '10px' }}>
             <div style={{ flex: 1 }}>
