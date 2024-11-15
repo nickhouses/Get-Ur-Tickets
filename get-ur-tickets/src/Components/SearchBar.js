@@ -20,7 +20,7 @@ const SearchBar = ({ onSearchResults }) => {
 
   //validate the search
   const isValidSearchTerm = (term) => {
-    const regex = /^[a-zA-Z0-9\s]*$/;
+    const regex = /^[a-zA-Z0-9\s!]*$/;
     return regex.test(term);
   };
 
@@ -29,7 +29,7 @@ const SearchBar = ({ onSearchResults }) => {
         
     // check input using isValidSearchTerm
     if(!isValidSearchTerm(searchTerm)){
-      setErrorMessage('Search term contails illegal characters');
+      setErrorMessage('Search term contails illegal characters such as @#$%^&*-+');
       setSearchTerm('');
       return;
     }
@@ -55,29 +55,6 @@ const SearchBar = ({ onSearchResults }) => {
       //effect = false;
     }
   }
-      
-        /*
-      const response = await fetch('/result', { // proxy not working
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ originAirportCode, keyword: searchTerm }),  // Sending keyword in JSON
-      });
-  
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-  
-      const data = await response.json();  // Parse the JSON response
-  
-     
-      onSearchResults(data);  // Update the search results state
-    } catch (error) {
-      console.error('Error fetching search results:', error);
-    }
-    
-  };*/
 
 
   const handleKeyPress = (e) => {
