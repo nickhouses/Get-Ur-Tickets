@@ -42,7 +42,40 @@ body{
   background-color: rgb(255, 255, 255);
 }
 
+.dot{
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  background-color: white;
+  font-size: 20pt;
+  animation: disappear 2.5s ease-in-out infinite;
 
+}
+
+.dot:nth-child(0){
+  animation-delay: 0s;
+}
+.dot:nth-child(1){
+  animation-delay: 0.2s; 
+}
+.dot:nth-child(2){
+  animation-delay: 0.4s;
+}
+.dot:nth-child(3){
+  animation-delay: 0.6s;
+}
+
+@keyframes disappear {
+  0%,100%{
+    transform:scale(.02);
+  }
+  50%{
+    transform:scale(1);
+  }
+
+}
 
 .background{
   min-height: 90vh;
@@ -58,10 +91,11 @@ body{
   margin-bottom: -5vh;
 }
 
+
+
 .banner-container{
   position: relative;
   padding-left: 0;
-  height: 100vh;
   background: rgb(0, 0, 0);
 }
 
@@ -286,14 +320,13 @@ body{
   width: 100vw;
   height: auto;
   background-color: rgb(15, 15, 15); 
-  flex-direction: column;
 }
 
 .Ticket-Box{
-  width: 100%;
+  width: 99%;
   height: 15vh;
   padding-bottom: 10%;
-  background-color: rgb(190, 190, 190); 
+  background-color: rgb(255, 255, 255); 
   border-radius: 8px;
 }
 
@@ -373,7 +406,7 @@ body{
 /* Contact Components */ 
 .contact-info {
   color: white;
-  background-color: rgba(255, 255, 255, 0.1); 
+  background-color: rgba(0, 0, 0, 0.0); 
   padding: 20px; 
   border-radius: 5px;
   text-align: center;

@@ -1,25 +1,14 @@
 import React, { useState } from 'react';
-import ScrollComponent from '../Components/ScrollComponentContactUs.js'
 import Container from "react-bootstrap/Container";
-import NewBanner from "../Pictures/NewBanner.png"
+import NewLogo from "../Pictures/newLogo.png";
 
 export function Contact() {
-  const [profile, setProfile] = useState(false); //Profile used for profile component transformation
-
-
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
     message: ''
   });
-
-  const handleScroll = (e) => {
-    const { scrollTop, scrollHeight, clientHeight } = e.target;
-    const position = Math.ceil((scrollTop / (scrollHeight - clientHeight)) * 100);
-    console.log("inside handle " + position);
-    setProfile(position !== 0);
-  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -41,11 +30,15 @@ export function Contact() {
   };
 
   return (
-    <Container fluid className='banner-container' style={{padding: "0%", margin:"0%", overflow:"auto", overflowX: 'hidden'}} onScroll={handleScroll}>
-      {<ScrollComponent onScrollSelect={profile}/>}
+    <Container fluid className='banner-container' style={{ padding: "0%", margin: "0%"}}>
+      {/* Banner Section */}
       <div>
-        <img src={NewBanner} alt='NewBanner' className="background"></img>
-        <div style={{position:'absolute', top:'18%', left:'45%', fontSize:'300%', fontFamily:'sans-serif'}}>GET UR TICKETS</div>
+        <div className="d-flex flex-column justify-content-center align-items-center" style={{ height: '50vh' }}>
+        <img src={NewLogo} alt="Logo" className="img-fluid" style={{ maxWidth: '200px', height: 'auto' }} />
+        <div className="text-center mt-3" style={{ fontSize: '4rem', fontFamily: 'sans-serif' }}>
+          GET UR TICKETS
+        </div>
+      </div>
       </div>
 
       {/* Contact Us Form */}
@@ -107,9 +100,6 @@ export function Contact() {
           <button type="submit">Send Message</button>
         </form>
       </div>
-    </Container>  
+    </Container>
   );
 }
-
-
-
