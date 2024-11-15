@@ -5,7 +5,8 @@ app = Flask(__name__)
 CORS(app)
 
 COUNTER = 0
-SERVERS = ["https://geturtickets.pythonanywhere.com/", "https://geturticket.pythonanywhere.com/"]
+SERVERS = ["https://geturtickets.pythonanywhere.com/",
+           "https://geturticket.pythonanywhere.com/"]
 
 
 @app.route('/', methods=['GET'])
@@ -18,6 +19,7 @@ def round_robin():
 
 def create_app():
     return app
+
 
 if __name__ == '__main__':
     app.run(debug=True)
