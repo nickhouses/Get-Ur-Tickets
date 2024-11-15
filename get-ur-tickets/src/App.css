@@ -195,9 +195,31 @@ body{
 }
 
 .error-message {
-  color: red; 
-  margin-top: 5px; 
-  font-size: 14px; 
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  margin-top: 0.5rem;
+  animation: fadeIn 0.5s, fadeOut 0.5s 4s; /* Adjust timing as needed */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 .description {
@@ -338,7 +360,7 @@ body{
   position: relative;
   font-size: calc(4px + 1vw);
   background: transparent;
-  color: #000;
+  color: #ffffff;
   bottom: 0px;
 }
 
