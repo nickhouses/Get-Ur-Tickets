@@ -124,7 +124,7 @@ export function Home() {
         {searchResults.length > 0 && tracking === 0 && searchResults.length < 5 ? setTracking(searchResults.length) : null}
         {searchResults.length > 0 && tracking === 0 && searchResults.length >= 5 ? setTracking(5) : null}
         {searchResults.length > 0 && checking ? obj.getTickets(searchResults, tracking) : null}
-        <div class="col d-flex justify-content-start gap-3">
+        <div className="col d-flex justify-content-start gap-3">
         {searchResults.length > 0 && chkMore === true ? <button className='btn btn-primary' onClick={() => { adjTrack(1); }}>show more</button> : null}
         {searchResults.length > 0 && chkLess === true ? <button className='btn btn-primary' onClick={() => { adjTrack(2); }}>show less</button> : null}
         </div>

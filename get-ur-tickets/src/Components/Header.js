@@ -33,7 +33,7 @@ const Header = () => {
     return (
         <header className="bg-dark text-white fixed-top py-2">
             <div className="container d-flex align-items-center">
-                <div class="col justify-content-start">
+                <div className="col justify-content-start">
                     <div className="d-flex align-items-center">
                         {/* Resize logo based on scroll */}
                         <img
@@ -57,7 +57,7 @@ const Header = () => {
                     </div>
                 </div>
                 {/* Populate contact us button only if user is logged in. */}
-                <div class="col d-flex justify-content-end gap-3">
+                <div className="col d-flex justify-content-end gap-3">
                     {user && (
                         <div> {console.log(location)}
                             {location.pathname === "/contact%20us" ? <Link to="/Home" className="btn btn-outline-light">Home</Link> :
