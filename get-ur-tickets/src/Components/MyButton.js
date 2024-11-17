@@ -8,8 +8,8 @@ const MyButton = ({ to }) =>{
 
     const navigate = useNavigate();
     return (
-      <button className="my-button" onClick={() => { 
-        if(to === "signout"){
+      <button className="btn btn-outline-light" onClick={() => { 
+        if(to === "Sign Out"){
           signOut()
         }
         else{
@@ -17,13 +17,7 @@ const MyButton = ({ to }) =>{
           navigate(`/${to}`); 
         }
         }}
-        style={{ 
-          width: '90px',
-          height: '75px',
-          borderradius: '8px',
-          flexdirection: 'row',
-          textAlign: 'center',
-    }}
+      
       >
         {to === '' ? "home" : to}
       </button>

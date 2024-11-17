@@ -19,8 +19,9 @@ return (
     {onScrollSelect && <button id='Top-Banner-2' style={{animation: 'circle-square .5s', animationFillMode:'forwards'}}  onClick={toggleButton} />}
     {!showButton && (
     <div className='button-group' style={{marginTop: onScrollSelect ? '4%' : '7%'}} >
+      <MyButton to="Home" />
       <MyButton to="Contact Us" />
-      <MyButton to="signout" />
+      <MyButton to="Sign Out" />
     </div>
     )}
       <div className="Nav-Banner"></div>

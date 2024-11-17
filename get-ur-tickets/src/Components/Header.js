@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../Pictures/newLogo.png';
 import { useAuthenticator } from '@aws-amplify/ui-react'; 
+import MyButton from "../Components/MyButton";
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -52,7 +53,9 @@ const Header = () => {
                 {/* Populate contact us button only if user is logged in. */}
                 {user && (
                     <div>
-                        <Link to="/contact us" className="btn btn-outline-light">Contact Us</Link>
+                        <Link to="/home" className="btn btn-outline-light mx-2">Home</Link>
+                        <Link to="/contact us" className="btn btn-outline-light me-2">Contact Us</Link>
+                        <MyButton to="Sign Out" />
                     </div>
                 )}
             </div>
