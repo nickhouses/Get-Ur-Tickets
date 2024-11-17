@@ -20,13 +20,13 @@ export function Login() {
             {/* About Us Text */}
             <div className="container-md text-center">
                 <h1 className="text-primary mb-3">About Us</h1>
-                <h2 className="text-secondary mb-3">
+                <h2 className="text-dark mb-3">
                     Our team has built this project to seek a better alternative to inflated venue ticket costs.
                     In some scenarios, it may be more cost-effective to purchase a vacation package to see your
                     favorite artist on tour in lieu of seeing them in your home city.
                 </h2>
                 <br />
-                <h2 className="text-secondary mb-4">
+                <h2 className="text-dark mb-4">
                     This web application will allow you to explore events including flights and hotels from
                     aggregated data via third parties, all in one place for transparency and your convenience.
                     To access our search engine, please login or create an account below.
