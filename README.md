@@ -2,6 +2,8 @@
   - [Production Deployment](#production-deployment)
     - [AWS Amplify Frontend](#aws-amplify-frontend)
     - [Python Anywhere Backend](#python-anywhere-backend)
+      - [Load Balancer Server](#load-balancer-server)
+      - [Load Balancer Code](#load-balancer-code)
       - [Deployment Steps](#deployment-steps)
   - [Local Development](#local-development)
     - [Frontend](#frontend)
@@ -18,6 +20,12 @@ The frontend uses CI / CD (Continuous Integration / Continuous Deployment) and w
 
 ### [Python Anywhere Backend](https://GetUrTickets.pythonanywhere.com/)
 Our backend application was deployed on [Python Anywhere's free plan](https://www.pythonanywhere.com/pricing/). This means the backend application only has 1 web worker per web app, and will queue multiple requests while the front of the queue is being processed.
+
+A workaround solution was made for the aforementioned problem. We deployed a load balancer on Python Anywhere and built multiple servers to provide faster responses to when the server gets overloaded. The problem with this approach is that when updates or changes are added to the backend, because each server has to be updated individually since they are spread across different accounts.
+
+#### [Load Balancer Server](https://loadbalancer8888.pythonanywhere.com/)
+#### [Load Balancer Code](./load-balancer/flask_app.py)
+The load balancer is a simple round robin load balancer. The servers it sends to requests to can be found in its code.
 
 #### Deployment Steps
 1. Switch to the Console tab
