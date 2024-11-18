@@ -27,9 +27,19 @@ Our backend application was deployed on [Python Anywhere's free plan](https://ww
         - `git pull`
 
 2. Switch to the Web tab
-   1. Ensure the Virtualenv path is set
-   2. Click the green reload button at the top of the page
-
+   1. Ensure to set the Source code and Working directory to backend: `/home/websitename/Get-Ur-Tickets/backend`
+   2. Ensure the Virtualenv path is set - must make this in console
+        - In backend directory run `pip install pipreqs`
+    3. Then run `pipreqs . --force`
+    4. Then run `python -m venv venv`
+    5. Then run `source venv/bin/`
+    6. Then run `pip install -r requirements.txt`
+    7. Then run `pip install --upgrade flask werkzeug`
+    8. Then set Virualenv to the location of the venv.
+    9. Configure the WSGI configuration file by clicking on the location
+        - Set your `project_home` to the pwd of ur backend, `should be the same as source and working directory`.
+    ![alt text](image.png)
+     8. Click the green reload button at the top of the page
 ## Local Development
 ### Frontend
 1. Go to the frontend directory

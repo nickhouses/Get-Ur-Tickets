@@ -99,7 +99,15 @@ const SearchBar = ({ onSearchResults }) => {
       {errorMessage && (
         <div className='error-message'>{errorMessage}</div> // display Error Message
       )}
-       {loading && <div className='Second-Row-Ticket-Background' style={{ textAlign: 'center', color: 'white', fontSize: '20pt'}}> Loading... </div>}
+      {loading && <div className='Second-Row-Ticket-Background' style={{textAlign: 'center'}}>
+        <div style={{ display: 'inline-block', color: 'white', fontSize: '20pt'}}>
+          Loading
+          <div className='dot'></div>
+          <div className='dot'></div>
+          <div className='dot'></div>
+          <div className='dot'></div>
+        </div> 
+      </div>}
     </div>
   );
 };
