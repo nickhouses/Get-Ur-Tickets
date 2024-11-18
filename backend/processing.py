@@ -49,6 +49,8 @@ def get_flight_info(origin: str, destination: str, start_date: str,
     best_flight = flights['best_flights'][0]['flights'][0]
 
     return {'Price': flights['price_insights']['lowest_price'],
+            'Departure': start_date,
+            'Return': end_date,
             'URL': flights['search_metadata']['google_flights_url'],
             'Airline': best_flight['airline'],
             'Logo': best_flight['airline_logo'],
@@ -86,6 +88,8 @@ def get_hotel_info(venue: str, start_date: str, end_date: str) -> dict:
 
     return {'Price': 2 * best_hotel['rate_per_night']
             ['extracted_before_taxes_fees'],
+            'Check-in': start_date,
+            'Check-out': end_date,
             'URL': link,
             'Name': best_hotel['name']}
 
