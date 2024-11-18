@@ -71,7 +71,8 @@ import DetailsPopover from "../Components/popOver.tsx";
                 textAlign: 'left', 
                 paddingRight: '10px',
                 Width: '19vw',
-                maxWidth: '19vw'
+                maxWidth: '19vw',
+                color: 'black',
             }}>
                 <strong>Location:</strong>
                 <br/> {this.eventlocation}     
@@ -83,7 +84,8 @@ import DetailsPopover from "../Components/popOver.tsx";
                 textAlign: 'left', 
                 paddingRight: '10px',
                 Width: '19vw',
-                maxWidth: '19vw'
+                maxWidth: '19vw',
+                color: 'black',
             }}>
                 <strong>Event Price:</strong> {'$' + this.tempHoldEvent.toFixed(2)}
                 <br/>
@@ -99,7 +101,8 @@ import DetailsPopover from "../Components/popOver.tsx";
                 textAlign: 'left', 
                 paddingRight: '10px',
                 Width: '19vw',
-                maxWidth: '19vw'
+                maxWidth: '19vw',
+                color: 'black',
             }}>
                 <strong>Flight Price:
                 </strong> {'$' + this.tempHoldFlight.toFixed(2)}
@@ -125,7 +128,8 @@ import DetailsPopover from "../Components/popOver.tsx";
                 textAlign: 'left', 
                 paddingRight: '10px',
                 Width: '19vw',
-                maxWidth: '19vw'
+                maxWidth: '19vw',
+                color: 'black',
             }}>
                 <strong>Flight Price:N/A-Home Loaction</strong>
             </div>
@@ -138,7 +142,8 @@ import DetailsPopover from "../Components/popOver.tsx";
                 textAlign: 'left', 
                 paddingRight: '10px', 
                 Width: '19vw',
-                maxWidth: '19vw'
+                maxWidth: '19vw',
+                color: 'black',
             }}>
                 <strong>Hotel Price:</strong> {'$' + this.tempHoldHotel.toFixed(2)}
                 <br/>
@@ -155,7 +160,8 @@ import DetailsPopover from "../Components/popOver.tsx";
                 textAlign: 'left', 
                 paddingRight: '10px',
                 Width: '19vw',
-                maxWidth: '19vw'
+                maxWidth: '19vw',
+                color: 'black',
             }}>
                 <strong>Hotel Price: N/A-Home Location</strong>
                 <br/>
@@ -169,7 +175,8 @@ import DetailsPopover from "../Components/popOver.tsx";
                 flex: 1, 
                 textAlign: 'right', 
                 Width: '19vw',
-                maxWidth: '19vw'
+                maxWidth: '19vw',
+                color: 'black',
             }}>
                 <strong>Estimated Total Price:</strong> {"$" + this.tempHoldTotal.toFixed(2)}
             </div>

@@ -6,11 +6,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import Container from "react-bootstrap/Container";
 import NewLogo from "../Pictures/newLogo.png";
 
-//import Row from "react-bootstrap/Row";
-//import Col from 'react-bootstrap/Col';
-//import Image from 'react-bootstrap/Image';
-import ScrollComponent from '../Components/ScrollComponent.js'
-
 //function a is used when someone presses see more or see less hyperlink. Calculates what the tracking variable needs to be to be passed into getTickets function
 export function Home() {
 
@@ -19,7 +14,6 @@ export function Home() {
   const [obj, setObj] = useState(); //stores ticket object
   const [checking, setChecking] = useState(false); //using 1 to show more and 2 to show less. anything else is an error
   const [homeLocation, setHomeLocation] = useState('');  // State to store the user's selected home airport location
-  const [profile, setProfile] = useState(false); //Profile used for profile component transformation
   const [searchResults, setSearchResults] = useState([]); //stores search result
   const ref = useRef(false);//used to make the initial render not use the useEffect 
 
@@ -96,8 +90,6 @@ export function Home() {
   };
     /* Search Bar End */
 
-  //toggles button hiding/showing
-
     // Airport selection
   const handleAirportSelect = (airport) => {
     setHomeLocation(airport.iata_code); // Store the iata code as user's home location
@@ -113,43 +105,16 @@ export function Home() {
     }
   },[ref]);
 
-  const handleScroll = (e) => {
-    const { scrollTop, scrollHeight, clientHeight } = e.target;
-    const position = Math.ceil(
-        (scrollTop / (scrollHeight - clientHeight)) * 100
-    );
-    console.log("inside handle " + position)
-    if(position === 0){
-      setProfile(false);
-    }
-    else{
-      setProfile(true);
-    }
-};
 
   return (
-    <Container fluid className='banner-container' style={{padding: "0%", margin:"0%", overflow:"auto", overflowX: 'hidden', backgroundColor: '#0f0f0f'}} onScroll={handleScroll}>
-      {<ScrollComponent onScrollSelect={profile}/>}
-      {/*
-      <div className='button-overlay'>
-        {!notTop && <button id='Top-Banner-2' style={{animation: 'square-circle .5s', animationFillMode:'forwards'}}  onClick={toggleButton} />}
-        {notTop && <button id='Top-Banner-2' style={{animation: 'circle-square .5s', animationFillMode:'forwards'}}  onClick={toggleButton} />}
-        {!showButton && (
-        <div className='button-group' style={{marginTop: notTop ? '4%' : '7%'}} >
-          <MyButton to="Contact Us" />
-          <MyButton to="signout" />
-        </div>
-        )}
-          <div className="Nav-Banner"></div>
-          {!notTop && <div className="Word-Color">Welcome, {user.username}!</div>}
-      </div>*/}
+    <Container fluid className='banner-container' style={{padding: "0%", margin:"0%", overflowX: 'hidden'}}>
       <div>
         <div className="d-flex flex-column justify-content-center align-items-center" style={{ height: '50vh' }}>
-        <img src={NewLogo} alt="Logo" className="img-fluid" style={{ maxWidth: '200px', height: 'auto' }} />
-        <div className="text-center mt-3" style={{ fontSize: '4rem', fontFamily: 'sans-serif' }}>
-          GET UR TICKETS
+          <img src={NewLogo} alt="Logo" className="img-fluid" style={{ maxWidth: '200px', height: 'auto' }} />
+          <div className="text-center mt-3" style={{ fontSize: '4rem', fontFamily: 'sans-serif' }}>
+              GET UR TICKETS
+          </div>
         </div>
-      </div>
       </div>
 
       <div className='Second-Row-Ticket-Background'>
@@ -159,8 +124,10 @@ export function Home() {
         {searchResults.length > 0 && tracking === 0 && searchResults.length < 5 ? setTracking(searchResults.length) : null}
         {searchResults.length > 0 && tracking === 0 && searchResults.length >= 5 ? setTracking(5) : null}
         {searchResults.length > 0 && checking ? obj.getTickets(searchResults, tracking) : null}
-        {searchResults.length > 0 && chkMore === true ? <button onClick={() => { adjTrack(1); }}>show more</button> : null}
-        {searchResults.length > 0 && chkLess === true ? <button  onClick={() => { adjTrack(2); }}>show less</button> : null}
+        <div className="col d-flex justify-content-start gap-3">
+        {searchResults.length > 0 && chkMore === true ? <button className='btn btn-primary' onClick={() => { adjTrack(1); }}>show more</button> : null}
+        {searchResults.length > 0 && chkLess === true ? <button className='btn btn-primary' onClick={() => { adjTrack(2); }}>show less</button> : null}
+        </div>
         {hold === true ? <div style={{ textAlign: 'center', color: 'white', fontSize: '20pt'}}>No results found.</div> : null}
       </div> 
     </Container>
