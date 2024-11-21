@@ -22,6 +22,7 @@ def hello():
     app.logger.info('Hello World endpoint was accessed.')
     return 'Hello World!'
 
+
 @app.route('/result', methods=['POST'])
 def get_best_prices():
     """
@@ -42,6 +43,7 @@ def get_best_prices():
 
     app.logger.info(f'Returning result to frontend: {result}')
     return result
+
 
 def create_app():
     return app
