@@ -69,7 +69,10 @@ import DetailsPopover from "../Components/popOver.tsx";
             {{ 
                 flex: 1, 
                 textAlign: 'left', 
-                paddingRight: '10px' 
+                paddingRight: '10px',
+                Width: '19vw',
+                maxWidth: '19vw',
+                color: 'black',
             }}>
                 <strong>Location:</strong>
                 <br/> {this.eventlocation}     
@@ -79,7 +82,10 @@ import DetailsPopover from "../Components/popOver.tsx";
             {{ 
                 flex: 2, 
                 textAlign: 'left', 
-                paddingRight: '10px' 
+                paddingRight: '10px',
+                Width: '19vw',
+                maxWidth: '19vw',
+                color: 'black',
             }}>
                 <strong>Event Price:</strong> {'$' + this.tempHoldEvent.toFixed(2)}
                 <br/>
@@ -93,7 +99,10 @@ import DetailsPopover from "../Components/popOver.tsx";
             {{ 
                 flex: 2, 
                 textAlign: 'left', 
-                paddingRight: '10px' 
+                paddingRight: '10px',
+                Width: '19vw',
+                maxWidth: '19vw',
+                color: 'black',
             }}>
                 <strong>Flight Price:
                 </strong> {'$' + this.tempHoldFlight.toFixed(2)}
@@ -117,7 +126,10 @@ import DetailsPopover from "../Components/popOver.tsx";
             {{ 
                 flex: 2, 
                 textAlign: 'left', 
-                paddingRight: '10px' 
+                paddingRight: '10px',
+                Width: '19vw',
+                maxWidth: '19vw',
+                color: 'black',
             }}>
                 <strong>Flight Price:N/A-Home Loaction</strong>
             </div>
@@ -128,7 +140,10 @@ import DetailsPopover from "../Components/popOver.tsx";
             {{  
                 flex: 2, 
                 textAlign: 'left', 
-                paddingRight: '10px' 
+                paddingRight: '10px', 
+                Width: '19vw',
+                maxWidth: '19vw',
+                color: 'black',
             }}>
                 <strong>Hotel Price:</strong> {'$' + this.tempHoldHotel.toFixed(2)}
                 <br/>
@@ -143,7 +158,10 @@ import DetailsPopover from "../Components/popOver.tsx";
             {{  
                 flex: 2, 
                 textAlign: 'left', 
-                paddingRight: '10px' 
+                paddingRight: '10px',
+                Width: '19vw',
+                maxWidth: '19vw',
+                color: 'black',
             }}>
                 <strong>Hotel Price: N/A-Home Location</strong>
                 <br/>
@@ -156,7 +174,9 @@ import DetailsPopover from "../Components/popOver.tsx";
             {{ 
                 flex: 1, 
                 textAlign: 'right', 
-                //whiteSpace: 'nowrap',
+                Width: '19vw',
+                maxWidth: '19vw',
+                color: 'black',
             }}>
                 <strong>Estimated Total Price:</strong> {"$" + this.tempHoldTotal.toFixed(2)}
             </div>
@@ -180,7 +200,6 @@ import DetailsPopover from "../Components/popOver.tsx";
             /*For loop to push Ticket display into array, testing with 5 for now. Here you will get the number of result and ticket information from get command */
 
             for ( let i = 0; i < tracking; i++){
-                console.log("!!!!!! " + i + "  " + ticketNum.length + "  " + tracking)
                 let tmp = ticketNum[i]["Venue"]
                 tmp = tmp.replaceAll("+", " "); // replaces all + in venue name
                 this.setParams(ticketNum[i]["Name"],ticketNum[i]["Ticket_URL"],tmp,ticketNum[i]["Ticket_Price"], //event name, event hyperlink, event location, event price

@@ -1,23 +1,10 @@
 import React, { useState, useEffect, useRef} from 'react';
-import MyButton from "../Components/MyButton";
-import Fly_Now from "../Pictures/Fly_Now.png";
 import { Tickets, chkMore, chkLess } from "../Components/TicketGenerator.js";
-import { Authenticator } from '@aws-amplify/ui-react';
 import AirportSearchBar from '../Components/AirportSearchBar'; // From File 1
 import SearchBar from '../Components/SearchBar.js'; // From File 2
-
-const UserBanner = () => {
-  return (
-    <Authenticator>
-      {({ user }) => (
-        <div className="Nav-Banner">
-          <h1 className="Word-Color">Welcome, {user.username}!</h1>
-        </div>
-      )}
-    </Authenticator>
-  );
-};
-export default UserBanner;
+import "bootstrap/dist/css/bootstrap.css";
+import Container from "react-bootstrap/Container";
+import NewLogo from "../Pictures/newLogo.png";
 
 //function a is used when someone presses see more or see less hyperlink. Calculates what the tracking variable needs to be to be passed into getTickets function
 export function Home() {
@@ -27,7 +14,6 @@ export function Home() {
   const [obj, setObj] = useState(); //stores ticket object
   const [checking, setChecking] = useState(false); //using 1 to show more and 2 to show less. anything else is an error
   const [homeLocation, setHomeLocation] = useState('');  // State to store the user's selected home airport location
-  const [showButton, setShowButton] = useState(true); //Stores button state
   const [searchResults, setSearchResults] = useState([]); //stores search result
   const ref = useRef(false);//used to make the initial render not use the useEffect 
 
@@ -104,11 +90,6 @@ export function Home() {
   };
     /* Search Bar End */
 
-  //toggles button hiding/showing
-  const toggleButton = () => {
-    setShowButton(!showButton);
-  };
-
     // Airport selection
   const handleAirportSelect = (airport) => {
     setHomeLocation(airport.iata_code); // Store the iata code as user's home location
@@ -124,35 +105,31 @@ export function Home() {
     }
   },[ref]);
 
+
   return (
-    <div className='banner-container'>
-      <img alt="Website Banner of Hotel/Flight/Concert" className="Top-Banner" src={Fly_Now}/>
-      <div className='button-overlay'>
-        {<button className="Top-Banner-2" onClick={toggleButton} />}
-        {!showButton && (
-          <div className='button-group'>
-            <MyButton to="Contact Us" />
-            <MyButton to="signout" />
+    <Container fluid className='banner-container' style={{padding: "0%", margin:"0%", overflowX: 'hidden'}}>
+      <div>
+        <div className="d-flex flex-column justify-content-center align-items-center" style={{ height: '50vh' }}>
+          <img src={NewLogo} alt="Logo" className="img-fluid" style={{ maxWidth: '200px', height: 'auto' }} />
+          <div className="text-center mt-3" style={{ fontSize: '4rem', fontFamily: 'sans-serif' }}>
+              GET UR TICKETS
           </div>
-        )}
-        <UserBanner />
+        </div>
       </div>
 
-      {/* Integrating the SearchBar component */}
       <div className='Second-Row-Ticket-Background'>
-          <AirportSearchBar onSelect={handleAirportSelect}/>
-          <SearchBar onSearchResults={HandleSearchResults}/>
-        {/*Add a div below search bars so that we can add loading && div to clear tickets when loading*/}
+        <AirportSearchBar onSelect={handleAirportSelect}/>
+        <SearchBar onSearchResults={HandleSearchResults}/>
         {searchResults.length > 0 && tracking === 0 ? setChecking(true): null}
         {searchResults.length > 0 && tracking === 0 && searchResults.length < 5 ? setTracking(searchResults.length) : null}
         {searchResults.length > 0 && tracking === 0 && searchResults.length >= 5 ? setTracking(5) : null}
-        {console.log(tracking + " ahhhhhhh")}
         {searchResults.length > 0 && checking ? obj.getTickets(searchResults, tracking) : null}
-        {searchResults.length > 0 && chkMore === true ? <button onClick={() => { adjTrack(1); }}>show more</button> : null}
-        {searchResults.length > 0 && chkLess === true ? <button  onClick={() => { adjTrack(2); }}>show less</button> : null}
+        <div className="col d-flex justify-content-start gap-3">
+        {searchResults.length > 0 && chkMore === true ? <button className='btn btn-primary' onClick={() => { adjTrack(1); }}>show more</button> : null}
+        {searchResults.length > 0 && chkLess === true ? <button className='btn btn-primary' onClick={() => { adjTrack(2); }}>show less</button> : null}
+        </div>
         {hold === true ? <div style={{ textAlign: 'center', color: 'white', fontSize: '20pt'}}>No results found.</div> : null}
-        {console.log("end of home")}
-      </div>
-    </div>
+      </div> 
+    </Container>
   );
 }

@@ -5,6 +5,7 @@ import datetime
 import requests
 from encryption_functions import get_key, decrypt_file
 
+RESULT_LIMIT = 3
 KEY_FILE = 'key.encrypted'
 CONSTANTS_FILE = 'constants.env'
 TICKET_API_KEY, SERP_API_KEY = decrypt_file(CONSTANTS_FILE,
@@ -48,6 +49,8 @@ def get_flight_info(origin: str, destination: str, start_date: str,
     best_flight = flights['best_flights'][0]['flights'][0]
 
     return {'Price': flights['price_insights']['lowest_price'],
+            'Departure': start_date,
+            'Return': end_date,
             'URL': flights['search_metadata']['google_flights_url'],
             'Airline': best_flight['airline'],
             'Logo': best_flight['airline_logo'],
@@ -85,6 +88,8 @@ def get_hotel_info(venue: str, start_date: str, end_date: str) -> dict:
 
     return {'Price': 2 * best_hotel['rate_per_night']
             ['extracted_before_taxes_fees'],
+            'Check-in': start_date,
+            'Check-out': end_date,
             'URL': link,
             'Name': best_hotel['name']}
 
@@ -147,6 +152,8 @@ def get_total_price_from_api(origin: str = 'LAS',
 
     day_ahead = datetime.datetime.today() + datetime.timedelta(days=1)
 
+    result_counter = 1
+
     try:
         for event in data['_embedded']['events']:
             event_date = event['dates']['start']['localDate']
@@ -197,9 +204,14 @@ def get_total_price_from_api(origin: str = 'LAS',
                                'Flight': flight,
                                'Hotel': hotel,
                                })
+
+                if result_counter < RESULT_LIMIT:
+                    result_counter += 1
+                else:
+                    break
     finally:
         return json.dumps(sorted(result, key=lambda x: x['Total_Price']))
 
 
 if __name__ == '__main__':
-    print(get_total_price_from_api('JFK', 'Coldplay'))
+    print(get_total_price_from_api('LAX', 'Celtics'))

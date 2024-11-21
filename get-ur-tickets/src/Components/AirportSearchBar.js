@@ -5,6 +5,7 @@ import { LocationContext } from '../index';           // Import context
 import '../AirportSearchBar.css';
 import SearchBar from './SearchBar';
 export var test = "";
+export var test2 ="";
 const AirportSearchBar = ({ onSelect }) => {
   const {location, setLocation } = useContext(LocationContext);
   const [searchTerm, setSearchTerm] = useState('');
@@ -27,7 +28,8 @@ const AirportSearchBar = ({ onSelect }) => {
     // Filter out municipality (city) and iata code (airport code)
     const filtered = airports.filter(airport =>
       (airport.municipality && airport.municipality.toLowerCase().includes(term.toLowerCase())) ||
-      (airport.iata_code && airport.iata_code.toLowerCase().includes(term.toLowerCase()))
+      (airport.iata_code && airport.iata_code.toLowerCase().includes(term.toLowerCase())) ||
+      (airport.name && airport.name.toLowerCase().includes(term.toLowerCase()))
     );
     setFilteredAirports(filtered);
   };
@@ -38,12 +40,13 @@ const AirportSearchBar = ({ onSelect }) => {
     setLocation(airport);
     if (onSelect) onSelect(airport);
     test = airport.iata_code;
-    console.log(test);
+    test2 = airport.name + " (" + airport.iata_code + ")";
+    console.log(airport);
   };
 
   return (
     <div className="Airport-search-bar">
-      <div className='description' >Enter your Home Airport. Currently set to: {test}</div>
+      <div className='description' >Enter your Home Airport. Currently set to: {test2}</div>
       <input
         style={{width: '42%', alignItems: 'center'}}
         type="text"
@@ -55,8 +58,9 @@ const AirportSearchBar = ({ onSelect }) => {
         <div className="suggestions" >
           {filteredAirports.map((airport) => (
             <button 
-              key={airport.iata_code} 
+              key={airport.iata_code || airport.municipality || airport.name}
               onClick={() => handleSelect(airport)}
+              
             >
               {airport.name} ({airport.iata_code})
             </button>
@@ -64,7 +68,7 @@ const AirportSearchBar = ({ onSelect }) => {
         </div>
       )}
       <br/>
-      <div className='description'>Search for Event.</div>
+      <div className='description'>Search for an Event.</div>
     </div>
   );
 };
