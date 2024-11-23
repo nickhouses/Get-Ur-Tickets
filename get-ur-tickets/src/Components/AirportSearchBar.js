@@ -14,6 +14,7 @@ const AirportSearchBar = ({ onSelect }) => {
   const [checkEscape, setcheckEscape] = useState(true); //used with handle escape and useeffect to exit suggestions box with escape key
   const [checkKeys, setcheckKeys] = useState(0);
   const [errorMessage, setErrorMessage] = useState('');
+  const [prevKey, setprevKey] = useState(''); //used to store the previous key used so when you click escape to close suggestion it does not instantly reappear
   const listRef = useRef(null);
   SearchBar.originAirportCode = location;
   const airports = airportData; // Imported JSON data
@@ -22,6 +23,7 @@ const AirportSearchBar = ({ onSelect }) => {
 
   const handleFocus = (e) => {
     console.log(e.key);
+    setprevKey(e.key);
     if(e.repeat && e.key !== "Backspace"){ //This will print the first key pressed but block all after execpt for backspace
       console.log("while");
       e.preventDefault();
@@ -74,7 +76,7 @@ const AirportSearchBar = ({ onSelect }) => {
   //if there is any changes in the airport search bar the suggestions should come back
   useEffect(() => {
     setErrorMessage('');
-    if(checkEscape === false){
+    if(checkEscape === false && prevKey !== 'Escape'){
       setcheckEscape(true);
       setcheckKeys(0);
     }
@@ -85,7 +87,7 @@ const AirportSearchBar = ({ onSelect }) => {
       }
     }
     console.log(checkKeys)
-  }, [searchTerm, checkKeys]);
+  }, [searchTerm, checkKeys, checkEscape]);
 
   const handleSearch = (event) => {
     const term = event.target.value;
