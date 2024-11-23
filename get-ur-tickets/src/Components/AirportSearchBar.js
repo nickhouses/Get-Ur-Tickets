@@ -75,7 +75,9 @@ const AirportSearchBar = ({ onSelect }) => {
 
   //if there is any changes in the airport search bar the suggestions should come back
   useEffect(() => {
-    setErrorMessage('');
+    if(prevKey !== 'Enter'){
+      setErrorMessage('');
+    }
     if(checkEscape === false && prevKey !== 'Escape'){
       setcheckEscape(true);
       setcheckKeys(0);

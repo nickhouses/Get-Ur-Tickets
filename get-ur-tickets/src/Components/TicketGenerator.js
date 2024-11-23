@@ -64,7 +64,10 @@ import Container from "react-bootstrap/Container";
                 maxWidth: '99%',
                 display: 'flex', 
                 justifyContent: 'space-between', 
-                padding: '0',
+                paddingLeft: '10px',
+                paddingTop: '0',
+                paddingBottom: '0',
+                paddingRight: '0',
                 marginBottom: '.5%',
                 marginLeft:'.5%',
                 marginRight:'.5%',
@@ -78,7 +81,7 @@ import Container from "react-bootstrap/Container";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
-                wordBreak: 'break-all'
+                wordBreak: 'break-word'
             }}>
                 <strong>Location:</strong>
                 <br/> {this.eventlocation}     
@@ -92,7 +95,7 @@ import Container from "react-bootstrap/Container";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
-                wordBreak: 'break-all'
+                wordBreak: 'break-word'
             }}>
                 <strong>Event Price:</strong> {'$' + this.tempHoldEvent.toFixed(2)}
                 <br/>
@@ -116,7 +119,7 @@ import Container from "react-bootstrap/Container";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
-                wordBreak: 'break-all'
+                wordBreak: 'break-word'
             }}>
                 <strong>Flight Price:
                 </strong> {'$' + this.tempHoldFlight.toFixed(2)}
@@ -150,7 +153,7 @@ import Container from "react-bootstrap/Container";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
-                wordBreak: 'break-all'
+                wordBreak: 'break-word'
             }}>
                 <strong>Flight Price:N/A-Home Loaction</strong>
             </div>
@@ -165,7 +168,7 @@ import Container from "react-bootstrap/Container";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
-                wordBreak: 'break-all'
+                wordBreak: 'break-word'
             }}>
                 <strong>Hotel Price:</strong> {'$' + this.tempHoldHotel.toFixed(2)}
                 <br/>
@@ -190,7 +193,7 @@ import Container from "react-bootstrap/Container";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
-                wordBreak: 'break-all'
+                wordBreak: 'break-word'
             }}>
                 <strong>Hotel Price: N/A-Home Location</strong>
                 <br/>
@@ -206,7 +209,7 @@ import Container from "react-bootstrap/Container";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
-                wordBreak: 'break-all'
+                wordBreak: 'break-word'
             }}>
                 <strong>Estimated Total Price:</strong> {"$" + this.tempHoldTotal.toFixed(2)}
             </div>
