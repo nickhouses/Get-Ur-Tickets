@@ -7,6 +7,14 @@ import {test} from './AirportSearchBar'
 //export var effect = false; 
 //effect && div will be used in Home.js to make the current tickets disappear when the next are loading.Have to figure out formatting to force loading below please enter airport before search line.
 
+async function getBaseURL() {
+  try {
+    const response = await axios.get('');
+    axios.defaults.baseURL = response.data['baseURL'];
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
 
 const SearchBar = ({ onSearchResults }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -36,8 +44,12 @@ const SearchBar = ({ onSearchResults }) => {
     setLoading(true);
     //effect = true;
     // API call
-    axios.defaults.baseURL= 'https://geturtickets.pythonanywhere.com/';
+    axios.defaults.baseURL = 'https://loadbalancer8888.pythonanywhere.com/';
     // axios.defaults.baseURL= 'http://127.0.0.1:80';
+
+    await getBaseURL();
+    console.log('Load Balancer URL: ', axios.defaults.baseURL);
+
     try {    
       const response = await axios.post('/result', 
         {
@@ -108,7 +120,6 @@ const SearchBar = ({ onSearchResults }) => {
       {loading && <div className='Second-Row-Ticket-Background' style={{textAlign: 'center'}}>
         <div style={{ display: 'inline-block', color: 'white', fontSize: '20pt'}}>
           Loading
-          <div className='dot'></div>
           <div className='dot'></div>
           <div className='dot'></div>
           <div className='dot'></div>

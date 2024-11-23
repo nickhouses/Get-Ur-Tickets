@@ -98,7 +98,13 @@ import Container from "react-bootstrap/Container";
                 <br/>
                 {this.eventname}
                 <br/>
-                <a href={this.eventhyperlink}> event purchase link</a>
+                <a 
+                    href={this.eventhyperlink} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                >
+                    event purchase link
+                </a>
                 <br/>
             </div>
             {this.flightname !== '' ?
@@ -123,7 +129,13 @@ import Container from "react-bootstrap/Container";
                 line2 = "To: Arrival City"
                 />
                 <br/>
-                <a href={this.flighturl}> flight purchase link</a>
+                <a 
+                    href={this.flighturl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                >
+                    flight purchase link
+                </a>
                 <br/>
                 <img src={this.airlinelogo} alt="" width={'25px'} height={'25px'}/> {" " + this.flightname}
                 <br/>
@@ -159,7 +171,13 @@ import Container from "react-bootstrap/Container";
                 <br/>
                 Hotel Name: {this.hotelname}
                 <br/>
-                <a href={this.hotelurl}> hotel purchase link</a>
+                <a 
+                    href={this.hotelurl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                >
+                    hotel purchase link
+                </a>
                 {/* Placeholder for additional details or subpage */}
                 <br/><DetailsPopover /> {/* */}
             </div>
