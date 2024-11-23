@@ -1,6 +1,7 @@
 import React from 'react';
 import DetailsPopover from "../Components/popOver.tsx";
-    
+import Container from "react-bootstrap/Container";
+
     export var chkMore = false;
     export var chkLess = false;
 
@@ -55,17 +56,21 @@ import DetailsPopover from "../Components/popOver.tsx";
     
     startRender(){
             return (
-            <div className="Ticket-Box" 
+            <Container fluid className="Ticket-Box" 
             style=
             {{       
-                height: 'auto', 
+                height: 'auto',
+                width:'99%',
+                maxWidth: '99%',
                 display: 'flex', 
                 justifyContent: 'space-between', 
-                padding: '20px', 
-                border: '1px solid #ddd', 
-                margin: '10px 0' 
+                padding: '0',
+                marginBottom: '.5%',
+                marginLeft:'.5%',
+                marginRight:'.5%',
+                marginTop:'0',
             }}>
-            <div style=
+            <div className="col" style=
             {{ 
                 flex: 1, 
                 textAlign: 'left', 
@@ -73,6 +78,7 @@ import DetailsPopover from "../Components/popOver.tsx";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
+                wordBreak: 'break-all'
             }}>
                 <strong>Location:</strong>
                 <br/> {this.eventlocation}     
@@ -86,6 +92,7 @@ import DetailsPopover from "../Components/popOver.tsx";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
+                wordBreak: 'break-all'
             }}>
                 <strong>Event Price:</strong> {'$' + this.tempHoldEvent.toFixed(2)}
                 <br/>
@@ -103,6 +110,7 @@ import DetailsPopover from "../Components/popOver.tsx";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
+                wordBreak: 'break-all'
             }}>
                 <strong>Flight Price:
                 </strong> {'$' + this.tempHoldFlight.toFixed(2)}
@@ -130,6 +138,7 @@ import DetailsPopover from "../Components/popOver.tsx";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
+                wordBreak: 'break-all'
             }}>
                 <strong>Flight Price:N/A-Home Loaction</strong>
             </div>
@@ -144,6 +153,7 @@ import DetailsPopover from "../Components/popOver.tsx";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
+                wordBreak: 'break-all'
             }}>
                 <strong>Hotel Price:</strong> {'$' + this.tempHoldHotel.toFixed(2)}
                 <br/>
@@ -162,6 +172,7 @@ import DetailsPopover from "../Components/popOver.tsx";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
+                wordBreak: 'break-all'
             }}>
                 <strong>Hotel Price: N/A-Home Location</strong>
                 <br/>
@@ -173,14 +184,15 @@ import DetailsPopover from "../Components/popOver.tsx";
             <div style=
             {{ 
                 flex: 1, 
-                textAlign: 'right', 
+                textAlign: 'left', 
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
+                wordBreak: 'break-all'
             }}>
                 <strong>Estimated Total Price:</strong> {"$" + this.tempHoldTotal.toFixed(2)}
             </div>
-            </div>
+            </Container>
             )
         /*this will be used to create the display ticket with prices, location, link, etc... */
     };
