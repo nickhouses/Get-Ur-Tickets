@@ -87,7 +87,7 @@ const AirportSearchBar = ({ onSelect }) => {
       }
     }
     console.log(checkKeys)
-  }, [searchTerm, checkKeys, checkEscape]);
+  }, [searchTerm, checkKeys, checkEscape, prevKey]);
 
   const handleSearch = (event) => {
     const term = event.target.value;
