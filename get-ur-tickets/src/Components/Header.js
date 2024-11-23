@@ -31,7 +31,7 @@ const Header = () => {
     }, []);
 
     return (
-        <header className="bg-dark text-white fixed-top py-2" style={{}}>
+        <header className="bg-dark text-white fixed-top py-2" >
             <div className="container d-flex align-items-center">
                 <div className="col justify-content-start">
                     <div className="d-flex align-items-center">

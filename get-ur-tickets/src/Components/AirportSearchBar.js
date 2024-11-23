@@ -22,7 +22,7 @@ const AirportSearchBar = ({ onSelect }) => {
 
   const handleFocus = (e) => {
     console.log(e.key);
-    if(e.repeat && e.key !== "Backspace"){
+    if(e.repeat && e.key !== "Backspace"){ //This will print the first key pressed but block all after execpt for backspace
       console.log("while");
       e.preventDefault();
       e.tabIndex = 0;
@@ -78,10 +78,9 @@ const AirportSearchBar = ({ onSelect }) => {
       setcheckEscape(true);
       setcheckKeys(0);
     }
-    if (listRef.current && checkKeys >= 0) {
+    if (listRef.current && checkKeys >= 0) { //without this suggestion box will not scroll with tab or arrow keys
       const activeItem = listRef.current.children[checkKeys];
       if (activeItem) {
-        
         activeItem.scrollIntoView({ block: 'nearest' });
       }
     }
