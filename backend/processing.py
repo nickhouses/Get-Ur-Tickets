@@ -49,6 +49,7 @@ def get_flight_info(origin: str, destination: str, start_date: str,
     best_flight = flights['best_flights'][0]['flights'][0]
 
     return {'Price': flights['price_insights']['lowest_price'],
+            'Destination': destination,
             'Departure': start_date,
             'Return': end_date,
             'URL': flights['search_metadata']['google_flights_url'],

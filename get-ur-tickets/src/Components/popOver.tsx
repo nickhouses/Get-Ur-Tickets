@@ -1,6 +1,8 @@
 import Anchor from "react-bootstrap/Anchor";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
+import {test} from './AirportSearchBar'
+import {location} from './TicketGenerator'
 
 /* Variables to use within the popover box */
 interface DetailsPopoverProps {
@@ -11,7 +13,13 @@ interface DetailsPopoverProps {
 }
 
 /* Change 'trigger' to click or hover, whichever is decided. */
-const DetailsPopover: React.FC<DetailsPopoverProps> = ({ name, header, line1, line2 }) => {
+const DetailsPopover: React.FC<DetailsPopoverProps> = ({ 
+  name = "Flight Details",
+  line1=`From: ${test}`, 
+  line2= `To: ${location}`,
+  header = `${test} -> ${location}`
+  
+ }) => {
   return (
     <OverlayTrigger
         trigger="click" 
