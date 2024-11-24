@@ -228,11 +228,12 @@ body{
 
 .error-message {
   background-color: #f8d7da;
-  color: #721c24;
+  color: #080808;
   border: 1px solid #f5c6cb;
-  padding: 0.5rem;
+  padding: 10px;
   border-radius: 0.25rem;
   margin-top: 0.5rem;
+  margin-bottom: 10px;
 }
 
 @keyframes fadeIn {
