@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 
     export var chkMore = false;
     export var chkLess = false;
+    export var location ="";
 
     export class TicketComponent extends React.Component{
 
@@ -17,6 +18,7 @@ import Container from "react-bootstrap/Container";
         airlinelogo = "N/A"
         travelclass = "N/A"
         flightprice = "N/A"
+        Destination = 'N/A'
 
         hotelprice = "N/A"
         hotelurl = "N/A"
@@ -29,20 +31,25 @@ import Container from "react-bootstrap/Container";
         tempHoldHotel = 0.0
         tempHoldTotal = 0.0
     
-        setParams(eventname, eventhyperlink, eventlocation, eventprice, flighturl, flightname, airlinelogo, travelclass, flightprice, hotelprice, hotelurl, hotelname, hotelclass, total){
+        setParams(eventname, eventhyperlink, eventlocation, eventprice, Destination, flighturl, flightname, airlinelogo, travelclass, flightprice, hotelprice, hotelurl, hotelname, hotelclass, total){
 
             this.eventlocation = eventlocation //Setting event information
+            //location = eventlocation
             this.eventname = eventname
             this.eventhyperlink = eventhyperlink
             this.eventprice = eventprice
             this.tempHoldEvent = eventprice
 
+            this.Destination = Destination
+            location = Destination
             this.flighturl = flighturl          //setting flight information
             this.flightname = flightname
             this.airlinelogo = airlinelogo
             this.travelclass = travelclass
             this.flightprice = flightprice
             this.tempHoldFlight = flightprice
+ 
+            //location = flightdestination
 
             this.hotelprice = hotelprice        //setting hotel information
             this.hotelurl = hotelurl
@@ -64,7 +71,10 @@ import Container from "react-bootstrap/Container";
                 maxWidth: '99%',
                 display: 'flex', 
                 justifyContent: 'space-between', 
-                padding: '0',
+                paddingLeft: '10px',
+                paddingTop: '0',
+                paddingBottom: '0',
+                paddingRight: '0',
                 marginBottom: '.5%',
                 marginLeft:'.5%',
                 marginRight:'.5%',
@@ -78,7 +88,7 @@ import Container from "react-bootstrap/Container";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
-                wordBreak: 'break-all'
+                wordBreak: 'break-word'
             }}>
                 <strong>Location:</strong>
                 <br/> {this.eventlocation}     
@@ -92,7 +102,7 @@ import Container from "react-bootstrap/Container";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
-                wordBreak: 'break-all'
+                wordBreak: 'break-word'
             }}>
                 <strong>Event Price:</strong> {'$' + this.tempHoldEvent.toFixed(2)}
                 <br/>
@@ -116,18 +126,13 @@ import Container from "react-bootstrap/Container";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
-                wordBreak: 'break-all'
+                wordBreak: 'break-word'
             }}>
                 <strong>Flight Price:
                 </strong> {'$' + this.tempHoldFlight.toFixed(2)}
                 <br/>
                 {/* First implementation of details popover. Replace props as needed. (name, header, etc...) */}
-                <DetailsPopover
-                name = "Flight Details"
-                header = "DEP -> ARR"
-                line1 = "From: Departure City"
-                line2 = "To: Arrival City"
-                />
+                <DetailsPopover/>
                 <br/>
                 <a 
                     href={this.flighturl} 
@@ -150,7 +155,7 @@ import Container from "react-bootstrap/Container";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
-                wordBreak: 'break-all'
+                wordBreak: 'break-word'
             }}>
                 <strong>Flight Price:N/A-Home Loaction</strong>
             </div>
@@ -165,7 +170,7 @@ import Container from "react-bootstrap/Container";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
-                wordBreak: 'break-all'
+                wordBreak: 'break-word'
             }}>
                 <strong>Hotel Price:</strong> {'$' + this.tempHoldHotel.toFixed(2)}
                 <br/>
@@ -190,7 +195,7 @@ import Container from "react-bootstrap/Container";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
-                wordBreak: 'break-all'
+                wordBreak: 'break-word'
             }}>
                 <strong>Hotel Price: N/A-Home Location</strong>
                 <br/>
@@ -206,7 +211,7 @@ import Container from "react-bootstrap/Container";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
-                wordBreak: 'break-all'
+                wordBreak: 'break-word'
             }}>
                 <strong>Estimated Total Price:</strong> {"$" + this.tempHoldTotal.toFixed(2)}
             </div>
@@ -233,6 +238,7 @@ import Container from "react-bootstrap/Container";
                 let tmp = ticketNum[i]["Venue"]
                 tmp = tmp.replaceAll("+", " "); // replaces all + in venue name
                 this.setParams(ticketNum[i]["Name"],ticketNum[i]["Ticket_URL"],tmp,ticketNum[i]["Ticket_Price"], //event name, event hyperlink, event location, event price
+                    ticketNum[i]["Flight"]["Destination"],
                     ticketNum[i]["Flight"]["URL"],ticketNum[i]["Flight"]["Airline"],ticketNum[i]["Flight"]["Logo"], ticketNum[i]["Flight"]["Travel_Class"], ticketNum[i]["Flight"]["Price"],//flight url, flight name, airline logo, travel class, flight price
                     ticketNum[i]["Hotel"]["Price"],ticketNum[i]["Hotel"]["URL"],ticketNum[i]["Hotel"]["Name"],ticketNum[i]["Hotel"]["Hotel_Class"], ticketNum[i]["Total_Price"] )//hotel price, hotel url, hotel name, hotel class, total
                 //event name, event hyperlink, event location, event price, flight url, flight name, airline logo, travel class, flight price, hotel price, hotel url, hotel name, hotel class, total
