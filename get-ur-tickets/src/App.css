@@ -233,7 +233,6 @@ body{
   padding: 0.5rem;
   border-radius: 0.25rem;
   margin-top: 0.5rem;
-  animation: fadeIn 0.5s, fadeOut 0.5s 4s; /* Adjust timing as needed */
 }
 
 @keyframes fadeIn {
