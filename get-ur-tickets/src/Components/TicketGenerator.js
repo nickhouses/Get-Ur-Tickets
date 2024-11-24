@@ -155,7 +155,7 @@ import Container from "react-bootstrap/Container";
                 color: 'black',
                 wordBreak: 'break-word'
             }}>
-                <strong>Flight Price:N/A-Home Loaction</strong>
+                <strong>Flight Price: N/A-Home Loaction</strong>
             </div>
             }
             
