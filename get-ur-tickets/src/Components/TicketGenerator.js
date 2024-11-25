@@ -38,7 +38,7 @@ import {test} from './AirportSearchBar'
         setParams(eventname, eventhyperlink, eventlocation, eventprice, startDate, endDate ,Destination, flighturl, flightname, airlinelogo, travelclass, flightprice, hotelprice, hotelurl, hotelname, hotelclass, total){
 
             this.eventlocation = eventlocation //Setting event information
-            location = eventlocation
+            //location = eventlocation
             this.eventname = eventname
             this.eventhyperlink = eventhyperlink
             this.eventprice = eventprice
@@ -47,7 +47,7 @@ import {test} from './AirportSearchBar'
             this.startDate = startDate
             this.endDate = endDate
             this.Destination = Destination
-            /* location = Destination */
+            location = Destination
             this.flighturl = flighturl          //setting flight information
             this.flightname = flightname
             this.airlinelogo = airlinelogo
@@ -248,7 +248,7 @@ import {test} from './AirportSearchBar'
                 let tmp = ticketNum[i]["Venue"]
                 tmp = tmp.replaceAll("+", " "); // replaces all + in venue name
                 this.setParams(ticketNum[i]["Name"],ticketNum[i]["Ticket_URL"],tmp,ticketNum[i]["Ticket_Price"], //event name, event hyperlink, event location, event price
-                    ticketNum[i]["Flight"]["Departure"],ticketNum[i]["Flight"]["Return"],ticketNum[i]["Flight"]["destination"],
+                    ticketNum[i]["Flight"]["Departure"],ticketNum[i]["Flight"]["Return"],ticketNum[i]["Flight"]["Destination"],
                     ticketNum[i]["Flight"]["URL"],ticketNum[i]["Flight"]["Airline"],ticketNum[i]["Flight"]["Logo"], ticketNum[i]["Flight"]["Travel_Class"], ticketNum[i]["Flight"]["Price"],//flight url, flight name, airline logo, travel class, flight price
                     ticketNum[i]["Hotel"]["Price"],ticketNum[i]["Hotel"]["URL"],ticketNum[i]["Hotel"]["Name"],ticketNum[i]["Hotel"]["Hotel_Class"], ticketNum[i]["Total_Price"] )//hotel price, hotel url, hotel name, hotel class, total
                 //event name, event hyperlink, event location, event price, flight url, flight name, airline logo, travel class, flight price, hotel price, hotel url, hotel name, hotel class, total
