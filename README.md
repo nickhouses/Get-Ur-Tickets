@@ -46,8 +46,8 @@ The load balancer is a simple round robin load balancer. The servers it sends to
     8. Then set Virualenv to the location of the venv.
     9. Configure the WSGI configuration file by clicking on the location
         - Set your `project_home` to the pwd of ur backend, `should be the same as source and working directory`.
-    ![alt text](image.png)
-     8. Click the green reload button at the top of the page
+    ![Python Anywhere](img/image.png)
+     10. Click the green reload button at the top of the page
 ## Local Development
 ### Frontend
 1. Go to the frontend directory
@@ -190,7 +190,7 @@ You can expect the output to be in a JSON format like the following.
    - The command to log in is `docker login -u <username>`
   
 ## How the application works
-![](img/System-Diagram.jpg)
+![System Diagram](img/System-Diagram.jpg)
 
 GetUrTickets is a RESTful application that works by making GET, POST, PUT, and DELETE requests. The application has a frontend user interface that the user will interact with, and a backend that handles all of the processing of the application. The application will be hosted on Amazon Web Services using [AWS Amplify](https://aws.amazon.com/amplify/). The application will be deployed each time there is a new commit to our team repository.
 
@@ -198,4 +198,4 @@ Based on the diagram at the top. The user will request tickets for a specific (e
 
 The UML diagram below shows how the application works on a detailed level.
 
-![](img/UML.jpg)
+![UML Diagram](img/UML.jpg)
