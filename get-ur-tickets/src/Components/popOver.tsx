@@ -13,14 +13,9 @@ interface DetailsPopoverProps {
 
 /* Change 'trigger' to click or hover, whichever is decided. */
 const DetailsPopover: React.FC<DetailsPopoverProps> = ({ 
-  /*name = "Flight Details",
-  line1=`From: ${test}`, 
-  line2= `To: ${location}`,
-  header = `${test} -> ${location}`*/
   name, header, line1, line2,
-  
  }) => {
-  const [hide, setHide] = useState(false);
+  const [hide, setHide] = useState(true);
   const handleEscape = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if(e.key === "Escape"){
       setHide(true);
@@ -30,7 +25,7 @@ const DetailsPopover: React.FC<DetailsPopoverProps> = ({
     if(hide){
       setHide(false);
     }  
-    if(!hide){
+    else if(!hide){
       setHide(true);
     }
   }
@@ -40,20 +35,19 @@ const DetailsPopover: React.FC<DetailsPopoverProps> = ({
 
   return (
     <OverlayTrigger
-        trigger="click" 
-        placement="right"
-        show={!hide}
-        overlay={
+      trigger="click" 
+      placement="right"
+      show={!hide}
+      overlay={
         <Popover className="details-popover">
             {/* Format the variables here */}
             <Popover.Header as="h3">{header}</Popover.Header>
             <Popover.Body>{line1}</Popover.Body>
-            <Popover.Body>{line2}</Popover.Body>
-            
+            <Popover.Body>{line2}</Popover.Body> 
         </Popover>
       }
     >
-        <Anchor className="text-success" onKeyDown={handleEscape} onClick={handleClick} onBlur={handleBlur}>{name}</Anchor>
+      <Anchor className="text-success" onKeyDown={handleEscape} onClick={handleClick} onBlur={handleBlur}>{name}</Anchor>
     </OverlayTrigger>
   );
 };
