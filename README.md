@@ -94,36 +94,62 @@ You can expect the output to be in a JSON format like the following.
 ```json
 [
     {
-        "Total_Price": 635.5,
-        "Name": "Boston Celtics vs. LA Clippers",
+        "Total_Price": 590.5,
+        "Name": "Boston Celtics vs. Detroit Pistons",
         "Venue": "Boston",
-        "Ticket_Price": 77.5,
-        "Ticket_URL": "https://www.ticketmaster.com/boston-celtics-vs-la-clippers-boston-massachusetts-11-25-2024/event/010060EBE4587282",
+        "Ticket_Price": 65.5,
+        "Ticket_URL": "https://www.ticketmaster.com/boston-celtics-vs-detroit-pistons-boston-massachusetts-12-04-2024/event/010060EBE46272A8",
         "Flight": {
-            "Price": 296,
-            "Departure": "2024-11-24",
-            "Return": "2024-11-26",
-            "URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTExLTI0agcIARIDTEFYcgcIARIDQk9TGh4SCjIwMjQtMTEtMjZqBwgBEgNCT1NyBwgBEgNMQVhCAQFIAXABmAEB",
+            "Price": 309,
+            "Destination": "BOS",
+            "Departure": "2024-12-03",
+            "Return": "2024-12-05",
+            "URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEyLTAzagcIARIDTEFYcgcIARIDQk9TGh4SCjIwMjQtMTItMDVqBwgBEgNCT1NyBwgBEgNMQVhCAQFIAXABmAEB",
             "Airline": "Spirit",
             "Logo": "https://www.gstatic.com/flights/airline_logos/70px/NK.png",
             "Travel_Class": "Economy"
         },
         "Hotel": {
-            "Price": 262,
-            "Check-in": "2024-11-24",
-            "Check-out": "2024-11-26",
-            "URL": "https://www.plumguide.com/homes/70088/the-heart-of-the-square",
-            "Name": "The Heart of the Square"
+            "Price": 216,
+            "Check-in": "2024-12-03",
+            "Check-out": "2024-12-05",
+            "URL": "https://www.vrbo.com/3928052?MDPCID=VRBO-META.HPA.WEB-ORGANIC.VR",
+            "Name": "Ultra Convenient, Ultra Cozy, Luxury Boston Condo!"
         }
     },
     {
-        "Total_Price": 770.0,
+        "Total_Price": 787.5,
+        "Name": "Boston Celtics vs. Miami Heat",
+        "Venue": "Boston",
+        "Ticket_Price": 88.5,
+        "Ticket_URL": "https://www.ticketmaster.com/boston-celtics-vs-miami-heat-boston-massachusetts-12-02-2024/event/010060EBE45D729C",
+        "Flight": {
+            "Price": 403,
+            "Destination": "BOS",
+            "Departure": "2024-12-01",
+            "Return": "2024-12-03",
+            "URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEyLTAxagcIARIDTEFYcgcIARIDQk9TGh4SCjIwMjQtMTItMDNqBwgBEgNCT1NyBwgBEgNMQVhCAQFIAXABmAEB",
+            "Airline": "Spirit",
+            "Logo": "https://www.gstatic.com/flights/airline_logos/70px/NK.png",
+            "Travel_Class": "Economy"
+        },
+        "Hotel": {
+            "Price": 296,
+            "Check-in": "2024-12-01",
+            "Check-out": "2024-12-03",
+            "URL": "",
+            "Name": "2 Pool View Units, 5-minute walk to Back Bay Fens! Valet Parking, Pool, Garden!"
+        }
+    },
+    {
+        "Total_Price": 1012.0,
         "Name": "Chicago Bulls vs. Boston Celtics",
         "Venue": "Chicago",
-        "Ticket_Price": 99.0,
+        "Ticket_Price": 89.0,
         "Ticket_URL": "https://www.ticketmaster.com/chicago-bulls-vs-boston-celtics-chicago-illinois-11-29-2024/event/04006110BC0D46BE",
         "Flight": {
-            "Price": 373,
+            "Price": 571,
+            "Destination": "ORD",
             "Departure": "2024-11-28",
             "Return": "2024-11-30",
             "URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTExLTI4agcIARIDTEFYcgcIARIDT1JEGh4SCjIwMjQtMTEtMzBqBwgBEgNPUkRyBwgBEgNMQVhCAQFIAXABmAEB",
@@ -132,34 +158,11 @@ You can expect the output to be in a JSON format like the following.
             "Travel_Class": "Economy"
         },
         "Hotel": {
-            "Price": 298,
+            "Price": 352,
             "Check-in": "2024-11-28",
             "Check-out": "2024-11-30",
-            "URL": "https://www.marriott.com/en-us/hotels/chigs-sheraton-grand-chicago-riverwalk/overview/?scid=f2ae0541-1279-4f24-b197-a979c79310b0",
-            "Name": "Sheraton Grand Chicago Riverwalk"
-        }
-    },
-    {
-        "Total_Price": 851.5,
-        "Name": "Boston Celtics vs. Minnesota Timberwolves",
-        "Venue": "Boston",
-        "Ticket_Price": 185.5,
-        "Ticket_URL": "https://www.ticketmaster.com/boston-celtics-vs-minnesota-timberwolves-boston-massachusetts-11-24-2024/event/010060EBE4537280",
-        "Flight": {
-            "Price": 272,
-            "Departure": "2024-11-23",
-            "Return": "2024-11-25",
-            "URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTExLTIzagcIARIDTEFYcgcIARIDQk9TGh4SCjIwMjQtMTEtMjVqBwgBEgNCT1NyBwgBEgNMQVhCAQFIAXABmAEB",
-            "Airline": "United",
-            "Logo": "https://www.gstatic.com/flights/airline_logos/70px/UA.png",
-            "Travel_Class": "Economy"
-        },
-        "Hotel": {
-            "Price": 394,
-            "Check-in": "2024-11-23",
-            "Check-out": "2024-11-25",
-            "URL": "",
-            "Name": "Suite at House of L"
+            "URL": "https://www.marriott.com/en-us/hotels/chidx-hotel-emc2-autograph-collection/overview/?scid=f2ae0541-1279-4f24-b197-a979c79310b0",
+            "Name": "Hotel EMC2, Autograph Collection"
         }
     }
 ]
