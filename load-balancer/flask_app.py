@@ -6,7 +6,8 @@ CORS(app)
 
 COUNTER = 0
 SERVERS = ["https://geturtickets.pythonanywhere.com/",
-           "https://geturticket.pythonanywhere.com/"]
+           "https://geturticket.pythonanywhere.com/",
+           "https://nickhouses.pythonanywhere.com/"]
 
 
 @app.route('/', methods=['GET'])
