@@ -28,8 +28,14 @@ A workaround solution was made for the aforementioned problem. We deployed a loa
 The load balancer is a simple round robin load balancer. The servers it sends to requests to can be found in its code.
 
 #### Deployment Steps
+Setting up web domain
+1. Select the web tab 
+2. Click add a new web app, then click next
+3. Select your python webframe, select flask, click next
+4. Select your python version, Python 3.10, click next, click next again
 1. Switch to the Console tab
    1. Open a bash console
+        - `git clone https://github.com/CS-472/Get-Ur-Tickets `
    2. Navigate to the project directory
    3. Pull the most up-to-date code from the repository
         - `git pull`
@@ -41,7 +47,12 @@ The load balancer is a simple round robin load balancer. The servers it sends to
     3. Then run `pipreqs . --force`
     4. Then run `python -m venv venv`
     5. Then run `source venv/bin/`
-    6. Then run `pip install -r requirements.txt`
+    4. Activate the virtual environment
+   - Windows
+     - `.\venv\Scripts\activate`
+   - MacOS
+     - `source venv/bin/activate`
+    7. Then run `pip install -r requirements.txt`
     7. Then run `pip install --upgrade flask werkzeug`
     8. Then set Virualenv to the location of the venv.
     9. Configure the WSGI configuration file by clicking on the location
