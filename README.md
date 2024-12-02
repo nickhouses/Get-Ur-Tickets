@@ -57,7 +57,7 @@ Setting up web domain
     8. Then set Virualenv to the location of the venv.
     9. Configure the WSGI configuration file by clicking on the location
         - Set your `project_home` to the pwd of ur backend, `should be the same as source and working directory`.
-    ![Python Anywhere](img/image.png)
+    ![Python Anywhere](img/Python-Anywhere.png)
      10. Click the green reload button at the top of the page
 ## Local Development
 ### Frontend
