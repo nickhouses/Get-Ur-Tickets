@@ -1,8 +1,12 @@
 import React from 'react';
 import DetailsPopover from "../Components/popOver.tsx";
-    
+import Container from "react-bootstrap/Container";
+import {test} from './AirportSearchBar'
+
     export var chkMore = false;
     export var chkLess = false;
+    export var location ="";
+
 
     export class TicketComponent extends React.Component{
 
@@ -16,7 +20,12 @@ import DetailsPopover from "../Components/popOver.tsx";
         airlinelogo = "N/A"
         travelclass = "N/A"
         flightprice = "N/A"
+        Destination = 'N/A'
+        startDate = 'N/A'
+        endDate = 'N/A'
 
+        checkin = 'N/A'
+        checkout = 'N/A'
         hotelprice = "N/A"
         hotelurl = "N/A"
         hotelname = "N/A"
@@ -28,7 +37,7 @@ import DetailsPopover from "../Components/popOver.tsx";
         tempHoldHotel = 0.0
         tempHoldTotal = 0.0
     
-        setParams(eventname, eventhyperlink, eventlocation, eventprice, flighturl, flightname, airlinelogo, travelclass, flightprice, hotelprice, hotelurl, hotelname, hotelclass, total){
+        setParams(eventname, eventhyperlink, eventlocation, eventprice, startDate, endDate ,Destination, flighturl, flightname, airlinelogo, travelclass, flightprice,checkin, checkout, hotelprice, hotelurl, hotelname, hotelclass, total){
 
             this.eventlocation = eventlocation //Setting event information
             this.eventname = eventname
@@ -36,13 +45,19 @@ import DetailsPopover from "../Components/popOver.tsx";
             this.eventprice = eventprice
             this.tempHoldEvent = eventprice
 
+            this.startDate = startDate
+            this.endDate = endDate
+            this.Destination = Destination
+            location = Destination
             this.flighturl = flighturl          //setting flight information
             this.flightname = flightname
             this.airlinelogo = airlinelogo
             this.travelclass = travelclass
             this.flightprice = flightprice
             this.tempHoldFlight = flightprice
-
+ 
+            this.checkin = checkin
+            this.checkout = checkout
             this.hotelprice = hotelprice        //setting hotel information
             this.hotelurl = hotelurl
             this.hotelname = hotelname
@@ -55,17 +70,24 @@ import DetailsPopover from "../Components/popOver.tsx";
     
     startRender(){
             return (
-            <div className="Ticket-Box" 
+            <Container fluid className="Ticket-Box" 
             style=
             {{       
-                height: 'auto', 
+                height: 'auto',
+                width:'99%',
+                maxWidth: '99%',
                 display: 'flex', 
                 justifyContent: 'space-between', 
-                padding: '20px', 
-                border: '1px solid #ddd', 
-                margin: '10px 0' 
+                paddingLeft: '10px',
+                paddingTop: '0',
+                paddingBottom: '0',
+                paddingRight: '0',
+                marginBottom: '.5%',
+                marginLeft:'.5%',
+                marginRight:'.5%',
+                marginTop:'0',
             }}>
-            <div style=
+            <div className="col" style=
             {{ 
                 flex: 1, 
                 textAlign: 'left', 
@@ -73,6 +95,7 @@ import DetailsPopover from "../Components/popOver.tsx";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
+                wordBreak: 'break-word'
             }}>
                 <strong>Location:</strong>
                 <br/> {this.eventlocation}     
@@ -86,6 +109,7 @@ import DetailsPopover from "../Components/popOver.tsx";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
+                wordBreak: 'break-word'
             }}>
                 <strong>Event Price:</strong> {'$' + this.tempHoldEvent.toFixed(2)}
                 <br/>
@@ -109,6 +133,7 @@ import DetailsPopover from "../Components/popOver.tsx";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
+                wordBreak: 'break-word'
             }}>
                 <strong>Flight Price:
                 </strong> {'$' + this.tempHoldFlight.toFixed(2)}
@@ -116,9 +141,9 @@ import DetailsPopover from "../Components/popOver.tsx";
                 {/* First implementation of details popover. Replace props as needed. (name, header, etc...) */}
                 <DetailsPopover
                 name = "Flight Details"
-                header = "DEP -> ARR"
-                line1 = "From: Departure City"
-                line2 = "To: Arrival City"
+                line1= {`Depart: ${this.startDate}`}
+                line2= {`Return: ${this.endDate}`}
+                header = {`${test} -> ${location}`}
                 />
                 <br/>
                 <a 
@@ -142,6 +167,7 @@ import DetailsPopover from "../Components/popOver.tsx";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
+                wordBreak: 'break-word'
             }}>
                 <strong>Flight Price:N/A-Home Location</strong>
             </div>
@@ -156,6 +182,7 @@ import DetailsPopover from "../Components/popOver.tsx";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
+                wordBreak: 'break-word'
             }}>
                 <strong>Hotel Price:</strong> {'$' + this.tempHoldHotel.toFixed(2)}
                 <br/>
@@ -169,7 +196,12 @@ import DetailsPopover from "../Components/popOver.tsx";
                     hotel purchase link
                 </a>
                 {/* Placeholder for additional details or subpage */}
-                <br/><DetailsPopover /> {/* */}
+                <br/><DetailsPopover 
+                    name = "Hotel Details"
+                    line1= {`Check-in: ${this.checkin}`}
+                    line2= {`Check-out: ${this.checkout}`}
+                    header = {`${this.hotelname}`}
+                    />
             </div>
             : 
             <div style=
@@ -180,25 +212,27 @@ import DetailsPopover from "../Components/popOver.tsx";
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
+                wordBreak: 'break-word'
             }}>
                 <strong>Hotel Price: N/A-Home Location</strong>
                 <br/>
                 Hotel Name: N/A-Home location
                 {/* Placeholder for additional details or subpage */}
-                <br/><DetailsPopover /> {/* */}
+                <br/><DetailsPopover/> {/* */}
             </div>
             }
             <div style=
             {{ 
                 flex: 1, 
-                textAlign: 'right', 
+                textAlign: 'left', 
                 Width: '19vw',
                 maxWidth: '19vw',
                 color: 'black',
+                wordBreak: 'break-word'
             }}>
                 <strong>Estimated Total Price:</strong> {"$" + this.tempHoldTotal.toFixed(2)}
             </div>
-            </div>
+            </Container>
             )
         /*this will be used to create the display ticket with prices, location, link, etc... */
     };
@@ -221,8 +255,9 @@ import DetailsPopover from "../Components/popOver.tsx";
                 let tmp = ticketNum[i]["Venue"]
                 tmp = tmp.replaceAll("+", " "); // replaces all + in venue name
                 this.setParams(ticketNum[i]["Name"],ticketNum[i]["Ticket_URL"],tmp,ticketNum[i]["Ticket_Price"], //event name, event hyperlink, event location, event price
+                    ticketNum[i]["Flight"]["Departure"],ticketNum[i]["Flight"]["Return"],ticketNum[i]["Flight"]["Destination"],
                     ticketNum[i]["Flight"]["URL"],ticketNum[i]["Flight"]["Airline"],ticketNum[i]["Flight"]["Logo"], ticketNum[i]["Flight"]["Travel_Class"], ticketNum[i]["Flight"]["Price"],//flight url, flight name, airline logo, travel class, flight price
-                    ticketNum[i]["Hotel"]["Price"],ticketNum[i]["Hotel"]["URL"],ticketNum[i]["Hotel"]["Name"],ticketNum[i]["Hotel"]["Hotel_Class"], ticketNum[i]["Total_Price"] )//hotel price, hotel url, hotel name, hotel class, total
+                    ticketNum[i]["Hotel"]["Check-in"], ticketNum[i]["Hotel"]["Check-out"], ticketNum[i]["Hotel"]["Price"],ticketNum[i]["Hotel"]["URL"],ticketNum[i]["Hotel"]["Name"],ticketNum[i]["Hotel"]["Hotel_Class"], ticketNum[i]["Total_Price"] )//hotel price, hotel url, hotel name, hotel class, total
                 //event name, event hyperlink, event location, event price, flight url, flight name, airline logo, travel class, flight price, hotel price, hotel url, hotel name, hotel class, total
                 tmparr.push(this.startRender())
             }

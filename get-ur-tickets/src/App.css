@@ -228,12 +228,12 @@ body{
 
 .error-message {
   background-color: #f8d7da;
-  color: #721c24;
+  color: #080808;
   border: 1px solid #f5c6cb;
-  padding: 0.5rem;
+  padding: 10px;
   border-radius: 0.25rem;
   margin-top: 0.5rem;
-  animation: fadeIn 0.5s, fadeOut 0.5s 4s; /* Adjust timing as needed */
+  margin-bottom: 10px;
 }
 
 @keyframes fadeIn {
@@ -283,31 +283,35 @@ body{
 }
 
 .suggestions {
-  position: absolute;
+  position: relative;
   top: 65%;
   background-color: white;
   border: 1px solid #ccc;
   width: 41.8%; 
-  max-height: 200px;
+  max-height: 240px;
   overflow-y: auto;
   z-index: 100;
+  display:flex;
 }
 
 .suggestions button {
   display: block;
   width: 100%;
-  padding: 10px;
+  padding: 5px;
   border: none;
   background: #f9f9f9;
   text-align: left;
   font-size: 14px;
-  cursor: pointer;
 }
 
 .suggestions button:hover {
   background-color: #e6e6e6;
 }
 
+#focus  {
+  background-color : #74d4fa;
+  color: black;
+}
 
 
 /* Start of second row that will contain the left segment with settings buttons and containers for ticket information*/
@@ -339,15 +343,12 @@ body{
 .Second-Row-Ticket-Background{
   flex: 1;
   position: relative;
-  width: 100vw;
+  width: auto;
   height: auto;
-  background-color: rgb(15, 15, 15); 
+  background-color: rgb(0, 0, 0); 
 }
 
 .Ticket-Box{
-  width: 99%;
-  height: 15vh;
-  padding-bottom: 10%;
   background-color: rgb(255, 255, 255); 
   border-radius: 8px;
 }

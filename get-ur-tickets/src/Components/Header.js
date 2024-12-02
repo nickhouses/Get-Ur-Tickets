@@ -31,7 +31,7 @@ const Header = () => {
     }, []);
 
     return (
-        <header className="bg-dark text-white fixed-top py-2">
+        <header className="bg-dark text-white fixed-top py-2" >
             <div className="container d-flex align-items-center">
                 <div className="col justify-content-start">
                     <div className="d-flex align-items-center">
@@ -48,7 +48,7 @@ const Header = () => {
                             to="/home"
                             className="text-white text-decoration-none"
                             style={{
-                                fontSize: isScrolled ? '1.5rem' : '2.5rem', // Text size change on scroll
+                                fontSize: isScrolled ? '1.5rem' : '1.5rem', // Text size change on scroll
                                 transition: 'font-size 0.3s ease',
                             }}
                         >

@@ -70,6 +70,11 @@ const SearchBar = ({ onSearchResults }) => {
 
 
   const handleKeyPress = (e) => {
+    if(e.repeat && e.key !== "Backspace"){
+      e.preventDefault();
+      e.tabIndex = 0;
+      return;
+    }
     if (e.key === 'Enter'){
         handleSearch();
     }
@@ -85,12 +90,13 @@ const SearchBar = ({ onSearchResults }) => {
     <div className="search-section">
       <div className="search-bar-container">
       <TextField
+        aria-labelledby='Event Search Bar'
         disabled = {test === '' ? true : false}
         className="search-input"
         variant="outlined"
         value={searchTerm}
         onChange={handleInputChange}
-        onKeyUpCapture={handleKeyPress}
+        onKeyDown={handleKeyPress}
         placeholder="Search for an Event..."
         input={{
           endAdornment: searchTerm && (
@@ -114,7 +120,6 @@ const SearchBar = ({ onSearchResults }) => {
       {loading && <div className='Second-Row-Ticket-Background' style={{textAlign: 'center'}}>
         <div style={{ display: 'inline-block', color: 'white', fontSize: '20pt'}}>
           Loading
-          <div className='dot'></div>
           <div className='dot'></div>
           <div className='dot'></div>
           <div className='dot'></div>

@@ -107,9 +107,9 @@ export function Home() {
 
 
   return (
-    <Container fluid className='banner-container' style={{padding: "0%", margin:"0%", overflowX: 'hidden'}}>
+    <Container fluid className='banner-container' style={{padding: "0%", margin:"0%", overflowX: 'hidden', height:'auto'}}>
       <div>
-        <div className="d-flex flex-column justify-content-center align-items-center" style={{ height: '50vh' }}>
+        <div className="d-flex flex-column justify-content-center align-items-center" style={{ paddingTop:'5%' }}>
           <img src={NewLogo} alt="Logo" className="img-fluid" style={{ maxWidth: '200px', height: 'auto' }} />
           <div className="text-center mt-3" style={{ fontSize: '4rem', fontFamily: 'sans-serif' }}>
               GET UR TICKETS
@@ -120,6 +120,7 @@ export function Home() {
       <div className='Second-Row-Ticket-Background'>
         <AirportSearchBar onSelect={handleAirportSelect}/>
         <SearchBar onSearchResults={HandleSearchResults}/>
+        {searchResults.length > 0 ? <div className='description' style={{textAlign:'center'}}>{searchResults.length} results found</div> : null}
         {searchResults.length > 0 && tracking === 0 ? setChecking(true): null}
         {searchResults.length > 0 && tracking === 0 && searchResults.length < 5 ? setTracking(searchResults.length) : null}
         {searchResults.length > 0 && tracking === 0 && searchResults.length >= 5 ? setTracking(5) : null}

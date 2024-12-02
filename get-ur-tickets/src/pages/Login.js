@@ -9,7 +9,7 @@ export function Login() {
         /* Bootstrap container */
         <Container fluid className='banner-container' style={{padding: "0%", margin:"0%", overflowX: 'hidden'}}>
             <div>
-                <div className="d-flex flex-column justify-content-center align-items-center" style={{ height: '50vh' }}>
+                <div className="d-flex flex-column justify-content-center align-items-center" style={{ paddingTop:'5%' }}>
                     <img src={NewLogo} alt="Logo" className="img-fluid" style={{ maxWidth: '200px', height: 'auto' }} />
                     <div className="text-center mt-3" style={{ fontSize: '4rem', fontFamily: 'sans-serif' }}>
                         GET UR TICKETS
@@ -36,7 +36,7 @@ export function Login() {
 
             {/* Authention */}
             <div className="d-flex justify-content-center">
-                <div className="w-50">
+                <div className="w-55">
                     <Authenticator />
                 </div>
             </div>
