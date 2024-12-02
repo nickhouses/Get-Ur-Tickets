@@ -143,7 +143,7 @@ import DetailsPopover from "../Components/popOver.tsx";
                 maxWidth: '19vw',
                 color: 'black',
             }}>
-                <strong>Flight Price:N/A-Home Loaction</strong>
+                <strong>Flight Price:N/A-Home Location</strong>
             </div>
             }
             
