@@ -5,7 +5,6 @@ import datetime
 import requests
 from encryption_functions import get_key, decrypt_file
 
-RESULT_LIMIT = 3
 KEY_FILE = 'key.encrypted'
 CONSTANTS_FILE = 'constants.env'
 TICKET_API_KEY, SERP_API_KEY = decrypt_file(CONSTANTS_FILE,
@@ -127,10 +126,12 @@ def get_total_price_from_file(origin: str = 'LAS') -> list:
 
 
 def get_total_price_from_api(origin: str = 'LAS',
-                             keyword: str = 'formula-1') -> str:
+                             keyword: str = 'formula-1',
+                             result_limit: int = 3) -> str:
     """
     :param origin: 3-letter origin airport code
-    :param keyword: Keyword to pass as
+    :param keyword: Keyword to pass to search for
+    :param result_limit: The maximum number of results returned
     :return: A sorted list of all the total prices (flight + ticket)
     """
 
@@ -206,7 +207,7 @@ def get_total_price_from_api(origin: str = 'LAS',
                                'Hotel': hotel,
                                })
 
-                if result_counter < RESULT_LIMIT:
+                if result_counter < result_limit:
                     result_counter += 1
                 else:
                     break
@@ -215,4 +216,4 @@ def get_total_price_from_api(origin: str = 'LAS',
 
 
 if __name__ == '__main__':
-    print(get_total_price_from_api('LAX', 'Celtics'))
+    print(get_total_price_from_api('LAS', 'Los Angeles Lakers'))
