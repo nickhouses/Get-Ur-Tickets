@@ -169,7 +169,7 @@ import {test} from './AirportSearchBar'
                 color: 'black',
                 wordBreak: 'break-word'
             }}>
-                <strong>Flight Price:N/A-Home Location</strong>
+                <strong>Flight Price: N/A-Home Location</strong>
             </div>
             }
             
