@@ -28,8 +28,14 @@ A workaround solution was made for the aforementioned problem. We deployed a loa
 The load balancer is a simple round robin load balancer. The servers it sends to requests to can be found in its code.
 
 #### Deployment Steps
+Setting up web domain
+1. Select the web tab 
+2. Click add a new web app, then click next
+3. Select your python webframe, select flask, click next
+4. Select your python version, Python 3.10, click next, click next again
 1. Switch to the Console tab
    1. Open a bash console
+        - `git clone https://github.com/CS-472/Get-Ur-Tickets `
    2. Navigate to the project directory
    3. Pull the most up-to-date code from the repository
         - `git pull`
@@ -41,13 +47,18 @@ The load balancer is a simple round robin load balancer. The servers it sends to
     3. Then run `pipreqs . --force`
     4. Then run `python -m venv venv`
     5. Then run `source venv/bin/`
-    6. Then run `pip install -r requirements.txt`
+    4. Activate the virtual environment
+   - Windows
+     - `.\venv\Scripts\activate`
+   - MacOS
+     - `source venv/bin/activate`
+    7. Then run `pip install -r requirements.txt`
     7. Then run `pip install --upgrade flask werkzeug`
     8. Then set Virualenv to the location of the venv.
     9. Configure the WSGI configuration file by clicking on the location
         - Set your `project_home` to the pwd of ur backend, `should be the same as source and working directory`.
-    ![alt text](image.png)
-     8. Click the green reload button at the top of the page
+    ![Python Anywhere](img/Python-Anywhere.png)
+     10. Click the green reload button at the top of the page
 ## Local Development
 ### Frontend
 1. Go to the frontend directory
@@ -190,7 +201,7 @@ You can expect the output to be in a JSON format like the following.
    - The command to log in is `docker login -u <username>`
   
 ## How the application works
-![](img/System-Diagram.jpg)
+![System Diagram](img/System-Diagram.jpg)
 
 GetUrTickets is a RESTful application that works by making GET, POST, PUT, and DELETE requests. The application has a frontend user interface that the user will interact with, and a backend that handles all of the processing of the application. The application will be hosted on Amazon Web Services using [AWS Amplify](https://aws.amazon.com/amplify/). The application will be deployed each time there is a new commit to our team repository.
 
@@ -198,4 +209,4 @@ Based on the diagram at the top. The user will request tickets for a specific (e
 
 The UML diagram below shows how the application works on a detailed level.
 
-![](img/UML.jpg)
+![UML Diagram](img/UML.jpg)

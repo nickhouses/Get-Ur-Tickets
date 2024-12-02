@@ -120,6 +120,7 @@ export function Home() {
       <div className='Second-Row-Ticket-Background'>
         <AirportSearchBar onSelect={handleAirportSelect}/>
         <SearchBar onSearchResults={HandleSearchResults}/>
+        {searchResults.length > 0 ? <div className='description' style={{textAlign:'center'}}>{searchResults.length} results found</div> : null}
         {searchResults.length > 0 && tracking === 0 ? setChecking(true): null}
         {searchResults.length > 0 && tracking === 0 && searchResults.length < 5 ? setTracking(searchResults.length) : null}
         {searchResults.length > 0 && tracking === 0 && searchResults.length >= 5 ? setTracking(5) : null}
